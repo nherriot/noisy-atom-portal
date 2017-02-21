@@ -25,7 +25,13 @@ SECRET_KEY = 'xg6j41xd%uchs_j!5g0bvm4@!tt-mv^04@m*qlw#fa+q5cj)^*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+        'localhost',
+        '127.0.0.1',
+        'noisyatom.com',
+        'noisyatom.co.uk',
+        '104.236.14.123',
+        ]
 
 
 # Application definition
