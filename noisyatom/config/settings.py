@@ -39,9 +39,9 @@ if socket.gethostname() in DEVELOPER_MACHINES:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'chh',
-            'USER': 'chh_user',
-            'PASSWORD': 'chh_user',
+            'NAME': 'na_db',
+            'USER': 'na_db_user',
+            'PASSWORD': 'na_user',
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
@@ -89,11 +89,11 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'chh_db_03102016',					# This is our database name
-        'USER': 'chh_db_user',						# This is the user of our database
-        'PASSWORD': 'IPq52l7a',						# This is the password of the database user
+        'NAME': 'na_db_20022017',					# This is our database name
+        'USER': 'na_db_user',						# This is the user of our database
+        'PASSWORD': '9cobDTDa6N',						# This is the password of the database user
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
          }
     }
 
