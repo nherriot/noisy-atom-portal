@@ -35,7 +35,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
 
     # Database
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-    # Setup the database as a developer machine.django.contrib.staticfiles
+    # Setup the database as a developer machine
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -100,7 +100,7 @@ else:
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.9/howto/static-files/
     #STATIC_URL = os.path.join(BASE_DIR, "static/")
-    STATIC_URL = '/static-cdn/'
+    STATIC_URL = '/static-url-shit/'
 
 
     # Application definition
@@ -192,7 +192,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static-cdn/'
+# STATIC_URL = '/static-cdn/'
 
 
 # Static files (CSS, JavaScript, Images)
