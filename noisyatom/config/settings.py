@@ -100,7 +100,12 @@ else:
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.9/howto/static-files/
     #STATIC_URL = os.path.join(BASE_DIR, "static/")
-    STATIC_URL = '/static/'
+    # STATIC_URL is what is placed onto the end of your URL when you use the 'static' tag in your template files. e.g.
+    # if you have:
+    # <img class='img' src="{% static '.....' %}"/>
+    # it would get converted to in the rendered page:
+    # <img class='img' src="/static/...."/>
+    STATIC_URL = '/static-cdn/'
 
 
     # Application definition
@@ -192,19 +197,17 @@ USE_L10N = True
 USE_TZ = True
 
 
-# STATIC_URL = '/static-cdn/'
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-
+# Static files (CSS, JavaScript, Images) https://docs.djangoproject.com/en/1.9/howto/static-files/
+# STATICFILES_DIRS specifies where it gets your application static files. It uses this directory to find your project
+# files to copy to your STATIC_ROOT. This is specified below.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
 
 # static_cdn stand for static content delivery network
+# STATIC_ROOT specifies where the collect static command will copy all your static files to. So all your 'img, js, css,
+# png and so on will be copied to this folder when you run the 'collectstatic' command.
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn')
 
 MEDIA_URL = '/media/'
