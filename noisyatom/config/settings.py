@@ -63,6 +63,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'django.contrib.staticfiles',
         'django.contrib.sites',
         'cms.apps.CmsConfig',
+        'catalog',
     ]
 
 # **************************************************************************************************************************
@@ -119,6 +120,7 @@ else:
         'django.contrib.staticfiles',
         'django.contrib.sites',
         'cms.apps.CmsConfig',
+        'catalog',
     ]
 
 DEFAULT_FROM_EMAIL = "Noisy Atom <info@noisyatom.com>"
