@@ -1,4 +1,5 @@
 from django.db import models
+from account.models import Company
 
 # A simple model to describe a vanilla catalog. This will allow a catalog to have multiple products. And products to be
 # part of multiple catalogs.
@@ -39,6 +40,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     is_bestseller = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
+    company_name = models.ForeignKey(Company, null=True)
     quantity = models.IntegerField()
     description = models.TextField()
     meta_keywords = models.CharField("Meta Keywords", max_length=255, help_text='Comma-delimited set of SEO keywords for meta tag')
