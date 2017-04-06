@@ -9,7 +9,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-import os, socket
+import os
+import socket
 
 # A list of development machines that will make sure we use a 'non production' settings file. Add your machine name to
 # the list to make this settings file a 'dev' build only.
@@ -19,6 +20,7 @@ DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'dilmac-VB', 'dilmac', 'my-mac-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.join(BASE_DIR, 'noisyatom')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -64,6 +66,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'django.contrib.sites',
         'cms.apps.CmsConfig',
         'catalog',
+        'account',
     ]
 
 # **************************************************************************************************************************
@@ -121,6 +124,7 @@ else:
         'django.contrib.sites',
         'cms.apps.CmsConfig',
         'catalog',
+        'account',
     ]
 
 DEFAULT_FROM_EMAIL = "Noisy Atom <info@noisyatom.com>"

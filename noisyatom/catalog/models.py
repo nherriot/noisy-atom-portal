@@ -18,7 +18,7 @@ class Category(models.Model):
     class Meta:
         db_table = 'categories'
         ordering = ['-created_at']
-        verbose_name_plural = 'Categoires'
+        verbose_name_plural = 'Categories'
 
     def __unicode__(self):
         return self.name
@@ -41,7 +41,7 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     quantity = models.IntegerField()
     description = models.TextField()
-    meta_keywords = models.CharField("Meta Keywords", max_length=255,                                     help_text='Comma-delimited set of SEO keywords for meta tag')
+    meta_keywords = models.CharField("Meta Keywords", max_length=255, help_text='Comma-delimited set of SEO keywords for meta tag')
     meta_description = models.CharField(max_length=255, help_text='Content for description of meta tag')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
