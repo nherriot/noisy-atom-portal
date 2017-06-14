@@ -64,9 +64,10 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
-        'cms.apps.CmsConfig',
-        'catalog',
         'account',
+        'catalog',
+        'cms.apps.CmsConfig',
+        'qrcode',
     ]
 
 # **************************************************************************************************************************

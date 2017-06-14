@@ -1,5 +1,6 @@
 from django.db import models
 from account.models import Company
+from qrcode.models import QRcode
 
 # A simple model to describe a vanilla catalog. This will allow a catalog to have multiple products. And products to be
 # part of multiple catalogs.
@@ -31,11 +32,18 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
-    brand =models.CharField(max_length=50)
+    brand = models.CharField(max_length=50)
     sku = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     old_price = models.DecimalField(max_digits=9, decimal_places=2)
-    #TODO A one-to-one relationship to a QR code object that is used to describe a generic product.
+    two_d_bar_code = models.OneToOneField(
+        QRcode,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        null=False,
+        blank=True,
+        default=0,
+    )
     image = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
     is_bestseller = models.BooleanField(default=False)
@@ -73,10 +81,14 @@ class Product(models.Model):
 class ProductItem(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
-    brand =models.CharField(max_length=50)
+    brand = models.CharField(max_length=50)
     sku = models.CharField(max_length=50)
     sale_price = models.DecimalField(max_digits=9, decimal_places=2)        # The item can only be sold at a specific price
-    #TODO A one-to-one relationship to a QR code object that is used to describe this product item.
+    two_d_bar_code = models.OneToOneField(
+        QRcode,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     #TODO A one-to-one relationship with an order or customer
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
