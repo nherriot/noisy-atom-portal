@@ -96,7 +96,7 @@ else:
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'na_db_20022017',					# This is our database name
         'USER': 'na_db_user',						# This is the user of our database
-        'PASSWORD': '9cobDTDa6N',						# This is the password of the database user
+        'PASSWORD': 'adU772oLo8',						# This is the password of the database user
         'HOST': 'localhost',
         'PORT': '5432',
          }
