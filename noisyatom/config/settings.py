@@ -77,9 +77,9 @@ else:
 
     print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
 
-    NOISYATOM_DB_PASSWORD = os.getenv(NOISY_ATOM_DB_PASSWORD)
-    NOISYATOM_DB_PASSWORD = os.getenv(NOISY_ATOM_DB_USER)
-    NOISYATOM_DB_PASSWORD = os.getenv(NOISY_ATOM_DB)
+    NOISYATOM_DB_PASSWORD = os.getenv('NOISY_ATOM_DB_PASSWORD')
+    NOISYATOM_DB_USER = os.getenv('NOISY_ATOM_DB_USER')
+    NOISYATOM_DB = os.getenv('NOISY_ATOM_DB')
 
     # Set allowed hosts so that we can verify where requests are coming from.
     ALLOWED_HOSTS = [
