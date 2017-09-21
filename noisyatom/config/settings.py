@@ -26,7 +26,7 @@ PROJECT_ROOT = os.path.join(BASE_DIR, 'noisyatom')
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xg6j41xd%uchs_j!5g0bvm4@!tt-mv^04@m*qlw#fa+q5cj)^*'
+SECRET_KEY = 'needs-to-change'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Add your own computer name to this list of 'gethostname()' functions to get
@@ -124,8 +124,11 @@ else:
         'django.contrib.staticfiles',
         'django.contrib.sites',
         'cms.apps.CmsConfig',
-        'catalog',
         'account',
+        'catalog',
+        'cms.apps.CmsConfig',
+        'qrcode',
+
     ]
 
 DEFAULT_FROM_EMAIL = "Noisy Atom <info@noisyatom.com>"
