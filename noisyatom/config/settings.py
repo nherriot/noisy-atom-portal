@@ -77,6 +77,10 @@ else:
 
     print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
 
+    NOISYATOM_DB_PASSWORD = os.getenv(NOISY_ATOM_DB_PASSWORD)
+    NOISYATOM_DB_PASSWORD = os.getenv(NOISY_ATOM_DB_USER)
+    NOISYATOM_DB_PASSWORD = os.getenv(NOISY_ATOM_DB)
+
     # Set allowed hosts so that we can verify where requests are coming from.
     ALLOWED_HOSTS = [
         'localhost',
@@ -94,9 +98,9 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'na_db_20022017',					# This is our database name
-        'USER': 'na_db_user',						# This is the user of our database
-        'PASSWORD': 'adU772oLo8',						# This is the password of the database user
+        'NAME': NOISYATOM_DB,            					# This is our database name
+        'USER': NOISYATOM_DB_USER,    						# This is the user of our database
+        'PASSWORD': NOISYATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
         'HOST': 'localhost',
         'PORT': '5432',
          }
