@@ -123,7 +123,6 @@ else:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
-        'cms.apps.CmsConfig',
         'account',
         'catalog',
         'cms.apps.CmsConfig',
