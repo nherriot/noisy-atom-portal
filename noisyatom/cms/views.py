@@ -8,6 +8,11 @@ def index_view(request):
 	return render(request, 'index.html', context)
 
 
+def coming_soon(request):
+    context = {}
+
+    return render(request, 'coming-soon.html', context)
+
 def dashboard_view(request):
 	context = {}
 	return render(request, 'dashboard.html', context)
