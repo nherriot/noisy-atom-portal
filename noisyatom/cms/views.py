@@ -5,8 +5,6 @@ from django.urls import reverse
 def index_view(request):
 	context = {}
 
-	print (" ***** Index view ***** thre reverse URL lookup is: {}".format(reverse('cms:foo_bar_url')))
-
 	return render(request, 'index.html', context)
 
 

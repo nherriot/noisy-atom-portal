@@ -7,11 +7,10 @@ class WhateverTest(TestCase):
 
     def test_index(self):
 
-        url = reverse("cms.views.index_view")
+        url = reverse("cms:index")
         resp = self.client.get(url)
-
-        print ("*** Response is: {}".format(resp))
+        #print("*** Response is: {}".format(resp.content))
 
         self.assertEqual(resp.status_code, 200)
-        #self.assertIn(w.title, resp.content)
+        self.assertIn(b'Welcome to Noisy Atom', resp.content)
 
