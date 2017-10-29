@@ -1,0 +1,176 @@
+{% load staticfiles %}
+
+{% include 'header.html' %}
+
+    <nav class="navbar navbar-danger navbar-transparent navbar-absolute">
+    	<div class="container">
+        	<!-- Brand and toggle get grouped for better mobile display -->
+        	<div class="navbar-header">
+        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            		<span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+        		</button>
+        		<a class="navbar-brand" href="../presentation.html">Noisy Atom</a>
+        	</div>
+
+        	<div class="collapse navbar-collapse" id="navigation-example">
+        		<ul class="nav navbar-nav navbar-right">
+{#    				<li>#}
+{#						<a href="/components">#}
+{#							<i class="material-icons">apps</i> Components#}
+{#						</a>#}
+{#					</li>#}
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="material-icons">view_day</i> Sections
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu dropdown-with-icons">
+{#							<li>#}
+{#								<a href="../sections.html#headers">#}
+{#									<i class="material-icons">dns</i> Headers#}
+{#								</a>#}
+{#							</li>#}
+{#							<li>#}
+{#								<a href="../sections.html#features">#}
+{#									<i class="material-icons">build</i> Features#}
+{#								</a>#}
+{#							</li>#}
+							<li>
+								<a href="/blogs">
+									<i class="material-icons">list</i> Blogs
+								</a>
+							</li>
+							<li>
+								<a href="/teams">
+									<i class="material-icons">people</i> Teams
+								</a>
+							</li>
+							<li>
+								<a href="/coming-soon">
+									<i class="material-icons">assignment</i> Projects
+								</a>
+							</li>
+{#							<li>#}
+{#								<a href="../sections.html#pricing">#}
+{#									<i class="material-icons">monetization_on</i> Pricing#}
+{#								</a>#}
+{#							</li>#}
+{#							<li>#}
+{#								<a href="../sections.html#testimonials">#}
+{#									<i class="material-icons">chat</i> Testimonials#}
+{#								</a>#}
+{#							</li>#}
+							<li>
+								<a href="/contactus">
+									<i class="material-icons">call</i> Contacts
+								</a>
+							</li>
+
+						</ul>
+					</li>
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="material-icons">view_carousel</i> Examples
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu dropdown-with-icons">
+							<li>
+								<a href="/about-us">
+									<i class="material-icons">account_balance</i> About Us
+								</a>
+							</li>
+							<li>
+								<a href="/blog">
+									<i class="material-icons">art_track</i> Blog Post
+								</a>
+							</li>
+							<li>
+								<a href="../contactus">
+									<i class="material-icons">location_on</i> Contact Us
+								</a>
+							</li>
+{#							<li>#}
+{#								<a href="/sign-in.html">#}
+{#									<i class="material-icons">fingerprint</i> Login Page#}
+{#								</a>#}
+{#							</li>#}
+{#							<li>#}
+{#								<a href="/pricing.html">#}
+{#									<i class="material-icons">attach_money</i> Pricing Page#}
+{#								</a>#}
+{#							</li>#}
+							<li>
+								<a href="/coming-soon">
+									<i class="material-icons">beach_access</i> Office of National Statistics
+								</a>
+							</li>
+   							<li>
+								<a href="/coming-soon">
+									<i class="material-icons">beach_access</i> AlfaAesar
+								</a>
+							</li>
+   							<li>
+								<a href="/coming-soon">
+									<i class="material-icons">beach_access</i> Vodafone
+								</a>
+							</li>
+
+{#							<li>#}
+{#								<a href="/profile.html">#}
+{#									<i class="material-icons">account_circle</i> Profile Page#}
+{#								</a>#}
+{#							</li>#}
+{#							<li>#}
+{#								<a href="/signup.html">#}
+{#									<i class="material-icons">person_add</i> Signup Page#}
+{#								</a>#}
+{#							</li>#}
+						</ul>
+					</li>
+
+{#					<li>#}
+{#						<a href="http://www.noisyatom.com/buy/qrcode?ref=presentation" target="_blank" class="btn btn-white btn-simple">#}
+{#							<i class="material-icons">shopping_cart</i> Buy Now#}
+{#						</a>#}
+{#					</li>#}
+        		</ul>
+        	</div>
+    	</div>
+    </nav>
+
+
+    <div class="page-header header-filter" data-parallax="active" 
+    style="background-image: url('{% static "assets/img/bg8.jpg" %}');">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-6">
+					<h1 class="title">Coming Soon.</h1>
+                    <h4>We are working on it! Come back real soon to see our great work!</h4>
+                    <br />
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Index page landing here -->
+    <div class="main main-raised">
+		<div class="container">
+	    	<div class="section text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                    	{% block content %}
+
+						
+						{% endblock content %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   {% include 'footer.html' %}
