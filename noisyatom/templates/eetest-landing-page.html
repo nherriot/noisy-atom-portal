@@ -152,10 +152,18 @@
         <div class="container">
             <div class="row">
 				<div class="col-md-6">
+                    {% if error %}
+                        <div class="alert alert-warning" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
 					<h1 class="title">Equal Experts Iterest Calculator.</h1>
                     <h4>Equal Expert Interest calculator. Enter how much you want to deposit to find out what your yearly interest amounds to.</h4>
-                    <p>Interest APR is calculated at 1% up to £1000, 2% up to £5000 and 3% for above.</p>
-                    <p>Equal Experts do not allow you to deposit more than £10,000,000.</p>
+                    <p>Interest APR is calculated at:</p>
+                    <p>1% up to £1000,</p>
+                    <p>2% up to £5000 and</p>
+                    <p>3% for above.</p>
+                    <p>Equal Experts do not allow you to deposit more than £{{max_value}}.</p>
                     <br />
                     <form action="/ee-calculated/" method="post">
                         {% csrf_token %}
@@ -171,20 +179,6 @@
         </div>
     </div>
 
-    <!-- Index page landing here -->
-    <div class="main main-raised">
-		<div class="container">
-	    	<div class="section text-center">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                    	{% block content %}
 
-						
-						{% endblock content %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
    {% include 'footer.html' %}
