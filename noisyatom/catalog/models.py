@@ -88,6 +88,9 @@ class ProductItem(models.Model):
         QRcode,
         on_delete=models.CASCADE,
         primary_key=True,
+        null=False,
+        blank=True,
+        default=0,
     )
     #TODO A one-to-one relationship with an order or customer
     created_at = models.DateTimeField(auto_now_add=True)
