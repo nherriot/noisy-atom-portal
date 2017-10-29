@@ -38,17 +38,25 @@ if socket.gethostname() in DEVELOPER_MACHINES:
     # Database
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
     # Setup the database as a developer machine
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'na_db',
+    #         'USER': 'na_db_user',
+    #         'PASSWORD': 'na_user',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '5432',
+    #     }
+    # }
+
+    # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
+    # purposes. 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.sqlite3',
             'NAME': 'na_db',
-            'USER': 'na_db_user',
-            'PASSWORD': 'na_user',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
         }
     }
-
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.9/howto/static-files/
