@@ -9,7 +9,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
-import os, socket
+import os
+import socket
 
 # A list of development machines that will make sure we use a 'non production' settings file. Add your machine name to
 # the list to make this settings file a 'dev' build only.
@@ -19,12 +20,13 @@ DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'dilmac-VB', 'dilmac', 'my-mac-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.join(BASE_DIR, 'noisyatom')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xg6j41xd%uchs_j!5g0bvm4@!tt-mv^04@m*qlw#fa+q5cj)^*'
+SECRET_KEY = 'needs-to-change'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Add your own computer name to this list of 'gethostname()' functions to get
@@ -35,7 +37,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
 
     # Database
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-    # Setup the database as a developer machine.django.contrib.staticfiles
+    # Setup the database as a developer machine
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -62,7 +64,10 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
+        'account',
+        'catalog',
         'cms.apps.CmsConfig',
+        'qrcode',
     ]
 
 # **************************************************************************************************************************
@@ -72,6 +77,10 @@ else:
 
     print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
 
+    NOISYATOM_DB_PASSWORD = os.getenv('NOISY_ATOM_DB_PASSWORD')
+    NOISYATOM_DB_USER = os.getenv('NOISY_ATOM_DB_USER')
+    NOISYATOM_DB = os.getenv('NOISY_ATOM_DB')
+
     # Set allowed hosts so that we can verify where requests are coming from.
     ALLOWED_HOSTS = [
         'localhost',
@@ -79,6 +88,7 @@ else:
         'noisyatom.com',
         'noisyatom.co.uk',
         '104.236.14.123',
+        '46.101.19.29',
         ]
 
     DEBUG = False
@@ -89,9 +99,9 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'na_db_20022017',					# This is our database name
-        'USER': 'na_db_user',						# This is the user of our database
-        'PASSWORD': '9cobDTDa6N',						# This is the password of the database user
+        'NAME': NOISYATOM_DB,            					# This is our database name
+        'USER': NOISYATOM_DB_USER,    						# This is the user of our database
+        'PASSWORD': NOISYATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
         'HOST': 'localhost',
         'PORT': '5432',
          }
@@ -100,6 +110,11 @@ else:
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/1.9/howto/static-files/
     #STATIC_URL = os.path.join(BASE_DIR, "static/")
+    # STATIC_URL is what is placed onto the end of your URL when you use the 'static' tag in your template files. e.g.
+    # if you have:
+    # <img class='img' src="{% static '.....' %}"/>
+    # it would get converted to in the rendered page:
+    # <img class='img' src="/static/...."/>
     STATIC_URL = '/static-cdn/'
 
 
@@ -113,7 +128,11 @@ else:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
+        'account',
+        'catalog',
         'cms.apps.CmsConfig',
+        'qrcode',
+
     ]
 
 DEFAULT_FROM_EMAIL = "Noisy Atom <info@noisyatom.com>"
@@ -192,19 +211,17 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-
+# Static files (CSS, JavaScript, Images) https://docs.djangoproject.com/en/1.9/howto/static-files/
+# STATICFILES_DIRS specifies where it gets your application static files. It uses this directory to find your project
+# files to copy to your STATIC_ROOT. This is specified below.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
 
 # static_cdn stand for static content delivery network
+# STATIC_ROOT specifies where the collect static command will copy all your static files to. So all your 'img, js, css,
+# png and so on will be copied to this folder when you run the 'collectstatic' command.
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn')
 
 MEDIA_URL = '/media/'

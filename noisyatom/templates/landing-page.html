@@ -12,7 +12,9 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
         		</button>
-        		<a class="navbar-brand" href="../presentation.html">Noisy Atom</a>
+        		<a class="navbar-brand" href="/">
+                    <img src="{% static 'assets/img/na_icon.png' %}" alt="Noisy Atom Logo"/>
+                </a>
         	</div>
 
         	<div class="collapse navbar-collapse" id="navigation-example">
@@ -149,12 +151,12 @@
         <div class="container">
             <div class="row">
 				<div class="col-md-6">
-					<h1 class="title">Your Story Starts With Us.</h1>
-                    <h4>Every landing page needs a small description after the big bold title, that's why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
+					<h1 class="title">Our Story Starts With Technology.</h1>
+                    <h4>A tech company. We specialise in python web platforms and frameworks. We have a range of experiences working with tier one companies and small startups. Read below for some of our success and open source projects. </h4>
                     <br />
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
-						<i class="fa fa-play"></i> Watch video
-					</a>
+{#                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">#}
+{#						<i class="fa fa-play"></i> Watch video#}
+{#					</a>#}
 				</div>
             </div>
         </div>
@@ -167,8 +169,6 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                     	{% block content %}
-
-						
 						{% endblock content %}
                     </div>
                 </div>
@@ -181,8 +181,8 @@
 	    	<div class="section text-center">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h2 class="title">Let's talk product</h2>
-                        <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see more.</h5>
+                        <h2 class="title">Our Stories</h2>
+                        <h5 class="description">Noisy Atom have been active in a range of projects since inception in 2014. Started from 3 like minded R&D engineers from the Vodafone Global R&D Centre in Newbury. Our skills are broad and range from IoT, Network Telecomms and web development. We even support OS projects used by UK Government. Have a read at some of our recent stories below.</h5>
                     </div>
                 </div>
 
@@ -190,31 +190,28 @@
 					<div class="row">
 						<div class="col-md-4">
 							<div class="info">
-								<div class="icon icon-info">
-									<i class="material-icons">chat</i>
-								</div>
-								<h4 class="info-title">Free Chat</h4>
-								<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+                                <img class="logo__img" src="{% static 'assets/img/logo_ons.svg' %}" alt="Office for National Statistics"/>
+{#								<i class="material-icons">chat</i>#}
+								<h4 class="info-title">Office Of National Statistics</h4>
+								<p>Noisy Atom took the lead role in implementing and customization on a python OS OAuth2 server. We now maintain this OS project and actively developing it. You can find <a href="https://github.com/NoisyAtom/oauth2-python-server"> more info on this project here</a></p>
 							</div>
 						</div>
 
 						<div class="col-md-4">
 							<div class="info">
-								<div class="icon icon-success">
-									<i class="material-icons">verified_user</i>
-								</div>
-								<h4 class="info-title">Verified Users</h4>
-								<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+                                <img class="logo_img alfa-body" src="{% static 'assets/img/logo_alfa.gif' %}" style="width:225px;" alt="Alfa Aesar"/>
+{#                                <i class="material-icons">verified_user</i>#}
+								<h4 class="info-title">Thermofisher Scientific</h4>
+								<p>AlfaAesar, a sub brand of Thermofisher used Noisy Atom expertise to help port a legacy Websmart system onto a Django ecommerce platform. The system used an asynchronous message bus, elastic search and interfaced to a legacy IBM DB2 database.</p>
 							</div>
 						</div>
 
 						<div class="col-md-4">
 							<div class="info">
-								<div class="icon icon-danger">
-									<i class="material-icons">fingerprint</i>
-								</div>
-								<h4 class="info-title">Fingerprint</h4>
-								<p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+                                <img src="{% static 'assets/img/logo_vf.png' %}"  alt="Vodafone"/>
+{#									<i class="material-icons">fingerprint</i>#}
+								<h4 class="info-title">Vodafone</h4>
+								<p>Vodafone required a dynamic mapping system for their patent wall at the Vodafone R&D offices in Newbury. A django web portal dynamically mapped a QR code scanned from the patent wall with a phone to details about the patent and inventor.</p>
 							</div>
 						</div>
 	                </div>
@@ -241,7 +238,7 @@
 										<h6 class="category text-muted">Founder</h6>
 
 										<p class="card-description">
-											Don't be scared of the truth because we need to restart the human foundation in truth...
+											I am passionate about technology, even as a child I was a Lego addict! At the moment I'm using mainly Python for current projects.
 										</p>
 
 										<div class="footer">
@@ -291,59 +288,9 @@
 						</div>
 
 						<div class="col-md-6">
-							<div class="card card-profile card-plain">
-								<div class="col-md-5">
-									<div class="card-image">
-										<a href="#pablo">
-											<img class="img" src="{% static 'assets/img/faces/card-profile4-square.jpg' %}" />
-										</a>
-									</div>
-								</div>
-								<div class="col-md-7">
-									<div class="content">
-										<h4 class="card-title">Gina Andrew</h4>
-										<h6 class="category text-muted">Web Designer</h6>
-
-										<p class="card-description">
-											I love you like Kanye loves Kanye. Don't be scared of the truth.
-										</p>
-
-										<div class="footer">
-											<a href="#pablo" class="btn btn-just-icon btn-simple btn-youtube"><i class="fa fa-youtube-play"></i></a>
-											<a href="#pablo" class="btn btn-just-icon btn-simple btn-twitter"><i class="fa fa-twitter"></i></a>
-											<a href="#pablo" class="btn btn-just-icon btn-simple btn-instagram"><i class="fa fa-instagram"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 
 						<div class="col-md-6">
-							<div class="card card-profile card-plain">
-								<div class="col-md-5">
-									<div class="card-image">
-										<a href="#pablo">
-											<img class="img" src="{% static 'assets/img/faces/card-profile2-square.jpg' %}" />
-										</a>
-									</div>
-								</div>
-								<div class="col-md-7">
-									<div class="content">
-										<h4 class="card-title">George West</h4>
-										<h6 class="category text-muted">Backend Hacker</h6>
-
-										<p class="card-description">
-											I love you like Kanye loves Kanye. Don't be scared of the truth because we need to restart the human foundation.
-										</p>
-
-										<div class="footer">
-											<a href="#pablo" class="btn btn-just-icon btn-simple btn-linkedin"><i class="fa fa-linkedin"></i></a>
-											<a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"><i class="fa fa-facebook-square"></i></a>
-											<a href="#pablo" class="btn btn-just-icon btn-simple btn-google"><i class="fa fa-google"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 
 					</div>
@@ -356,7 +303,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h2 class="text-center title">Work with us</h2>
-						<h4 class="text-center description">Divide details about your product or agency work into parts. Write a few lines about each one and contact us about any further collaboration. We will responde get back to you in a couple of hours.</h4>
+						<h4 class="text-center description">Write a few lines about your requirements or how you may like to collaborate. We will responded and get back to you in a day .</h4>
                         <form class="contact-form">
                             <div class="row">
                                 <div class="col-md-6">
