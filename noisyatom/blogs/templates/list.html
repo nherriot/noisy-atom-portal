@@ -1,0 +1,94 @@
+{% extends 'landing-page.html' %}
+
+{% load bootstrap4 %}
+{% load urlify %}
+
+{% block content %}
+
+<div class="row">
+
+	<div class="col-12">
+		<div class="col-md-8 col-md-offset-2">
+			<form action="" method="GET" class='row'>
+				<div class="col-md-8">
+					<div class="input-group">
+						<input type="text" class="form-control" name="q" placeholder="Search ..."
+						 value="{{request.GET.q}}">
+						
+						<button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br>
+	
+	<div class="col-12">
+		<div class="col-md-3 col-md-offset-9">
+		{% if user.is_authenticated and user.is_staff %}
+			<a href="{% url 'blogs:create' %}" title="">
+			<button type="button" class="btn btn-success pull-right">Add</button>
+			</a>
+		{% endif %}
+		</div>
+	</div>
+
+	<div class="col-12"> 
+		
+		<div class="col-md-7 text-justify post-detail-item">
+			
+			{% for obj in object_list %}
+
+				<h3>
+					<a href="{% url 'blogs:detail' slug=obj.slug %}">{{obj.title|upper}}</a>
+					<small>{{obj.publish}}</small>
+				</h3>
+				
+				<div class="">{{obj.get_markdown|truncatechars_html:200}}</div>
+
+				{% if instance.draft %}
+					<b>Draft:</b> <i>{{instance.publish}}</i>
+				{% else %}
+					<i>{{instance.publish}}</i>
+				{% endif %}
+				
+				<a href="{% url 'blogs:detail' slug=obj.slug %}" class="">
+					<button type="button" class="btn btn-primary pull-right">More ...</button>
+				</a>	
+				
+				<hr>
+			{% endfor %}
+
+		</div>
+
+		<div class="col-md-5">
+			{% for obj in object_list %}
+				{% if obj.image %}
+					<img src="{{obj.image.url}}" class="img-thumbnail img-responsive" />
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+
+	<div class="col-12">
+		<div class="col-md-4 col-md-offset-3">
+			<div class="pagination">
+			    <span class="step-links">
+			        {% if object_list.has_previous %}
+			            <a href="?page={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}">previous</a>
+			        {% endif %}
+
+			        <span class="current">
+			            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+			        </span>
+
+			        {% if object_list.has_next %}
+			            <a href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{request.GET.q}}{% endif %}">next</a>
+			        {% endif %}
+			    </span>
+			</div>
+		</div>
+	</div>
+</div>	
+{% endblock content %}

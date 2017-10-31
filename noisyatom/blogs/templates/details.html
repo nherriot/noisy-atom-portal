@@ -1,0 +1,97 @@
+{% extends 'landing-page.html' %}
+
+{% load bootstrap4 %}
+{% load urlify %}
+
+{% block content %}
+<div class="row ">
+	<!-- Only if you logged in -->
+	<div class="col-12">
+		{% if user.is_staff or user.is_authenticated %}
+		<a href="{% url 'blogs:create' %}" title="Add">
+			<button type="button" class="btn btn-success">Add</button>
+		</a>
+		<a href="{% url 'blogs:updated' slug=instance.slug %}" title="Update">
+			<button type="button" class="btn btn-primary">Update</button>
+		</a>
+		<a href="{% url 'blogs:delete' slug=instance.slug  %}" title="Delete">
+			<button type="button" class="btn btn-danger">Delete</button>
+		</a>	
+		{% endif %}
+		<hr>
+	</div>
+
+	<div class="col-12">
+
+		<div class="col-7 col-md-7 text-justify">
+
+
+			<h3 class="text-capitalize">{{instance.title}} </h3>
+
+			<div class="post-detail-item">{{instance.get_markdown}}</div>
+
+			<div>
+				<p class="lead">Comments</p>
+
+				<form action="." method="POST">{% csrf_token %}
+					{% bootstrap_form comment_form %}
+					<input type="submit" value="Comment" class="btn btn-primary">
+				</form>
+
+				{% for comment in comments %}
+				<blockquote>
+					<p class="lead">{{comment.content}}</p>
+					
+					<footer>
+						Via: {{comment.user}}, date: {{comment.timestamp|timesince}} ago |
+						{% if comment.children.count > 0 %}
+							{{comment.children.count}} Comment
+							{% if comment.children.count > 1 %}s{% endif %}
+						| {% endif %}
+						<a href="." class="comment-reply-btn">Reply</a>
+						<a href="{{comment.get_absolute_url}}" class=""> | Thread</a>
+					</footer>
+
+				<div class="comment-reply">			
+					{% for child_comment in comment.children %}
+					<blockquote>
+						<p>{{child_comment.content}}</p>
+						<footer>
+							Via: {{child_comment.user}}, date: {{child_comment.timestamp|timesince}} ago 
+						</footer>
+						
+					</blockquote>
+					{% endfor %}
+
+					<form action="." method="POST">{% csrf_token %}
+							
+						{% bootstrap_form comment_form %}
+						<input type="hidden" name="parent_id" value='{{comment.id'>
+						<input type="submit" value="Reply" class="btn btn-success">
+						
+					</form>
+				</div> <!-- End of comment reply -->
+
+				</blockquote>
+				{% endfor %}
+			</div>
+
+			<hr>
+			<a href="{% url 'blogs:list' %}" title="">
+				<button type="button" class="btn btn-primary pull-right">Return</button>
+			</a>
+
+		</div> <!-- end of col-7 col-md-7 text-justify -->
+
+		<div class="col-5 col-md-5">
+			<br><br>
+			{% if instance.image %}
+			<div class="img thumbnail">
+				<img src="{{instance.image.url}}" width="400" height="250" class="rounded img-responsive" id='id_img' />
+			</div>
+			{% endif %}
+		</div>
+
+	</div>
+</div>	
+{% endblock content %}

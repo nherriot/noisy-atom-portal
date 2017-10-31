@@ -1,0 +1,41 @@
+{% extends 'landing-page.html' %}
+
+{% load bootstrap4 %}
+
+{% block main_title %} {{instance.title }} | {{block.super}} {% endblock main_title %}
+
+{% block head_extra %}
+
+	{{form.media}}
+
+{% endblock head_extra %}
+
+{% block content %}
+
+<div class="row">
+
+	<div class="col-sm-6 text-justify">
+		
+		<form action="" method="POST" accept-charset="utf-8">
+			{% csrf_token %}
+
+			{{form.media}}
+
+			{% bootstrap_form form %}
+		
+			<button type="submit" class="btn btn-primary">Update</button>
+			
+		</form>
+
+	</div>
+
+	<div class="col-sm-6">
+		<h3>Preview Check</h3>
+		<div class="content-preview">
+			<h3 id='preview-title'></h3>
+			<p id='preview-content'></p>
+		</div>
+	</div>	
+
+</div>
+{% endblock content %}
