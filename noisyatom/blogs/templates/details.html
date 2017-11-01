@@ -29,52 +29,6 @@
 
 			<div class="post-detail-item">{{instance.get_markdown}}</div>
 
-			<div>
-				<p class="lead">Comments</p>
-
-				<form action="." method="POST">{% csrf_token %}
-					{% bootstrap_form comment_form %}
-					<input type="submit" value="Comment" class="btn btn-primary">
-				</form>
-
-				{% for comment in comments %}
-				<blockquote>
-					<p class="lead">{{comment.content}}</p>
-					
-					<footer>
-						Via: {{comment.user}}, date: {{comment.timestamp|timesince}} ago |
-						{% if comment.children.count > 0 %}
-							{{comment.children.count}} Comment
-							{% if comment.children.count > 1 %}s{% endif %}
-						| {% endif %}
-						<a href="." class="comment-reply-btn">Reply</a>
-						<a href="{{comment.get_absolute_url}}" class=""> | Thread</a>
-					</footer>
-
-				<div class="comment-reply">			
-					{% for child_comment in comment.children %}
-					<blockquote>
-						<p>{{child_comment.content}}</p>
-						<footer>
-							Via: {{child_comment.user}}, date: {{child_comment.timestamp|timesince}} ago 
-						</footer>
-						
-					</blockquote>
-					{% endfor %}
-
-					<form action="." method="POST">{% csrf_token %}
-							
-						{% bootstrap_form comment_form %}
-						<input type="hidden" name="parent_id" value='{{comment.id'>
-						<input type="submit" value="Reply" class="btn btn-success">
-						
-					</form>
-				</div> <!-- End of comment reply -->
-
-				</blockquote>
-				{% endfor %}
-			</div>
-
 			<hr>
 			<a href="{% url 'blogs:list' %}" title="">
 				<button type="button" class="btn btn-primary pull-right">Return</button>

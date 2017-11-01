@@ -1,0 +1,19 @@
+{% extends 'landing-page.html' %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div class="row ">
+	<div class="col-12 col-md-7 text-justify">
+		<form action="." method="POST">{% csrf_token %}
+			<h3>Confirm Delete comment!</h3>	
+			<b>Are you sure you want to delete: '{{ object.content }}'?</b>
+
+			<input type="submit" value="Confirm" class="btn btn-danger">
+			<a href="{{object.get_absolute_url}}" class="btn btn-default">Cancel</a>
+		</form>
+	</div>
+</div>	
+
+{% endblock content %}

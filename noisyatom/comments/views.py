@@ -11,7 +11,12 @@ from .models import Comment
 def comment_thread(request, id):
 	template_name = 'comment_thread.html'
 
-	obj = get_object_or_404(Comment, id=id)
+	## need to make permission
+	try:
+		obj = Comment.objects.get(id=id)
+	except:
+		raise Http404
+
 	content_object = obj.content_object
 	content_id = obj.content_object.id
 
@@ -47,7 +52,6 @@ def comment_thread(request, id):
 								)
 		return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
 
-
 	context = {
 		'comment': obj,
 		'comment_form':comment_form
@@ -55,5 +59,25 @@ def comment_thread(request, id):
 	return render(request, template_name, context)
 
 
-def delete_comment(request):
-	pass
+def comment_delete(request, id):
+	template_name = 'confirm_delete.html'
+
+	try:
+		obj = Comment.objects.get(id=id)
+	except:
+		raise Http404
+
+	if obj.user != request.user:
+		response = HttpResponse('You do not have permisstion to delete this comment')
+		response.status_code = 403
+		return response 
+
+	if request.method == 'POST':
+		parent_obj_url = obj.content_object.get_absolute_url()
+		obj.delete()
+		messages.success(request, 'The comment has been deleted!')
+		return HttpResponseRedirect(parent_obj_url)
+	context = {
+		'object': obj
+	}
+	return render(request, template_name, context)
