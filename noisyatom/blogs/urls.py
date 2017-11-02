@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from . import views
+
 from .views import (
 		list_post, 
 		detail_post,
@@ -12,9 +12,9 @@ from .views import (
    
 
 urlpatterns = [
-    url(r'^$', views.list_post, name='list'),
-    url(r'^create/$', views.create_post, name='create'),
-    url(r'^(?P<slug>[\w-]+)/$', views.detail_post, name='detail'),
-    url(r'(?P<slug>[\w-]+)/edit/$', views.update_post, name='updated'),
-    url(r'^(?P<slug>[\w-]+)/delete/$', views.delete_post, name='delete'),
+    url(r'^$', list_post, name='list'),
+    url(r'^create/$', create_post, name='create'),
+    url(r'^(?P<slug>[\w-]+)/$', detail_post, name='detail'),
+    url(r'(?P<slug>[\w-]+)/edit/$', update_post, name='updated'),
+    url(r'^(?P<slug>[\w-]+)/delete/$', delete_post, name='delete'),
 ]

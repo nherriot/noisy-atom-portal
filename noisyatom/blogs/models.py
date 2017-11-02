@@ -10,7 +10,7 @@ from django.utils.text import slugify
 
 from markdown_deux import markdown
 
-from comments.models import Comment
+
 '''
 https://docs.djangoproject.com/en/1.11/ref/models/fields/
 '''
@@ -26,6 +26,7 @@ class PostManager(models.Manager):
 def upload_image_location(instcance, filename):
 	return '%s/%s'%(instcance.id, filename)
 
+
 class Post(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
 	title = models.CharField(max_length=200)
@@ -38,18 +39,13 @@ class Post(models.Model):
 	height_field = models.IntegerField(default=0)
 	width_field = models.IntegerField(default=0)
 
-	likes = models.BooleanField()
-	hits = models.IntegerField(default=0)
-
 	draft = models.BooleanField(default=False)
 	publish = models.DateField(auto_now=False, auto_now_add=False)
 
 	updated = models.DateTimeField(auto_now=False, auto_now_add=True)
 	created = models.DateTimeField(auto_now=True, auto_now_add=False)
 
-
 	objects = PostManager()
-
 
 	def __str__(self):
 		return self.title
@@ -65,11 +61,6 @@ class Post(models.Model):
 		markdown_text = markdown(content)
 		return mark_safe(markdown_text)
 
-	@property
-	def comments(self):
-		instance = self
-		qs = Comment.objects.filter_by_instance(instance)
-		return qs
 
 	@property
 	def get_content_type(self):

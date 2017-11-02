@@ -11,8 +11,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'blog/', include('blogs.urls', namespace='blogs')),
-    url(r'comments/', include('comments.urls', namespace='comments')),
+    url(r'blogs/', include('blogs.urls', namespace='blogs')),
     url(r'', include('cms.urls', namespace='cms')),
     url(r'', include('ee_test.urls', namespace='ee_test')),
 ]

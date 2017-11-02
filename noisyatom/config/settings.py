@@ -75,7 +75,6 @@ if socket.gethostname() in DEVELOPER_MACHINES:
 
         'account.apps.AccountConfig',
         'blogs.apps.BlogsConfig',
-        'comments.apps.CommentsConfig',
         'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
         'qrcode',
