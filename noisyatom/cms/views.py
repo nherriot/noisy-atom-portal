@@ -9,9 +9,12 @@ def index_view(request):
 
 
 def coming_soon(request):
-    context = {}
+    context={'title': 'Coming Soon',
+                'paragraph1': 'We are working hard!',
+                'paragraph2': 'Stay tuned for our QR codes!',
+                'paragraph3': ''}
 
-    return render(request, 'coming-soon.html', context)
+    return render(request, 'sub-header.html', context)
 
 def dashboard_view(request):
     context = {}
@@ -24,4 +27,5 @@ def about_us(request):
                 'paragraph1': 'We have been active for 4 years. A dynamic tech focussed company. We love technology. Our core competences are in Python and Python web frameworks.',
                 'paragraph2': 'Check back soon for our open source products centred around QR Code generation and mapping with OAuth2 services.',
                 'paragraph3': 'For now - read more to meet the team.'}
-    return render(request, 'coming-soon.html', context)
+    return render(request, 'about-us.html', context)
+
