@@ -1,0 +1,166 @@
+{% extends 'background-page.html' %}
+
+{% load staticfiles %}
+
+{% load bootstrap4 %}
+
+
+{% block content %}
+
+
+<div class="col-12">
+	<div class="col-md-4">
+		<br><br>
+		<h3>Application process</h3>
+		<ol>
+			<li>CMS All dynamic</li>
+			<li>Translations</li>
+			<li>Deployment</li>
+			<li>Feedback</li>
+			<li>Payment CC</li>
+			<li>Elastic Search</li>
+			<li>Category</li>
+		</ol>
+	</div>
+
+	<div class="col-md-8">
+		<h3 class="text-left">Alfa Aesar Ltd</h3>
+		<img src="{% static 'images/cms_2.png' %}" width="600" height="300" class="img-responsive">
+	</div>
+	
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading"> CMS All Dynamic</div>
+        <div class="panel-body">
+            <div class="col-md-7">
+                <p>
+                    The all system has around 12 applications and each application has 5 models, each model has dynamic CRUD files <span class="label label-success"> Create</span> | <span class="label label-default">List</span> | <span class="label label-primary"> Detail</span> | <span class="label label-warning">Edit or Update</span> | <span class="label label-danger">Delete</span> you can dynamicly play with each pages.
+                    <p>The system has 4 different layout pages public page, staff page where the user can login and access to the dashboard which is called CMS, user loggedin and user settings profile and detail and the last one is master page where only the developer has access.</p>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <a href="#" class="">
+                    <img src="{% static 'images/cms_trimed_1.png' %}" class="img-responsive">
+                 <span class="badge">User Profile</span></a></p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- This section only includes notes for the snippet. Nothing more. You may ignore it if you please. -->
+    <div class="panel panel-default">
+        <div class="panel-heading">Translations</div>
+        <div class="panel-body">
+            <div class="col-md-7">
+                <p>
+                    The translations is very strong and active part of all website because we translate the english to other 10 languages and every update or adding new feature the new content will automatically added. If the word not clear in the other language or not available it will goes to fuzzy fields not display until be approved by the staff of course the content need to be approved before make public because it's chimical product. The languages are: 
+
+                    <span class="flag-icon flag-icon-gr">English</span>
+                    <span class="flag-icon flag-icon-gr">Deutsch</span>
+                    <span class="flag-icon flag-icon-gr">Spanish</span>
+                    <span class="flag-icon flag-icon-gr">France</span>
+                    <span class="flag-icon flag-icon-gr">Italian</span>
+                    <span class="flag-icon flag-icon-gr">Protugues</span>
+                    <span class="flag-icon flag-icon-gr">Japan</span>
+                    <span class="flag-icon flag-icon-gr">South Korea</span>
+                    <span class="flag-icon flag-icon-gr">Russia</span>
+                    <span class="flag-icon flag-icon-gr">China</span>
+
+
+                </p>
+            </div>
+            <div class="col-md-5">
+                <a href="#" class="">
+                    <img src="{% static 'images/cms_trimed_3.png' %}" class="img-responsive">
+                 <span class="badge">Translation</span></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Deplyment</div>
+        <div class="panel-body">
+            <div class="col-md-7">
+                <p>
+                   Nick You need to write the Deployment I do not remember !
+                </p>
+            </div>
+            <div class="col-md-5">
+                <a href="#" class="">
+                    <img src="{% static 'images/cms_trimed_1.png' %}" class="img-responsive">
+                    <span class="badge">User profile</span></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Payment CC</div>
+        <div class="panel-body">
+            <div class="col-md-7">
+                <p>
+                     Nick You need to write the Payment you have created and knows better than me !
+                </p>
+            </div>
+            <div class="col-md-5">
+                <a href="#" class="">
+                    <img src="{% static 'images/cms_trimed_1.png' %}" class="img-responsive">
+                 <span class="badge">User profile</span></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">ElasticSearch</div>
+        <div class="panel-body">
+            <div class="col-md-7">
+                <p>
+                    Elasticsearch has been installed to the project which is Java and have access to the database to retrieved any data title or item number automatically it will dropdown the list as soon you enter first two character or number like in the image.
+                </p> 
+            </div>
+            <div class="col-md-5">
+                <a href="#" class="">
+                    <img src="{% static 'images/cms_trimed_1.png' %}" class="img-responsive">
+                 <span class="badge">User profile</span></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Feedback</div>
+        <div class="panel-body">
+            <div class="col-md-7">
+                <p>
+                   The website ask their client to give them the feedback about their service plus any more comment, the feedback go to backend or CMS page listed the staff can imported to CSV file and make comparasen about how is look like as status. The other part of the feedback is only for the compnay not for public to read because its chemical items and the form will tell the staff where the feedback came from regarding the IP address.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <a href="#" class="">
+                    <img src="{% static 'images/cms_trimed_1.png' %}" class="img-responsive">
+                 <span class="badge">User profile</span></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Categories</div>
+        <div class="panel-body">
+            <div class="col-md-7">
+                <p>
+                   Categories has many items which is very complex because each item in the category has subcategory display with multiplese sub subcategories and listed in the tables in the database. Allwoed staff adding new items from main categories or in subcategory depend of the itaem in which category class is it.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="card-image">
+                <a href="#" >
+                    <img src="{% static 'images/cms_trimed_1.png' %}" class="img-responsive">
+                 <span class="badge">User profile</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

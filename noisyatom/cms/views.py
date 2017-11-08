@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-# Create your views here.
+
 
 def index_view(request):
 	context = {}
@@ -16,3 +16,10 @@ def coming_soon(request):
 def dashboard_view(request):
 	context = {}
 	return render(request, 'dashboard.html', context)
+
+def alfa_view(request):
+	template_name = 'alfa.html'
+	context = {
+		'title': 'Alfa Aesar Ltd'
+	}
+	return render(request, template_name, context)
