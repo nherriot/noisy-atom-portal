@@ -4,6 +4,11 @@
 
 {% load bootstrap4 %}
 
+{% block imagequery %}
+<!--[if IE]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+{% endblock imagequery %}
 
 {% block content %}
 
@@ -11,7 +16,7 @@
 <div class="col-12">
 	<div class="col-md-4">
 		<br><br>
-		<h3>Application process</h3>
+		<h3 class="title">Application process</h3>
 		<ol>
 			<li>CMS All dynamic</li>
 			<li>Translations</li>
@@ -24,15 +29,15 @@
 	</div>
 
 	<div class="col-md-8">
-		<h3 class="text-left">Alfa Aesar Ltd</h3>
+		<h3 class="text-left title">Alfa Aesar Ltd</h3>
 		<img src="{% static 'images/main_800px.png' %}" width="800" height="300" class="img-responsive">
 	</div>
 	
 </div>
 
-<div class="container">
+<div class="container gallery">
     <div class="panel panel-default">
-        <div class="panel-heading"> CMS All Dynamic</div>
+        <div class="panel-heading"><h4 class="info-title">CMS All Dynamic</h4></div>
         <div class="panel-body">
             <div class="col-md-7">
                 <p>
@@ -41,9 +46,10 @@
                 </p>
             </div>
             <div class="col-md-5">
-                <a href="#" class="">
+                <a class="fancybox" rel="group" href="{% static 'images/cms_trimed_2.png' %}">
                     <img src="{% static 'images/cms_trimed_2.png' %}" class="img-responsive">
-                 <span class="badge">Dynamic page</span></a></p>
+                    <span class="badge">Dynamic page</span>
+                </a>
             </div>
             
         </div>
@@ -51,36 +57,36 @@
 
     <!-- This section only includes notes for the snippet. Nothing more. You may ignore it if you please. -->
     <div class="panel panel-default">
-        <div class="panel-heading">Translations</div>
+        <div class="panel-heading"><h4 class="info-title">Translations</h4></div>
         <div class="panel-body">
             <div class="col-md-7">
                 <p>
                     The translations is very strong and active part of all website because we translate the english to other 10 languages and every update or adding new feature the new content will automatically added. If the word not clear in the other language or not available it will goes to fuzzy fields not display until be approved by the staff of course the content need to be approved before make public because it's chimical product. The languages are: 
 
-                    <span class="flag-icon flag-icon-gr">English</span>
-                    <span class="flag-icon flag-icon-gr">Deutsch</span>
-                    <span class="flag-icon flag-icon-gr">Spanish</span>
-                    <span class="flag-icon flag-icon-gr">France</span>
-                    <span class="flag-icon flag-icon-gr">Italian</span>
-                    <span class="flag-icon flag-icon-gr">Protugues</span>
-                    <span class="flag-icon flag-icon-gr">Japan</span>
-                    <span class="flag-icon flag-icon-gr">South Korea</span>
-                    <span class="flag-icon flag-icon-gr">Russia</span>
-                    <span class="flag-icon flag-icon-gr">China</span>
-
+                    <span class="flag-icon flag-icon-eg">English</span>
+                    <span class="flag-icon flag-icon-de">Deutsch</span>
+                    <span class="flag-icon flag-icon-sp">Spanish</span>
+                    <span class="flag-icon flag-icon-fr">France</span>
+                    <span class="flag-icon flag-icon-it">Italian</span>
+                    <span class="flag-icon flag-icon-pr">Protugues</span>
+                    <span class="flag-icon flag-icon-ja">Japan</span>
+                    <span class="flag-icon flag-icon-sk">South Korea</span>
+                    <span class="flag-icon flag-icon-ru">Russia</span>
+                    <span class="flag-icon flag-icon-ch">China</span>
 
                 </p>
             </div>
             <div class="col-md-5">
-                <a href="#" class="">
+                <a class="fancybox" rel="group" href="{% static 'images/cms_trimed_3.png' %}">
                     <img src="{% static 'images/cms_trimed_3.png' %}" class="img-responsive">
-                 <span class="badge">Translation</span></a></p>
+                    <span class="badge">Translation</span>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Deployment</div>
+        <div class="panel-heading"><h4 class="info-title">Deployment</h4></div>
         <div class="panel-body">
             <div class="col-md-7">
                 <p>
@@ -88,15 +94,16 @@
                 </p>
             </div>
             <div class="col-md-5">
-                <a href="#" class="">
+                <a class="fancybox" rel="group" href="{% static 'images/edit_navigation_400px.png' %}">
                     <img src="{% static 'images/edit_navigation_400px.png' %}" class="img-responsive">
-                    <span class="badge">Deployment</span></a></p>
+                    <span class="badge">Deployment</span>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Payment CC</div>
+        <div class="panel-heading"><h4 class="info-title">Payment CC</h4></div>
         <div class="panel-body">
             <div class="col-md-7">
                 <p>
@@ -104,15 +111,16 @@
                 </p>
             </div>
             <div class="col-md-5">
-                <a href="#" class="">
+                <a class="fancybox" rel="group" href="{% static 'images/shopping_cart_400px.png' %}">
                     <img src="{% static 'images/shopping_cart_400px.png' %}" class="img-responsive">
-                 <span class="badge">Chart And Payment</span></a></p>
+                    <span class="badge">Chart And Payment</span>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">ElasticSearch</div>
+        <div class="panel-heading"><h4 class="info-title">ElasticSearch</h4></div>
         <div class="panel-body">
             <div class="col-md-7">
                 <p>
@@ -120,15 +128,16 @@
                 </p> 
             </div>
             <div class="col-md-5">
-                <a href="#" class="">
+                <a class="fancybox" rel="group" href="{% static 'images/search_400px.png' %}">
                     <img src="{% static 'images/search_400px.png' %}" class="img-responsive">
-                 <span class="badge">Elastic Search</span></a></p>
+                    <span class="badge">Elastic Search</span>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Feedback</div>
+        <div class="panel-heading"><h4 class="info-title">Feedback</h4></div>
         <div class="panel-body">
             <div class="col-md-7">
                 <p>
@@ -136,15 +145,16 @@
                 </p>
             </div>
             <div class="col-md-5">
-                <a href="#" class="">
+                <a class="fancybox" rel="group" href="{% static 'images/feedback_400.png' %}">
                     <img src="{% static 'images/feedback_400.png' %}" class="img-responsive">
-                 <span class="badge">Received Feedback</span></a></p>
+                    <span class="badge">Received Feedback</span>
+                </a>
             </div>
         </div>
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Categories</div>
+        <div class="panel-heading "><h4 class="info-title">Categories</h4></div>
         <div class="panel-body">
             <div class="col-md-7">
                 <p>
@@ -153,9 +163,10 @@
             </div>
             <div class="col-md-5">
                 <div class="card-image">
-                <a href="#" >
+                <a class="fancybox" rel="group" href="{% static 'images/add_category_400px.png' %}">
                     <img src="{% static 'images/add_category_400px.png' %}" class="img-responsive">
-                 <span class="badge">User profile</span></a>
+                    <span class="badge">Add Category</span>
+                </a>
                 </div>
             </div>
         </div>
