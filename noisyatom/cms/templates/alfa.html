@@ -16,20 +16,20 @@
 <div class="col-12">
 	<div class="col-md-4">
 		<br><br>
-		<h3 class="title">Application process</h3>
+		<h5 class="description">Some of the highlights from this project that were built into this platfomr</h5>
 		<ol>
-			<li>CMS All dynamic</li>
-			<li>Translations</li>
-			<li>Deployment</li>
-			<li>Feedback</li>
-			<li>Payment CC</li>
-			<li>Elastic Search</li>
-			<li>Category</li>
+			<li>Custom CMS for pages on the site</li>
+			<li>Dynamic translations allowing updates in real time</li>
+			<li>Automated deployment via ansible</li>
+			<li>Feedback app</li>
+			<li>Integrated CC with legacy IBM DB2</li>
+			<li>Elastic Search for text based searches</li>
+			<li>Dynamic menus and editors for Chemical product pages</li>
 		</ol>
 	</div>
 
 	<div class="col-md-8">
-		<h3 class="text-left title">Alfa Aesar Ltd</h3>
+		<h2 class="text-left title">Alfa Aesar Ltd</h2>
 		<img src="{% static 'images/main_800px.png' %}" width="800" height="300" class="img-responsive">
 	</div>
 	
@@ -37,13 +37,21 @@
 
 <div class="container gallery">
     <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">CMS All Dynamic</h4></div>
+        <h2 class="text-center title">A break down of the system</h2>
         <div class="panel-body">
-            <div class="col-md-7">
+            <div class="col-md-5">
+                        <h4 class="card-title">Custom CMS</h4>
                 <p>
-                    The all system has around 12 applications and each application has 5 models, each model has dynamic CRUD files <span class="label label-success"> Create</span> | <span class="label label-default">List</span> | <span class="label label-primary"> Detail</span> | <span class="label label-warning">Edit or Update</span> | <span class="label label-danger">Delete</span> you can dynamicly play with each pages.
-                    <p>The system has 4 different layout pages public page, staff page where the user can login and access to the dashboard which is called CMS, user loggedin and user settings profile and detail and the last one is master page where only the developer has access.</p>
+                    The platform had around 12 web applications created. This allowed CMS content to be added and changed.
+                    A range of management pages were built for tasks such as checking on processed orders, order history,
+                    management metrics and so on.
                 </p>
+                <p>
+                    The system has 4 different layout pages, allowing staff to login and access dashboards. Look at feedback
+                    and so on.
+                </p>
+            </div>
+            <div class="col-md-2">
             </div>
             <div class="col-md-5">
                 <a class="fancybox" rel="group" href="{% static 'images/cms_trimed_2.png' %}">
@@ -57,24 +65,17 @@
 
     <!-- This section only includes notes for the snippet. Nothing more. You may ignore it if you please. -->
     <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">Translations</h4></div>
         <div class="panel-body">
-            <div class="col-md-7">
+            <div class="col-md-5">
+                <h4 class="card-title">Translations</h4>
                 <p>
-                    The translations is very strong and active part of all website because we translate the english to other 10 languages and every update or adding new feature the new content will automatically added. If the word not clear in the other language or not available it will goes to fuzzy fields not display until be approved by the staff of course the content need to be approved before make public because it's chimical product. The languages are: 
-
-                    <span class="flag-icon flag-icon-eg">English</span>
-                    <span class="flag-icon flag-icon-de">Deutsch</span>
-                    <span class="flag-icon flag-icon-sp">Spanish</span>
-                    <span class="flag-icon flag-icon-fr">France</span>
-                    <span class="flag-icon flag-icon-it">Italian</span>
-                    <span class="flag-icon flag-icon-pr">Protugues</span>
-                    <span class="flag-icon flag-icon-ja">Japan</span>
-                    <span class="flag-icon flag-icon-sk">South Korea</span>
-                    <span class="flag-icon flag-icon-ru">Russia</span>
-                    <span class="flag-icon flag-icon-ch">China</span>
-
+                    The website is multilingual and caters for Chemists around the globe. Ten languages and catered for and
+                    and language files are updated via an admin page. This is different to many other web platforms where
+                    static strings have to be updated programmatically. This system allows for dynamic updating of all configured
+                    strings and CMS content.
                 </p>
+            </div>
+            <div class="col-md-2">
             </div>
             <div class="col-md-5">
                 <a class="fancybox" rel="group" href="{% static 'images/cms_trimed_3.png' %}">
@@ -86,13 +87,16 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">Deployment</h4></div>
         <div class="panel-body">
-            <div class="col-md-7">
+            <div class="col-md-5">
+                <h4 class="card-title">Deployment</h4>
                 <p>
                    Nick You need to write the Deployment I do not remember !
                 </p>
             </div>
+            <div class="col-md-2">
+            </div>
+
             <div class="col-md-5">
                 <a class="fancybox" rel="group" href="{% static 'images/edit_navigation_400px.png' %}">
                     <img src="{% static 'images/edit_navigation_400px.png' %}" class="img-responsive">

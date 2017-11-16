@@ -19,7 +19,11 @@ def dashboard_view(request):
 
 def alfa_view(request):
 	template_name = 'alfa.html'
+	#TODO Make this dynamic data from a table in our database
 	context = {
-		'title': 'Alfa Aesar Ltd'
+		'title': 'Ecommerce Platform for Alfa Aesar Ltd',
+		'description1':'This project encompassed the migration of a legacy "Websmart" system into a modern python Django web platform. The platform was deployed onto a hosted server running with Redhat SE Linux 6.2 on an IBM PowerPC platform.',
+		'description2':'Read on to find out more about the specifics...',
+		'description3':''
 	}
 	return render(request, template_name, context)
