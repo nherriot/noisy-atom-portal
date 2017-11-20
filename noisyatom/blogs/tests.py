@@ -1,29 +1,16 @@
-# import datetime
 
-# from django.utils import timezone
-# from django.contrib.auth.models import User
-# from django.test import TestCase
+from django.test import TestCase
 
-# from blogs.models import Post, upload_image_location
+from blogs.models import Post
 
+class PostModelTest(TestCase):
 
-# class PostTest(TestCase):
-
-# 	def setUp(self):
-# 		self.post = Post.objects.create(
-# 				user=User.project.create_superuser(user='Nick', password='admin123')
-
-# 			)
+	def setUp(self):
+		self.post = Post.objects.create(title='New title test', slug='first-new-title-test-created')
 
 
-# 	def test_create(self):
-# 		User.objects.create_superuser(user='Nick', password='admin123')
+	def test_create_title(self):
+		obj = Post.objects.get(slug='first-new-title-test-created')
 
-# 		self.client.login(user='Nick', password='admin123')
-# 		session = self.client.session
-#         session['documents_to_share_ids'] = [1]
-#         session.save()
-
-#         response = self.client.get('/') 
-
+		self.assertEqual(obj.title, 'New title test')
 	
