@@ -1,14 +1,11 @@
-from django.conf import settings
 from django.conf.urls import url
-from django.conf.urls.static import static
 
 from cms.views import (
-		index_view,
-		coming_soon,
-		alfa_view, 
+        index_view,
+        coming_soon,
+        alfa_view,
         about_us,
-	)
-
+    )
 
 urlpatterns = [
     url('^$', index_view, name='index'),
