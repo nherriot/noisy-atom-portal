@@ -73,6 +73,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'django.contrib.staticfiles',
         'django.contrib.sites',
         'account',
+        'bootstrap4',
         'catalog',
         'cms.apps.CmsConfig',
         'qrcode',

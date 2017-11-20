@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-# Create your views here.
+
 
 def index_view(request):
     context = {}
@@ -17,9 +17,19 @@ def coming_soon(request):
     return render(request, 'sub-header.html', context)
 
 def dashboard_view(request):
-    context = {}
-    return render(request, 'dashboard.html', context)
+	context = {}
+	return render(request, 'dashboard.html', context)
 
+def alfa_view(request):
+	template_name = 'alfa.html'
+	#TODO Make this dynamic data from a table in our database
+	context = {
+		'title': 'Ecommerce Platform for Alfa Aesar Ltd',
+		'description1':'This project encompassed the migration of a legacy "Websmart" system into a modern python Django web platform. The platform was deployed onto a hosted server running with Redhat SE Linux 6.2 on an IBM PowerPC platform.',
+		'description2':'Read on to find out more about the specifics...',
+		'description3':''
+	}
+	return render(request, template_name, context)
 
 def about_us(request):
     #TODO Make this dynamic content from a data base.
@@ -28,4 +38,3 @@ def about_us(request):
                 'paragraph2': 'Check back soon for our open source products centred around QR Code generation and mapping with OAuth2 services.',
                 'paragraph3': 'For now - read more to meet the team.'}
     return render(request, 'about-us.html', context)
-
