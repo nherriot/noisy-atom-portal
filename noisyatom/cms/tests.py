@@ -3,7 +3,10 @@ from django.core.urlresolvers import reverse
 from cms.views import index_view
 # Create your tests here.
 
-class MainIndexTest(TestCase):
+# Make sure the index page is displayed and renders the correct template
+class IndexTest(TestCase):
+
+    #TODO Startup content goes here
 
     # Check we at least have a title
     def test_index_title(self):
@@ -53,5 +56,18 @@ class AlfaProjectTest(TestCase):
         self.assertTemplateUsed(response, 'alfa.html')
         self.assertIn(b'Alfa Aesar Ltd', response.content)
 
+# Make sure the about us page is displayed and renders the correct template
+class AboutUs(TestCase):
+
+    #TODO Startup content goes here
+
+    # Check that we have an about us title at least
+    def test_about_us(self):
+        url = reverse("cms:about_us")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'about-us.html')
+        self.assertTemplateUsed(response, 'background-page.html')
+        self.assertIn(b'About Us', response.content)
 
     # TODO add some test cases to verify that images are 800px in size
