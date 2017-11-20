@@ -6,6 +6,7 @@ from cms.views import (
 		index_view,
 		coming_soon,
 		alfa_view, 
+        about_us,
 	)
 
 
