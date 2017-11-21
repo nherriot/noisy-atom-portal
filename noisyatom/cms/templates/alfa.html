@@ -40,13 +40,14 @@
         <div class="panel-heading"></div>
 
         <div class="panel-body">            
-            <div class="col-md-5  text-left">
-                <h4 class="info-title">Custom CMS</h4>
-                <p class="text-justify">
+            <div class="col-md-5 text-justify">
+                <h4 class="info-title text-left">Custom CMS</h4>
+                <p>
                     The platform had around 12 web applications created. This allowed CMS content to be added and changed.
                     A range of management pages were built for tasks such as checking on processed orders, order history,
                     management metrics and so on.
-                <br>
+                <p>
+                <p>
                     The system has 4 different layout pages, allowing staff to login and access dashboards. Look at feedback
                     and so on.
                 </p>
@@ -71,9 +72,9 @@
     <div class="panel panel-default">
         <div class="panel-heading"></div>
         <div class="panel-body">
-            <div class="col-md-5 text-left">
+            <div class="col-md-5 text-justify">
                 <h4 class="info-title">Translations</h4>
-                <p class="text-justify">
+                <p>
                     The website is multilingual and caters for Chemists around the globe. Ten languages are present.
                     Language files are updated via an admin page. This is different to many other web platforms where
                     static strings have to be updated programmatically. This system allows for dynamic updating of all
@@ -98,9 +99,9 @@
     <div class="panel panel-default">
         <div class="panel-heading"></div>
         <div class="panel-body">
-            <div class="col-md-5 text-left">
+            <div class="col-md-5 text-justify">
                 <h4 class="info-title">Deployment</h4>
-                <p class="text-justify">
+                <p>
                     The platform is pacakged using python setup libraries. But more importantly, during the end of the
                     project the team moved to building the system with Ansible a deployment orchestration and automation
                     tool. This took the grundge work out of deployments onto cloud based systems. The system uses yaml
@@ -125,13 +126,14 @@
     <div class="panel panel-default">
         <div class="panel-heading"></div>
         <div class="panel-body">
-            <div class="col-md-5  text-left">
+            <div class="col-md-5  text-justify">
                 <h4 class="info-title">Credit Card Payment</h4>
-                <p class="text-justify">
+                <p>
                     Credit Card payments are difficult when the host server holds Credit Card numbers. The project
                     required PCI compliance before going live. One of the issues with this is the ability to rotate
                     encryption keys.
-                <br/>
+                </p>
+                <p>
                 The platform used an admin tool which allowed dynamic rotatting of these keys and even used celery
                     to automate the process allowing the updating and changing of encrypted fields to be fully automated.
                     For this the pycrypto and django-encrypted-fields library were used extensively</p>
@@ -154,14 +156,15 @@
     <div class="panel panel-default">
         <div class="panel-heading"></div>
         <div class="panel-body">
-            <div class="col-md-5  text-left">
+            <div class="col-md-5  text-justify">
                 <h4 class="info-title">ElasticSearch and Text Based Searching</h4>
                 <p class="text-justify">
                     The legacy search interface allowed SQL searches on catalog numbers, categories and so on. Our client
                     wished a more natural and dynamic search interface to allow Chemists to search on words which may be
                     part of a chemical compound. For that, the system required natural text based searching. i.e. a no
                     SQL type interface.
-                <<br>
+                </p>
+                <p>
                     The system delivered allowed full text based searching on the data entries. It used a celery scirpt
                     to synchronize with changes in the IBM DB2 interface. Data from the SQL world was pushed onto
                     Elastic search allowing users to have a richer search experience when searching for compounds and
@@ -186,13 +189,14 @@
     <div class="panel panel-default">
         <div class="panel-heading"></div>
         <div class="panel-body">
-            <div class="col-md-5  text-left">
+            <div class="col-md-5  text-justify">
                 <h4 class="info-title">Eeedback Apps</h4>
-                <p class="text-justify">
+                <p>
                     Typically modern web platforms allow an easy feedback mechanism for users to quickly and easily provide
                     one click feedback. For that a scrolling fully responsive UI component allowed a user to tab input
                     and submit feedback directly.
-                <br>
+                </p>
+                <p>
                     The administration interface allowed AlfaAesar staff to view that interface in a meaningfull way. This
                     allowed the team to iterate and build enhancements to the system which were scheduled in each sprint.
                 </p>
