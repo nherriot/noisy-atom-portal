@@ -13,202 +13,141 @@
 {% block content %}
 
 <div class="panel-body">
-    <div class="panel-heading"><h2 class="info-title text-center">QR Codes & Patents</h2></div>
-	<div class="col-md-4">
-		<br><br>
-		<h5 class="description">Some of the highlights from this project that were built into this platform</h5>
-		<ol>
-			<li>Custom CMS for pages on the site</li>
-			<li>Dynamic translations allowing updates in real time</li>
-			<li>Automated deployment via ansible</li>
-			<li>Feedback app</li>
-			<li>Integrated CC with legacy IBM DB2</li>
-			<li>Elastic Search for text based searches</li>
-			<li>Dynamic menus and editors for Chemical product pages</li>
-		</ol>
-	</div>
-
-	<div class="col-md-8">
-
-		<img src="{% static 'images/main_800px.png' %}" width="800" height="300" class="img-responsive">
-	</div>
-
+    <div class="panel-heading"><h2 class="info-title">QR Codes & Patents</h2></div>
 </div>
 
 <div class="container gallery">
-    <div class="panel panel-default">
+    <div class="panel panel-default text-left">
 {#        <h2 class="text-center title">A break down of the system</h2>#}
-        <div class="panel-heading"><h4 class="info-title">Custom CMS</h4></div>
+        <div class="panel-heading"><h4 class="info-title">Scanning QR Code With Mobile</h4></div>
         <div class="panel-body">
-
-            <div class="col-md-5">
-                <p>
-                    The platform had around 12 web applications created. This allowed CMS content to be added and changed.
-                    A range of management pages were built for tasks such as checking on processed orders, order history,
-                    management metrics and so on.
-                </p>
-                <p>
-                    The system has 4 different layout pages, allowing staff to login and access dashboards. Look at feedback
-                    and so on.
-                </p>
-            </div>
-            <div class="col-md-2">
-            </div>
-
             <div class="col-md-5">
                 <div class="card card-profile card-plain">
                     <div class="card-image">
                     <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
-                        <img src="{% static 'images/cms_trimed_2.png' %}" class="img-responsive">
+                        <img src="{% static 'images/vodafone_phone_400px.png' %}" class="img-responsive">
                         <span class="badge">Dynamic page</span>
                     </a>
                     </div>
                 </div>
             </div>
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-5">
+                <p>
+                    The project brief was to allow a user to scan a QR code etched into perspex to be scanned by a phone
+                    and dynamically route the user to information about that invention.
+                </p>
+                <p>
+                    An example of one scan shows the user being redirected to the actual patent and it's description.
+                </p>
+            </div>
+
+
         </div>
     </div>
 
     <!-- This section only includes notes for the snippet. Nothing more. You may ignore it if you please. -->
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">Translations</h4></div>
+    <div class="panel panel-default text-left">
+        <div class="panel-heading"><h4 class="info-title">QR Codes Created And Etched Into The Patent Wall</h4></div>
+
         <div class="panel-body">
             <div class="col-md-5">
-                <p>
-                    The website is multilingual and caters for Chemists around the globe. Ten languages are present.
-                    Language files are updated via an admin page. This is different to many other web platforms where
-                    static strings have to be updated programmatically. This system allows for dynamic updating of all
-                    static strings, not only CMS content.
-                </p>
+                <div class="card card-profile card-plain">
+                    <div class="card-image">
+                    <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
+                        <img src="{% static 'images/vodafone_wall1_400px.png' %}" class="img-responsive">
+                        <span class="badge">Dynamic page</span>
+                    </a>
+                    </div>
+                </div>
             </div>
             <div class="col-md-2">
             </div>
             <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/translations_800px.png' %}">
-                            <img src="{% static 'images/cms_trimed_3.png' %}" class="img-responsive">
-                            <span class="badge">Translation</span>
-                        </a>
-                    </div>
-                </div>
+                <p>
+                    The system had to read created ID's by an administrator and create the QR Code image dynamically
+                    on the system. The perspex manufacturer then downloaded those QR Codes and etched onto the tiles.
+                </p>
+                <p>
+                    The Perspex company could always obtain the image by downloading from the Django portal. The portal
+                    allowed different resolutions and simple tools to manage downloads. Using any other technology would
+                    have been an expensive task for what is considered a minor project.
+                </p>
+                <p>
+                    Here the wall can be seen fully assembled with the codes etched onto the titles.
+                </p>
             </div>
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">Deployment</h4></div>
+    <div class="panel panel-default text-left">
+        <div class="panel-heading"><h4 class="info-title">A Tile Being Scanned With The Camera On A Typical Mobile</h4></div>
         <div class="panel-body">
             <div class="col-md-5">
-                <p>
-                    The platform is pacakged using python setup libraries. But more importantly, during the end of the
-                    project the team moved to building the system with Ansible a deployment orchestration and automation
-                    tool. This took the grundge work out of deployments onto cloud based systems. The system uses yaml
-                    files to automate the deployment process. This tool now has major backing and support from Redhat.
-                </p>
+                <div class="card card-profile card-plain">
+                    <div class="card-image">
+                    <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
+                        <img src="{% static 'images/vodafone_phone2_400px.png' %}" class="img-responsive">
+                        <span class="badge">Dynamic page</span>
+                    </a>
+                    </div>
+                </div>
             </div>
             <div class="col-md-2">
             </div>
             <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/deployment_800px.png' %}">
-                            <img src="{% static 'images/edit_navigation_400px.png' %}" class="img-responsive">
-                            <span class="badge">Deployment</span>
-                        </a>
-                    </div>
-                </div>
+                <p>
+                    Using a Django web framework allowed Noisy Atom to quickly prototype solutions for our client Vodafone.
+                    We had to quickly trial the system using different QR Code resolutions to ensure this could work with
+                    the sizes of perspex and on a number of handsets.
+                </p>
+                <p>
+                    It allowed us to control not only routing but to re-route dynamically if Vodafone wanted to supply a
+                    richer piece of content for a particular invention. In other words, to route that ID to a piece of
+                    CMS content on the portal. This could allow an inventor to maintain their own content that could be
+                    viewed on the wall.
+                </p>
+                <p>
+                    This image shows a mobile user selecting a tile to scan.
+                </p>
             </div>
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">Credit Card Payment</h4></div>
+
+    <div class="panel panel-default text-left">
+        <div class="panel-heading"><h4 class="info-title">The Patent Wall Showing Innovation By Noisy Atom</h4></div>
         <div class="panel-body">
             <div class="col-md-5">
-                <p>
-                    Credit Card payments are difficult when the host server holds Credit Card numbers. The project
-                    required PCI compliance before going live. One of the issues with this is the ability to rotate
-                    encryption keys.
-                </p>
-                <p> The platform used an admin tool which allowed dynamic rotatting of these keys and even used celery
-                    to automate the process allowing the updating and changing of encrypted fields to be fully automated.
-                    For this the pycrypto and django-encrypted-fields library were used extensively</p>
+                <div class="card card-profile card-plain">
+                    <div class="card-image">
+                    <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
+                        <img src="{% static 'images/vodafone_wall2_400px.png' %}" class="img-responsive">
+                        <span class="badge">Dynamic page</span>
+                    </a>
+                    </div>
+                </div>
             </div>
             <div class="col-md-2">
             </div>
             <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/shopping_cart_800px.png' %}">
-                            <img src="{% static 'images/shopping_cart_400px.png' %}" class="img-responsive">
-                            <span class="badge">Chart And Payment</span>
-                        </a>
-                    </div>
-                </div>
+                <p>
+                    Key to the project was working with suppliers. And being able to react quickly to changing needs due
+                    to limitations in other secondary systems. To quickly test and feedback changes to the system design
+                    were imperative due to the number of unknowns.
+
+                </p>
+                <p>
+                    The Patent Wall is an example of innovation and creativity. Noisy Atom not only delivered a solution
+                    but worked with external companies and crafted a system that worked - tailored to the needs of
+                    Vodafone.
+                </p>
             </div>
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">ElasticSearch and Text Based Searching</h4></div>
-        <div class="panel-body">
-            <div class="col-md-5">
-                <p>
-                    The legacy search interface allowed SQL searches on catalog numbers, categories and so on. Our client
-                    wished a more natural and dynamic search interface to allow Chemists to search on words which may be
-                    part of a chemical compound. For that, the system required natural text based searching. i.e. a no
-                    SQL type interface.
-                </p>
-                <p>
-                    The system delivered allowed full text based searching on the data entries. It used a celery scirpt
-                    to synchronize with changes in the IBM DB2 interface. Data from the SQL world was pushed onto
-                    Elastic search allowing users to have a richer search experience when searching for compounds and
-                    chemicals on the site.
-                </p>
-            </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/elastic_search_800px.png' %}">
-                            <img src="{% static 'images/search_400px.png' %}" class="img-responsive">
-                            <span class="badge">Elastic Search</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="info-title">Feedback From Users</h4></div>
-        <div class="panel-body">
-            <div class="col-md-5">
-                <p>
-                    Typically modern web platforms allow an easy feedback mechanism for users to quickly and easily provide
-                    one click feedback. For that a scrolling fully responsive UI component allowed a user to tab input
-                    and submit feedback directly.
-                </p>
-                <p>
-                    The administration interface allowed AlfaAesar staff to view that interface in a meaningfull way. This
-                    allowed the team to iterate and build enhancements to the system which were scheduled in each sprint.
-                </p>
-            </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/feedback_800px.png' %}">
-                            <img src="{% static 'images/feedback_400.png' %}" class="img-responsive">
-                            <span class="badge">Received Feedback</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
     
 {% endblock %}
