@@ -17,10 +17,21 @@
 </div>
 
 <div class="container gallery">
-    <div class="panel panel-default text-left">
-{#        <h2 class="text-center title">A break down of the system</h2>#}
-        <div class="panel-heading"><h4 class="info-title">Scanning QR Code With Mobile</h4></div>
+    <div class="panel-default">
+        <div class="panel-heading"></div>
         <div class="panel-body">
+            <div class="col-md-5 text-left">
+                <h4 class="info-title">Scanning QR Code With Mobile</h4>
+                <p>
+                    The project brief was to allow a user to scan a QR code etched into perspex to be scanned by a phone
+                    and dynamically route the user to information about that invention.
+                </p>
+                <p>
+                    An example of one scan shows the user being redirected to the actual patent and it's description.
+                </p>
+            </div>
+            <div class="col-md-2">
+            </div>
             <div class="col-md-5">
                 <div class="card card-profile card-plain">
                     <div class="card-image">
@@ -31,38 +42,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
-                <p>
-                    The project brief was to allow a user to scan a QR code etched into perspex to be scanned by a phone
-                    and dynamically route the user to information about that invention.
-                </p>
-                <p>
-                    An example of one scan shows the user being redirected to the actual patent and it's description.
-                </p>
-            </div>
         </div>
     </div>
 
-    <!-- This section only includes notes for the snippet. Nothing more. You may ignore it if you please. -->
-    <div class="panel panel-default text-left">
-        <div class="panel-heading"><h4 class="info-title">QR Codes Created And Etched Into The Patent Wall</h4></div>
-
+    <div class="panel-default">
+        <div class="panel-heading"></div>
         <div class="panel-body">
-            <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                    <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
-                        <img src="{% static 'images/vodafone_wall1_400px.png' %}" class="img-responsive">
-                        <span class="badge">Vodafone Patent Wall With QR Codes</span>
-                    </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
+            <div class="col-md-5 text-left">
+                <h4 class="info-title">QR Codes Created And Etched Into The Patent Wall</h4>
                 <p>
                     The system had to read created ID's by an administrator and create the QR Code image dynamically
                     on the system. The perspex manufacturer then downloaded those QR Codes and etched onto the tiles.
@@ -76,25 +63,26 @@
                     Here the wall can be seen fully assembled with the codes etched onto the titles.
                 </p>
             </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default text-left">
-        <div class="panel-heading"><h4 class="info-title">A Tile Being Scanned With The Camera On A Typical Mobile</h4></div>
-        <div class="panel-body">
-            <div class="col-md-5">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5 text-left">
                 <div class="card card-profile card-plain">
                     <div class="card-image">
                     <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
-                        <img src="{% static 'images/vodafone_phone2_400px.png' %}" class="img-responsive">
-                        <span class="badge">A Mobile Scanning A Tile QR Code</span>
+                        <img src="{% static 'images/vodafone_wall1_400px.png' %}" class="img-responsive">
+                        <span class="badge">Vodafone Patent Wall With QR Codes</span>
                     </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
+        </div>
+    </div>
+
+    <div class="panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <div class="col-md-5 text-left">
+                <h4 class="info-title">A Tile Being Scanned With The Camera On A Typical Mobile</h4>
                 <p>
                     Using a Django web framework allowed Noisy Atom to quickly prototype solutions for our client Vodafone.
                     We had to quickly trial the system using different QR Code resolutions to ensure this could work with
@@ -110,26 +98,27 @@
                     This image shows a mobile user selecting a tile to scan.
                 </p>
             </div>
-        </div>
-    </div>
-
-
-    <div class="panel panel-default text-left">
-        <div class="panel-heading"><h4 class="info-title">The Patent Wall Showing Innovation By Noisy Atom</h4></div>
-        <div class="panel-body">
+            <div class="col-md-2">
+            </div>
             <div class="col-md-5">
                 <div class="card card-profile card-plain">
                     <div class="card-image">
                     <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
-                        <img src="{% static 'images/vodafone_wall2_400px.png' %}" class="img-responsive">
-                        <span class="badge">Vodafone Patent Wall - Innovation by Noisy Atom</span>
+                        <img src="{% static 'images/vodafone_phone2_400px.png' %}" class="img-responsive">
+                        <span class="badge">A Mobile Scanning A Tile QR Code</span>
                     </a>
                     </div>
                 </div>
+
             </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
+        </div>
+    </div>
+
+    <div class="panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <div class="col-md-5 text-left">
+                <h4 class="info-title">The Patent Wall Showing Innovation By Noisy Atom</h4>
                 <p>
                     Key to the project was working with suppliers. And being able to react quickly to changing needs due
                     to limitations in other secondary systems. To quickly test and feedback changes to the system design
@@ -141,6 +130,18 @@
                     but worked with external companies and crafted a system that worked - tailored to the needs of
                     Vodafone.
                 </p>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5">
+                <div class="card card-profile card-plain">
+                    <div class="card-image">
+                    <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
+                        <img src="{% static 'images/vodafone_wall2_400px.png' %}" class="img-responsive">
+                        <span class="badge">Vodafone Patent Wall - Innovation by Noisy Atom</span>
+                    </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
