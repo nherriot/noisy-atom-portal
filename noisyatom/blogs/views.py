@@ -1,7 +1,6 @@
 from urllib.parse import quote_plus
 
 from django.contrib import messages
-from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -26,7 +25,7 @@ def create_post(request):
 		messages.success(request, 'The page successfully created')
 		return HttpResponseRedirect(instance.get_absolute_url())
 	else:
-		messages.success(request, 'The page not created')
+		messages.error(request, 'The page is not created')
 
 	context = {
 		'form': form,
@@ -42,11 +41,6 @@ def detail_post(request, slug=None):
 		if not request.user.is_staff or not request.user.is_superuser:
 			raise Http404
 	share_string = quote_plus(instance.content)
-
-	initail_data = {
-		'content_type': instance.get_content_type,
-		'object_id': instance.id,
-	}
 
 	context = {
 		'title': instance.title,
@@ -88,7 +82,6 @@ def list_post(request):
 	    # If page is out of range (e.g. 9999), deliver last page of results.
 	    queryset = paginator.page(paginator.num_pages)
 
-	post_title = Post.objects.all().order_by('-title')
 
 	context = {
 			'object_list': queryset,
@@ -111,8 +104,6 @@ def update_post(request, slug=None):
 		instance.save()
 		messages.success(request, 'The page successfully updated')
 		return HttpResponseRedirect(instance.get_absolute_url())
-	else:
-		messages.success(request, 'Something went wrong with update!')
 
 	context = {
 		'title': instance.title,
@@ -124,6 +115,9 @@ def update_post(request, slug=None):
 
 	return render(request, template_name, context)
 
+# from django.views.decorators.csrf import csrf_exempt
+
+# @csrf_exempt
 def delete_post(request, slug=None):
 	if not request.user.is_staff or not request.user.is_superuser:
 		raise Http404

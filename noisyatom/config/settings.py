@@ -72,14 +72,14 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
-
+        # Project application
         'account.apps.AccountConfig',
         'blogs.apps.BlogsConfig',
         'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
         'qrcode',
         'ee_test',
-
+        # Third part library
         'bootstrap4',
         'markdown_deux',
         'pagedown',

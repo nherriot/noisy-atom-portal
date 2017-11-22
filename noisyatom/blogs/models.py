@@ -29,7 +29,7 @@ def upload_image_location(instcance, filename):
 
 class Post(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
-	title = models.CharField(max_length=200)
+	title = models.CharField(max_length=100)
 	slug = models.SlugField(unique=True)
 	content = models.TextField()
 	image = models.ImageField(upload_to=upload_image_location, 
@@ -80,6 +80,7 @@ def create_slug(instance, new_slug=None):
 		new_slug = '%s-%s' %(slug, qs.first().id)
 		return create_slug(instance, new_slug=new_slug)
 	return slug
+
 '''
 that is mean before the model will be save to the db we will do something!
 '''

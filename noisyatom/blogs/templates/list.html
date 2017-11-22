@@ -29,18 +29,35 @@
 			<button type="button" class="btn btn-success pull-right">Add</button>
 			</a>
 		{% endif %}
+
 		</div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">	
+		{% if messages %}
+			<ul class="messages">
+			    {% for message in messages %}
+			    	<li{% if message.tags %} class="alert alert-success {{ message.tags }}" {% endif %} >	
+			    		<h4 class="text-center">{{ message }}</h4>
+			    	</li>
+			    {% endfor %}
+			</ul>
+		{% endif %}
 	</div>
 </div>
 
 <div class="row">
+
 	{% for obj in object_list %}
 	<div class="col-md-12"> 
 		<div class="col-md-8 text-justify post-detail-item">
-			<h3>
+			<h4>
 				<a href="{% url 'blogs:detail' slug=obj.slug %}">{{obj.title|upper}}</a>
 				<small>{{obj.publish}}</small>
-			</h3>
+			</h4>
 			
 			<div class="">{{obj.get_markdown|truncatechars_html:200}}</div>
 
@@ -60,13 +77,11 @@
 				{% if obj.image %}
 					<img src="{{obj.image.url}}" class="img-thumbnail img-responsive" />
 				{% endif %}
-			
 		</div>
 		<br><hr/>
 	</div>
 	
 	{% endfor %}
-
 
 	<div class="col-md-12">
 		<div class="col-md-4 col-md-offset-3">
@@ -87,5 +102,6 @@
 			</div>
 		</div>
 	</div>
+
 </div>	
 {% endblock content %}
