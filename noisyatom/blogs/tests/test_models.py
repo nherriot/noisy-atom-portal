@@ -19,14 +19,19 @@ class PostModelTest(TestCase):
         self.assertEqual(obj.title, 'New title test')
         self.assertTrue(obj.content == '')
 
+	#
     def test_create_slug(self):
-        title_one = 'The new title for slug'
-        title_two = 'The new title for example with more char'
+	"""Ensure that if a slug is the same another slug, the system will create a new slug by appending
+	an index number to the slug. Here we create the blog posts with the same title on blog 1 and blog 2.
+	This should cause the system to create it's own random slug"""
+
+        title_one = 'The new title for slug1'
+        title_two = 'The new title for slug2'
         '''
         The test three is only to show that if we have two title is the same or duplicate will give an error
         because we said in the slug unique=true 
         '''
-        title_three = 'The new title for slug'
+        title_three = 'The new title for slug1'
 
         slug_one = slugify(title_one)
         slug_two = slugify(title_two)
@@ -35,10 +40,25 @@ class PostModelTest(TestCase):
         obj1 = self.create_post(title=title_one)
         obj2 = self.create_post(title=title_two)
         obj3 = self.create_post(title=title_three)
+        obj4 = self.create_post(title=title_three)
+        obj5 = self.create_post(title=title_three)
+        obj6 = self.create_post(title=title_three)
+
+
+        print("Name of slug1 is: {} and name of title is: {}".format(obj1.slug, obj1.title))
+        print("Name of slug2 is: {} and name of title is: {}".format(obj2.slug, obj2.title))
+        print("Name of slug3 is: {} and name of title is: {}".format(obj3.slug, obj3.title))
+        print("Name of slug4 is: {} and name of title is: {}".format(obj4.slug, obj4.title))
+        print("Name of slug5 is: {} and name of title is: {}".format(obj5.slug, obj5.title))
+
+
+        auto_slug="the-new-title-for-slug1-2"
+
+
 
         self.assertEqual(obj1.slug, slug_one)
         self.assertEqual(obj2.slug, slug_two)
-        self.assertNotEqual(obj3.slug, slug_three)
+        self.assertEqual(obj3.slug, auto_slug)
 
     def test_blog_qs(self):
         title = 'The new title for example with more char'
