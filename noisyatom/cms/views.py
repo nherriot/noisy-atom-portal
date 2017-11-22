@@ -41,3 +41,16 @@ def about_us(request):
                 'paragraph2': 'Check back soon for our open source products centred around QR Code generation and mapping with OAuth2 services.',
                 'paragraph3': 'For now - read more to meet the team.'}
     return render(request, 'about-us.html', context)
+
+
+def ons_view(request):
+    template_name = 'ons.html'
+    # TODO Make this dynamic data from a table in our database
+    context = {
+        'title': 'Office of National Statistics',
+        'description1':'This project encompassed the migration of a legacy "Websmart" system into a modern python Django web platform. The platform was deployed onto a hosted server running with Redhat SE Linux 6.2 on an IBM PowerPC platform.',
+        'description2':'Read on to find out more about the specifics...',
+        'description3':''
+    }
+    return render(request, template_name, context)
+
