@@ -8,4 +8,4 @@ register = template.Library()
 
 @register.filter
 def urlify(value):
-	return quote_plus(value)
+    return quote_plus(value)
