@@ -3,7 +3,7 @@ from urllib.parse import quote_plus
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -95,7 +95,7 @@ def update_post(request, slug=None):
     template_name = 'update.html'
 
     if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
+        return HttpResponseForbidden()
     instance = get_object_or_404(Post, slug=slug)
 
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
@@ -115,12 +115,10 @@ def update_post(request, slug=None):
 
     return render(request, template_name, context)
 
-# from django.views.decorators.csrf import csrf_exempt
 
-# @csrf_exempt
 def delete_post(request, slug=None):
     if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
+        return HttpResponseForbidden()
     instance = get_object_or_404(Post, slug=slug)
     instance.delete()
     messages.success(request, 'The post has been deleted')

@@ -3,23 +3,38 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test import Client
 from django.contrib.auth.models import User
+from django.contrib.auth import SESSION_KEY
 
 
 from blogs.models import Post
 
 
-class PostModelTest(TestCase):
+class BlogUpdateTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        test_user_normal = User.objects.create_user(username='testuser_normal', password='12345')
-        test_user_staff = User.objects.create_user(username='testuser_staff', password='12345', is_staff=True)
         test_user_admin = User.objects.create_user(username='testuser_admin', password='12345', is_superuser=True)
-        test_user_inactive = User.objects.create_user(username='testuser_inactive', password='12345', is_active=False, is_staff=True, is_superuser=True)
-        test_user_normal.save()
-        test_user_staff.save()
-        test_user_admin.save()
-        test_user_inactive.save()
+
+
+class PostModelTest(TestCase):
+    fixtures = ['users','initial_data']
+
+    def setUp(self):
+        self.client = Client()
+        test_user_normal = User.objects.get(username='testuser_normal')
+        test_user_staff = User.objects.get(username='testuser_staff')
+        test_user_admin = User.objects.get(username='testuser_admin')
+        test_user_inactive = User.objects.get(username='testuser_inactive')
+        #test_user_inactive = User.objects.create_user(username='testuser_inactive', password='12345', is_active=False, is_staff=True, is_superuser=True)
+        #test_user_normal.save()
+        #test_user_staff.save()
+        #test_user_admin.save()
+        #test_user_inactive.save()
+
+
+
+        logged_in = self.client.session.has_key(SESSION_KEY)
+        self.assertFalse(logged_in)
 
     def create_post(self, title='Post new blog'):
         return Post.objects.create(title=title)
@@ -48,68 +63,71 @@ class PostModelTest(TestCase):
 
     def test_update_blog_post_anonymous_user(self):
         '''
-            An anonymous user tries to update a blog post. This should return a 404 and fail. Only a super user
-            or staff user can update blogs!
+            An anonymous user tries to update a blog post. This should return a 403 (forbidden) and fail. Only a
+            super user or staff user can update blogs!
         '''
         obj = self.create_post(title='Some new title for new test')
         url = reverse('blogs:updated', kwargs={'slug': obj.slug})
         response = self.client.get(url)
         
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 403)
 
     def test_update_blog_post_user_logged_in(self):
         '''
-            Login our user, and try create a blog post and make sure we get a http404. Only staff and admin
-            can update blogs!
+            Login our user, and try create a blog post and make sure we get a http403 (forebidden). Only staff
+            and admin can update blogs!
         '''
         obj = self.create_post(title='Some new title for new test')     # This should go in the setup function
         print("***** We have the following users: {}".format(User.objects.all()))  # returns []
-        login = self.client.login(username='testuser_normal', password='12345')
+        login = self.client.login(username='testuser_normal', password='password12345')
+
         if login:
             url = reverse('blogs:updated', kwargs={'slug': obj.slug})
             response = self.client.get(url)
 
-            self.assertEqual(response.status_code, 404)
+            self.assertEqual(response.status_code, 403)
             self.client.logout()
         else:
-            self.assertRaises('login failed')
+            self.fail('Login Failed for testuser_normal')
 
     def test_update_blog_post_as_staff_user(self):
         '''
-            Login our user, and try create a blog post and make sure we get a http404. Only staff and admin
-            can update blogs!
+            Login our user, and try create a blog post and make sure we get a http200. Only staff and admin
+            can update blogs. So this should work fine
         '''
         obj = self.create_post(title='Some new title for new test')     # This should go in the setup function
         print("***** We have the following users: {}".format(User.objects.all()))  # returns []
-        login = self.client.login(username='testuser_staff', password='12345')
+        login = self.client.login(username='testuser_staff', password='password12345')
+
         if login:
             url = reverse('blogs:updated', kwargs={'slug': obj.slug})
             print("***** We are looking up the URL: {}".format(url))
             response = self.client.get(url)
-
+            print("***** The response code  for staff user looks like: {}".format(response.content))
+            #print("***** The logged in user is: {}".format(response.context['user']))
             self.assertEqual(response.status_code, 200)
             self.client.logout()
         else:
-            self.assertRaises('login failed')
+            self.fail('Login Failed for testuser_staff')
 
     # def test_update_blog_post_as_admin_user(self):
     #     '''
-    #         Login our user, and try create a blog post and make sure we get a http404. Only staff and admin
-    #         can update blogs!
+    #         Login our user, and try create a blog post and make sure we get a http200. Only staff and admin
+    #         can update blogs! So this should work fine.
     #     '''
     #     obj = self.create_post(title='Some new title for new test')     # This should go in the setup function
     #     print("***** We have the following users: {}".format(User.objects.all()))  # returns []
-    #     login = self.client.login(username='testuser_normal', password='12345')
+    #     login = self.client.login(username='testuser_admin', password='12345')
+    #     if login:
+    #         url = reverse('blogs:updated', kwargs={'slug': obj.slug})
+    #         print("***** We are looking up the URL: {}".format(url))
+    #         response = self.client.get(url)
+    #         print("The response code for admin user looks like: {}".format(response.content))
     #
-    #     print("The login object is: {}".format(login))
-    #
-    #
-    #     url = reverse('blogs:updated', kwargs={'slug': obj.slug})
-    #     print("***** We are looking up the URL: {}".format(url))
-    #     response = self.client.get(url)
-    #
-    #     self.assertEqual(response.status_code, 200)
-    #     self.client.logout()
+    #         self.assertEqual(response.status_code, 200)
+    #         self.client.logout()
+    #     else:
+    #         self.assertRaises('login failed')
     #
     # def test_update_blog_post_as_inactive_user(self):
     #     '''
@@ -134,10 +152,10 @@ class PostModelTest(TestCase):
 
 
 
-    def test_delete_views(self):
-        obj = self.create_post(title='Some new title for new test')
-        url = reverse('blogs:delete', kwargs={'slug': obj.slug})
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
+    # def test_delete_views(self):
+    #     obj = self.create_post(title='Some new title for new test')
+    #     url = reverse('blogs:delete', kwargs={'slug': obj.slug})
+    #     response = self.client.get(url)
+    #     self.assertEqual(response.status_code, 404)
 
 
