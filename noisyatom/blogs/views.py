@@ -92,9 +92,11 @@ def list_post(request):
 
 # update
 def update_post(request, slug=None):
+    print("=== UPDATE POST CALLED ===")
     template_name = 'update.html'
 
-    if not request.user.is_staff or not request.user.is_superuser:
+    print("=== user ID is: {}".format(request.user))
+    if not request.user.is_staff and not request.user.is_superuser:
         return HttpResponseForbidden()
     instance = get_object_or_404(Post, slug=slug)
 

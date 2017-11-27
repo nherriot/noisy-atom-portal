@@ -61,46 +61,48 @@ class PostModelTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    def test_update_blog_post_anonymous_user(self):
-        '''
-            An anonymous user tries to update a blog post. This should return a 403 (forbidden) and fail. Only a
-            super user or staff user can update blogs!
-        '''
-        obj = self.create_post(title='Some new title for new test')
-        url = reverse('blogs:updated', kwargs={'slug': obj.slug})
-        response = self.client.get(url)
-        
-        self.assertEqual(response.status_code, 403)
-
-    def test_update_blog_post_user_logged_in(self):
-        '''
-            Login our user, and try create a blog post and make sure we get a http403 (forebidden). Only staff
-            and admin can update blogs!
-        '''
-        obj = self.create_post(title='Some new title for new test')     # This should go in the setup function
-        print("***** We have the following users: {}".format(User.objects.all()))  # returns []
-        login = self.client.login(username='testuser_normal', password='password12345')
-
-        if login:
-            url = reverse('blogs:updated', kwargs={'slug': obj.slug})
-            response = self.client.get(url)
-
-            self.assertEqual(response.status_code, 403)
-            self.client.logout()
-        else:
-            self.fail('Login Failed for testuser_normal')
+    # def test_update_blog_post_anonymous_user(self):
+    #     '''
+    #         An anonymous user tries to update a blog post. This should return a 403 (forbidden) and fail. Only a
+    #         super user or staff user can update blogs!
+    #     '''
+    #     obj = self.create_post(title='Some new title for new test')
+    #     url = reverse('blogs:updated', kwargs={'slug': obj.slug})
+    #     response = self.client.get(url)
+    #
+    #     self.assertEqual(response.status_code, 403)
+    #
+    # def test_update_blog_post_user_logged_in(self):
+    #     '''
+    #         Login our user, and try create a blog post and make sure we get a http403 (forebidden). Only staff
+    #         and admin can update blogs!
+    #     '''
+    #     obj = self.create_post(title='Some new title for new test')     # This should go in the setup function
+    #     print("***** We have the following users: {}".format(User.objects.all()))  # returns []
+    #     login = self.client.login(username='testuser_normal', password='password12345')
+    #
+    #     if login:
+    #         url = reverse('blogs:updated', kwargs={'slug': obj.slug})
+    #         response = self.client.get(url)
+    #
+    #         self.assertEqual(response.status_code, 403)
+    #         self.client.logout()
+    #     else:
+    #         self.fail('Login Failed for testuser_normal')
 
     def test_update_blog_post_as_staff_user(self):
         '''
             Login our user, and try create a blog post and make sure we get a http200. Only staff and admin
             can update blogs. So this should work fine
         '''
-        obj = self.create_post(title='Some new title for new test')     # This should go in the setup function
+        test_blog = Post.objects.get(title="test1")
+        print("Test blog content is: {}".format(test_blog.content))
+        print("Test blog slug is: {}".format(test_blog.slug))
         print("***** We have the following users: {}".format(User.objects.all()))  # returns []
         login = self.client.login(username='testuser_staff', password='password12345')
 
         if login:
-            url = reverse('blogs:updated', kwargs={'slug': obj.slug})
+            url = reverse('blogs:updated', kwargs={'slug': test_blog.slug})
             print("***** We are looking up the URL: {}".format(url))
             response = self.client.get(url)
             print("***** The response code  for staff user looks like: {}".format(response.content))
