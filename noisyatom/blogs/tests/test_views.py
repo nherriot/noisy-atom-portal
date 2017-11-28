@@ -9,6 +9,27 @@ from blogs.models import Post
 
 
 class BlogUpdateTest(TestCase):
+    '''
+    This class will test all updates methods to a blog post for each of our users: normal, admin, staff and inactive.
+    '''
+
+    def setUp(self):
+        self.client = Client()
+
+
+class BlogCreateTest(TestCase):
+    '''
+    This class will test all creation methods of blog post for each of our users: normal, admin, staff and inactive.
+    '''
+
+    def setUp(self):
+        self.client = Client()
+
+
+class BlogDeleteTest(TestCase):
+    '''
+    This class will test all delete methods for a blog post for each of our users: normal, admin, staff and inactive.
+    '''
 
     def setUp(self):
         self.client = Client()
