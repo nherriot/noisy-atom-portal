@@ -1,7 +1,6 @@
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase
-from django.test import Client
+from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.contrib.auth import SESSION_KEY
 
@@ -13,11 +12,10 @@ class BlogUpdateTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        test_user_admin = User.objects.create_user(username='testuser_admin', password='12345', is_superuser=True)
 
 
 class PostModelTest(TestCase):
-    fixtures = ['users','initial_data']
+    fixtures = ['users', 'initial_data']
 
     def setUp(self):
         self.client = Client()
@@ -25,15 +23,9 @@ class PostModelTest(TestCase):
         test_user_staff = User.objects.get(username='testuser_staff')
         test_user_admin = User.objects.get(username='testuser_admin')
         test_user_inactive = User.objects.get(username='testuser_inactive')
-        #test_user_inactive = User.objects.create_user(username='testuser_inactive', password='12345', is_active=False, is_staff=True, is_superuser=True)
-        #test_user_normal.save()
-        #test_user_staff.save()
-        #test_user_admin.save()
-        #test_user_inactive.save()
-
-
 
         logged_in = self.client.session.has_key(SESSION_KEY)
+        # We are making sure that the user is not logged in at the start of each test
         self.assertFalse(logged_in)
 
     def create_post(self, title='Post new blog'):
@@ -46,7 +38,7 @@ class PostModelTest(TestCase):
         '''
         url = reverse('blogs:list')
         response = self.client.get(url)
-        #TODO YOu need to check that the tiles are present in the list Dilshad. You are only looking for the http200
+        #TODO you need to check that the tiles are present in the list Dilshad. You are only looking for the http200
         self.assertEqual(response.status_code, 200)
 
 
@@ -92,45 +84,53 @@ class PostModelTest(TestCase):
 
     def test_update_blog_post_as_staff_user(self):
         '''
-            Login our user, and try create a blog post and make sure we get a http200. Only staff and admin
-            can update blogs. So this should work fine
+            Login our user, and try to view a blog post that can be updated from the edit page and make sure we get a http200.
+            Only staff and admin can update blogs. So this should work fine.
+            Note, this does not update a blog, just view the update page.
         '''
         test_blog = Post.objects.get(title="test1")
         print("Test blog content is: {}".format(test_blog.content))
         print("Test blog slug is: {}".format(test_blog.slug))
-        print("***** We have the following users: {}".format(User.objects.all()))  # returns []
         login = self.client.login(username='testuser_staff', password='password12345')
 
         if login:
             url = reverse('blogs:updated', kwargs={'slug': test_blog.slug})
             print("***** We are looking up the URL: {}".format(url))
             response = self.client.get(url)
-            print("***** The response code  for staff user looks like: {}".format(response.content))
-            #print("***** The logged in user is: {}".format(response.context['user']))
+
             self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'update.html')
+            self.assertIn('test1', str(response.content))
+            self.assertIn('this is content 1', str(response.content))
             self.client.logout()
         else:
             self.fail('Login Failed for testuser_staff')
 
-    # def test_update_blog_post_as_admin_user(self):
-    #     '''
-    #         Login our user, and try create a blog post and make sure we get a http200. Only staff and admin
-    #         can update blogs! So this should work fine.
-    #     '''
-    #     obj = self.create_post(title='Some new title for new test')     # This should go in the setup function
-    #     print("***** We have the following users: {}".format(User.objects.all()))  # returns []
-    #     login = self.client.login(username='testuser_admin', password='12345')
-    #     if login:
-    #         url = reverse('blogs:updated', kwargs={'slug': obj.slug})
-    #         print("***** We are looking up the URL: {}".format(url))
-    #         response = self.client.get(url)
-    #         print("The response code for admin user looks like: {}".format(response.content))
-    #
-    #         self.assertEqual(response.status_code, 200)
-    #         self.client.logout()
-    #     else:
-    #         self.assertRaises('login failed')
-    #
+    def test_update_blog_post_as_admin_user(self):
+        '''
+            Login our user, and try to view a blog post that can be updated from the edit page and make sure we get a http200.
+            Only staff and admin can update blogs. So this should work fine.
+            Note, this does not update a blog, just view the update page.
+        '''
+
+        test_blog = Post.objects.get(title="test1")
+        login = self.client.login(username='testuser_admin', password='password12345')
+
+        if login:
+            url = reverse('blogs:updated', kwargs={'slug': test_blog.slug})
+            print("***** We are looking up the URL: {}".format(url))
+            response = self.client.get(url)
+            print("***** The response code  for staff user looks like: {}".format(response.content))
+
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'update.html')
+            self.assertIn('test1', str(response.content))
+            self.assertIn('this is content 1', str(response.content))
+            self.client.logout()
+        else:
+            self.fail('Login Failed for testuser_admin')
+
+
     # def test_update_blog_post_as_inactive_user(self):
     #     '''
     #         Login our user, and try create a blog post and make sure we get a http404. Even if the user is
