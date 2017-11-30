@@ -435,7 +435,7 @@
   "model": "auth.user",
   "pk": 4,
   "fields": {
-    "password": "pbkdf2_sha256$30000$824kzCoQrpQW$Aok5ng5OsvnaM//iHMjh8BJ2S5CNF+3VFQ71Xn5Rgh0=",
+    "password": "pbkdf2_sha256$30000$T1Azd4QoB2IO$31B3jcpsYMDN2kLHn9urXo7HZqKegxeOvH+T9FafhnM=",
     "last_login": null,
     "is_superuser": true,
     "username": "testuser_inactive",
@@ -444,7 +444,7 @@
     "email": "testuser_inactive@email.com",
     "is_staff": true,
     "is_active": false,
-    "date_joined": "2017-11-27T15:54:19Z",
+    "date_joined": "2017-11-28T15:23:17Z",
     "groups": [],
     "user_permissions": []
   }
