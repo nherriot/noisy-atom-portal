@@ -33,16 +33,6 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     content = models.TextField()
-    image = models.ImageField(upload_to=upload_image_location, 
-        						null=True, blank=True, 
-        						height_field='height_field',
-        						width_field='width_field')
-    height_field = models.IntegerField(default=0)
-    width_field = models.IntegerField(default=0)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    content = models.TextField()
     image = models.ImageField(upload_to=upload_image_location,
                                 null=True, blank=True,
                                 height_field='height_field',
@@ -81,16 +71,16 @@ class Post(models.Model):
 
 
 def create_slug(instance, new_slug=None):
-	slug = slugify(instance.title)
-	if new_slug is not None:
-		slug = new_slug
-	qs = Post.objects.filter(slug=slug).order_by('-id')
-	exists = qs.exists()
-	# is the title exist than create new title via slug
-	if exists:
-		new_slug = '%s-%s' %(slug, qs.first().id)
-		return create_slug(instance, new_slug=new_slug)
-	return slug
+    slug = slugify(instance.title)
+    if new_slug is not None:
+        slug = new_slug
+    qs = Post.objects.filter(slug=slug).order_by('-id')
+    exists = qs.exists()
+    # is the title exist than create new title via slug
+    if exists:
+        new_slug = '%s-%s' %(slug, qs.first().id)
+        return create_slug(instance, new_slug=new_slug)
+    return slug
 
 
 '''

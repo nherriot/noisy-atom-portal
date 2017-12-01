@@ -104,14 +104,18 @@ def update_post(request, slug=None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
+        print("======== FUCK ME WE ARE SAVING TO THE DATABASE =========")
+        print("========= Form title is: {}".format(instance.title))
         messages.success(request, 'The page successfully updated')
         return HttpResponseRedirect(instance.get_absolute_url())
+    else:
+        print("The form is not valid............................................................")
 
     context = {
-        'title': instance.title,
-        'instance': instance.content,
-        'slug': instance.slug,
-        'image': instance.image,
+        # 'title': instance.title,
+        # 'instance': instance.content,
+        # 'slug': instance.slug,
+        # 'image': instance.image,
         'form': form,
     }
 
