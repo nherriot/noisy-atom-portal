@@ -33,7 +33,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     content = models.TextField()
-    image = models.ImageField(upload_to=upload_image_location,
+    image = models.ImageField(upload_to=upload_image_location, 
                                 null=True, blank=True,
                                 height_field='height_field',
                                 width_field='width_field')
