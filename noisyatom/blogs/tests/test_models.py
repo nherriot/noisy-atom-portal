@@ -6,20 +6,24 @@ from blogs.models import Post
 
 
 class PostModelTest(TestCase):
-
+    '''
+        The setUp function will send test data to test database not to original database, which is real data
+        but saved in test database not the real one.
+    '''
     def setUp(self):
         self.post = Post.objects.create(title='New title test', slug='first-new-title-test-created')
 
     def create_post(self, title='Post new blog'):
         return Post.objects.create(title=title)
 
-    def test_create_title(self):
+    def test_post_title(self):
         obj = Post.objects.get(slug='first-new-title-test-created')
 
         self.assertEqual(obj.title, 'New title test')
+        self.assertEqual(obj.slug, 'first-new-title-test-created')
         self.assertTrue(obj.content == '')
     
-    def test_create_slug(self):
+    def test_post_slug(self):
         """
             Ensure that if a slug is the same another slug, the system will create a new slug by appending
             an index number to the slug. Here we create the blog posts with the same title on blog 1 and blog 2.
@@ -51,6 +55,7 @@ class PostModelTest(TestCase):
         print("Name of slug3 is: {} and name of title is: {}".format(obj3.slug, obj3.title))
         print("Name of slug4 is: {} and name of title is: {}".format(obj4.slug, obj4.title))
         print("Name of slug5 is: {} and name of title is: {}".format(obj5.slug, obj5.title))
+        print('########################################################################################')
 
     def test_blog_queryset(self):
         '''
