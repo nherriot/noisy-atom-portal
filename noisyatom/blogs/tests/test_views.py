@@ -95,6 +95,40 @@ class BlogUpdateTest(TestCase):
 
         self.assertEqual(response.status_code, 403)
 
+    def test_post_update_blog_post_as_staff_user(self):
+        """
+            Login our user, and try to view a blog post that can be updated from the edit page and make sure we get a http200.
+            Only staff and admin can update blogs. So this should work fine.
+            Note, this does not update a blog, just view the update page.
+        """
+        test_blog = Post.objects.get(title="test1")
+        print("***** test blog title is: {}".format(test_blog.title))
+
+        print("***** test blog content is: {}".format(test_blog.content))
+        login = self.client.login(username='testuser_staff', password='password12345')
+
+        if login:
+            url = reverse('blogs:updated', kwargs={'slug': test_blog.slug})
+            data = {'title': 'this is a new title', 'content': 'this is new content by nicholas herriot'}
+            response = self.client.post(url, data)
+
+            new_blog = Post.objects.get(pk=1)
+            print("*** New blog post has content of: {}".format(new_blog.slug))
+            print("*** New blog post has content of: {}".format(new_blog.title))
+            print("*** New blog post has content of: {}".format(new_blog.content))
+
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'update.html')
+            self.assertIn('this is a new title', str(response.content))
+            self.assertIn('this is new content by nicholas herriot', str(response.content))
+            self.client.logout()
+        else:
+            # TODO Make this dynamic rather than hard coded text string
+            self.fail('Login Failed for testuser_staff')
+
+
+
+
 
 class BlogCreateTest(TestCase):
     '''
