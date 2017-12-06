@@ -14,23 +14,43 @@ from .models import Post
 def create_post(request):
     template_name = 'create.html'
 
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
+    if not request.user.is_staff and not request.user.is_superuser:
+        return HttpResponseForbidden()
 
-    form = PostForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.user = request.user
-        instance.save()
-        messages.success(request, 'The page successfully created')
-        return HttpResponseRedirect(instance.get_absolute_url())
-    else:
-        messages.error(request, 'The page is not created')
+    # First check if it's a post. If it is we need to pull values from our form and save them.
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
 
-    context = {
-        'form': form,
-    }
+        if form.is_valid():
+            submitted_blog = form.save(commit=False)
+            submitted_blog.user = request.user
+            submitted_blog.save()
+            messages.success(request, 'The page successfully created')
+            return HttpResponseRedirect(submitted_blog.get_absolute_url())
+        else:
+            messages.error(request, 'The page is not created')
+
+    # This must be a http GET message. So pass an empty Post object into our FORM to be populated by the user.
+    context = {'form': form}
     return render(request, template_name, context)
+
+
+
+    # form = PostForm(request.POST or None, request.FILES or None)
+    #
+    # if form.is_valid():
+    #     instance = form.save(commit=False)
+    #     instance.user = request.user
+    #     instance.save()
+    #     messages.success(request, 'The page successfully created')
+    #     return HttpResponseRedirect(instance.get_absolute_url())
+    # else:
+    #     messages.error(request, 'The page is not created')
+    #
+    # context = {
+    #     'form': form,
+    # }
+    # return render(request, template_name, context)
 
 #retrieve
 def detail_post(request, slug=None):
@@ -103,7 +123,7 @@ def update_post(request, slug=None):
 
     template_name = 'update.html'
 
-    print("=== user ID is: {}".format(request.user))
+    #print("=== user ID is: {}".format(request.user))
     if not request.user.is_staff and not request.user.is_superuser:
         return HttpResponseForbidden()
     blog_post = get_object_or_404(Post, slug=slug)
