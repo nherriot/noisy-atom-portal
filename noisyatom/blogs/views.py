@@ -90,46 +90,43 @@ def list_post(request):
 
     return render(request, template_name, context)
 
-# update
-from django.views.decorators.csrf import csrf_exempt
-@csrf_exempt
+
 def update_post(request, slug=None):
-    print("=== UPDATE POST CALLED ===")
+    """
+    :param request:
+    :param slug:
+    :return: HttpResponse, HttpResponseForbidden, Http404, HttpRedirect (302)
+
+    Update a post. This allows a super user or staff user to update a post which is already on the system. It handles HTTP POST/GET
+    to do this. The GET method will populate the form and return to the browser. The POST method will store changes into the DB.
+    """
+
     template_name = 'update.html'
 
     print("=== user ID is: {}".format(request.user))
     if not request.user.is_staff and not request.user.is_superuser:
         return HttpResponseForbidden()
-    instance = get_object_or_404(Post, slug=slug)
+    blog_post = get_object_or_404(Post, slug=slug)
 
-    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-        instance = form.save()
+    # First check if it's a post. If it is we need to pull values from our form and save them.
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=blog_post)
 
-        for k in form:
-            print("key is: {}".format(k))
-        print("form title is: {}".format(form.cleaned_data))
+        if form.is_valid():
+            submitted_post = form.save()                    # This returns a post object that is persisted to the database.
+            messages.success(request, 'The page successfully updated')
+            return HttpResponseRedirect(submitted_post.get_absolute_url())
 
-        #instance.save()
+        else:
+            #print("Errors are: {}".format(form.errors))
+            messages.success(request, form.errors)
+            context = {'form': form}
+            return render(request, template_name, context)
 
-        print("instance title is: {}, content: {} and publish date: {} ".format(instance.title, instance.content, instance.publish))
-
-        print("======== FUCK ME WE ARE SAVING TO THE DATABASE =========")
-        print("========= Form title is: {}".format(instance.title))
-        messages.success(request, 'The page successfully updated')
-        return HttpResponseRedirect(instance.get_absolute_url())
-    else:
-        print("The form is not valid............................................................")
-        print("Errors are: {}".format(form.errors))
-
-    context = {
-        # 'title': instance.title,
-        # 'instance': instance.content,
-        # 'slug': instance.slug,
-        # 'image': instance.image,
-        'form': form,
-    }
-
+    # This must be a http GET message. So populate the form with the blog post from the database and render it in the
+    # template.
+    form = PostForm(instance=blog_post)
+    context = {'form': form}
     return render(request, template_name, context)
 
 
