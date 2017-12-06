@@ -91,6 +91,8 @@ def list_post(request):
     return render(request, template_name, context)
 
 # update
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def update_post(request, slug=None):
     print("=== UPDATE POST CALLED ===")
     template_name = 'update.html'
@@ -102,14 +104,23 @@ def update_post(request, slug=None):
 
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
+        instance = form.save()
+
+        for k in form:
+            print("key is: {}".format(k))
+        print("form title is: {}".format(form.cleaned_data))
+
+        #instance.save()
+
+        print("instance title is: {}, content: {} and publish date: {} ".format(instance.title, instance.content, instance.publish))
+
         print("======== FUCK ME WE ARE SAVING TO THE DATABASE =========")
         print("========= Form title is: {}".format(instance.title))
         messages.success(request, 'The page successfully updated')
         return HttpResponseRedirect(instance.get_absolute_url())
     else:
         print("The form is not valid............................................................")
+        print("Errors are: {}".format(form.errors))
 
     context = {
         # 'title': instance.title,
