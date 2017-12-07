@@ -12,6 +12,16 @@ from .models import Post
 
 
 def create_post(request):
+    """
+
+    :param request:
+    :return: HttpResponseForbidden, HttpResponse, HttpResponseRedirect
+
+    Creates a new blog post. A super user or staff user creates a new blog post on the system. It handles a HTTP POST/GET to do this.
+    For a GET we just populate an empty form into the template. For a POST we validate the submitted form and save in the DB. We store
+    the active user in the submitted blog post at the time of creating.
+    """
+
     template_name = 'create.html'
 
     if not request.user.is_staff and not request.user.is_superuser:
@@ -28,43 +38,36 @@ def create_post(request):
             messages.success(request, 'The page successfully created')
             return HttpResponseRedirect(submitted_blog.get_absolute_url())
         else:
-            messages.error(request, 'The page is not created')
+            messages.error(request, form.errors)
 
     # This must be a http GET message. So pass an empty Post object into our FORM to be populated by the user.
+    form = PostForm()
     context = {'form': form}
     return render(request, template_name, context)
 
 
-
-    # form = PostForm(request.POST or None, request.FILES or None)
-    #
-    # if form.is_valid():
-    #     instance = form.save(commit=False)
-    #     instance.user = request.user
-    #     instance.save()
-    #     messages.success(request, 'The page successfully created')
-    #     return HttpResponseRedirect(instance.get_absolute_url())
-    # else:
-    #     messages.error(request, 'The page is not created')
-    #
-    # context = {
-    #     'form': form,
-    # }
-    # return render(request, template_name, context)
-
-#retrieve
 def detail_post(request, slug=None):
+    """
+    :param request:
+    :param slug:
+    :return: HttpResponseForbidden, HttpResponse
+
+    Displays the details of a post. This takes the slug to display and renders in the details.html template. It checks to see if the
+    post is draft or the publish date is before current date first. If either are true, it only allows staff user or super user to
+    view that post. Otherwise it returns a HttpResponseForbidden to the user
+    """
     template_name = 'details.html'
 
-    instance = get_object_or_404(Post, slug=slug)
-    if instance.draft or instance.publish > timezone.now().date():
+    blog_post = get_object_or_404(Post, slug=slug)
+    if blog_post.draft or blog_post.publish > timezone.now().date():
         if not request.user.is_staff or not request.user.is_superuser:
-            raise Http404
-    share_string = quote_plus(instance.content)
+            raise HttpResponseForbidden
+
+    share_string = quote_plus(blog_post.content)
 
     context = {
-        'title': instance.title,
-        'instance': instance,
+        'title': blog_post.title,
+        'instance': blog_post,
         'share_string': share_string,
     }
 
