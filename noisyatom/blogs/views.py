@@ -75,13 +75,22 @@ def detail_post(request, slug=None):
 
 
 def list_post(request):
+    """
+
+    :param request:
+    :return: HttpResponse
+
+    Displays a list of blog posts that are paginated if more than 5 long. If the user is a super user or staff, all blog posts are
+    displayed. If the user is not then only users who have the active flag set to true are displayed.
+    """
     template_name = 'list.html'
 
     today = timezone.now().date()
-    queryset_list = Post.objects.active().order_by('-created')
 
     if request.user.is_staff or request.user.is_superuser:
         queryset_list = Post.objects.all().order_by('-created')
+    else:
+        queryset_list = Post.objects.active().order_by('-created')
 
     query = request.GET.get('q')
 
@@ -93,8 +102,8 @@ def list_post(request):
                 Q(user__last_name__icontains=query)
             ).distinct()
 
-    paginator = Paginator(queryset_list, 2)
-
+    # TODO Make the list of blog posts dynamic. Reading from a value in the settings.py or a parameter in the DB
+    paginator = Paginator(queryset_list, 5)
     page = request.GET.get('page')
     try:
         queryset = paginator.page(page)
@@ -104,7 +113,6 @@ def list_post(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)
-
 
     context = {
             'object_list': queryset,
@@ -154,9 +162,20 @@ def update_post(request, slug=None):
 
 
 def delete_post(request, slug=None):
-    if not request.user.is_staff or not request.user.is_superuser:
+    """
+
+    :param request:
+    :param slug:
+    :return: HttpResponseForbidden, Http404, or HttpResponse
+
+    Delete a post. This allows a super user or staff user to delete a post which is already on the system. It handles HTTP POST/GET
+    to do this. The GET or POST method will delete the blog post if it exists. Otherwise it will return a Http404. If the user is not
+    a super user or staff user it will return a HttpResponseForbidden.
+    """
+
+    if not request.user.is_staff and not request.user.is_superuser:
         return HttpResponseForbidden()
-    instance = get_object_or_404(Post, slug=slug)
-    instance.delete()
+    blog_post = get_object_or_404(Post, slug=slug)
+    blog_post.delete()
     messages.success(request, 'The post has been deleted')
     return redirect('blogs:list')
