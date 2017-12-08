@@ -50,13 +50,6 @@ class PostModelTest(TestCase):
         self.assertEqual(obj2.slug, slug_two)
         self.assertNotEqual(obj3.slug, slug_three)
 
-        print("Name of slug1 is: {} and name of title is: {}".format(obj1.slug, obj1.title))
-        print("Name of slug2 is: {} and name of title is: {}".format(obj2.slug, obj2.title))
-        print("Name of slug3 is: {} and name of title is: {}".format(obj3.slug, obj3.title))
-        print("Name of slug4 is: {} and name of title is: {}".format(obj4.slug, obj4.title))
-        print("Name of slug5 is: {} and name of title is: {}".format(obj5.slug, obj5.title))
-        print('########################################################################################')
-
     def test_blog_queryset(self):
         '''
             Count how many title in total and how many title in one object

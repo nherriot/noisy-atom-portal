@@ -134,7 +134,6 @@ def update_post(request, slug=None):
 
     template_name = 'update.html'
 
-    #print("=== user ID is: {}".format(request.user))
     if not request.user.is_staff and not request.user.is_superuser:
         return HttpResponseForbidden()
     blog_post = get_object_or_404(Post, slug=slug)
@@ -146,10 +145,10 @@ def update_post(request, slug=None):
         if form.is_valid():
             submitted_post = form.save()                    # This returns a post object that is persisted to the database.
             messages.success(request, 'The page successfully updated')
+
             return HttpResponseRedirect(submitted_post.get_absolute_url())
 
         else:
-            #print("Errors are: {}".format(form.errors))
             messages.success(request, form.errors)
             context = {'form': form}
             return render(request, template_name, context)
