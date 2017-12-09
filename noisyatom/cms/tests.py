@@ -56,6 +56,17 @@ class AlfaProjectTest(TestCase):
         self.assertTemplateUsed(response, 'alfa.html')
         self.assertIn(b'Alfa Aesar Ltd', response.content)
 
+class VodafoneProjectTest(TestCase):
+    # Check that we have the main page title and that the template is correct for this URL route
+    def test_alfa_title(self):
+        url = reverse("cms:vodafone")
+        response = self.client.get(url)
+        print("*** Doing HTTP Get to Vodafone page: {}".format(url))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'vodafone.html')
+        self.assertIn(b'QR Codes & Patents', response.content)
+
+
 # Make sure the about us page is displayed and renders the correct template
 class AboutUs(TestCase):
 

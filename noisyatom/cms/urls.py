@@ -1,15 +1,17 @@
 from django.conf.urls import url
 
 from cms.views import (
-        index_view,
-        coming_soon,
-        alfa_view,
         about_us,
+        alfa_view,
+        coming_soon,
+        index_view,
+        vodafone_view,
     )
 
 urlpatterns = [
     url('^$', index_view, name='index'),
     url('^alfa/$', alfa_view, name='alfa'),
+    url('^vodafone/$', vodafone_view, name='vodafone'),
     url('^coming-soon/$', coming_soon, name='coming_soon'),
     url('^about-us/$', about_us, name='about_us'),
     #url(r'^articles/$', index_view, name='foo_bar_url'),
