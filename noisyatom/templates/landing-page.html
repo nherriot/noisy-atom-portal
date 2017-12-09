@@ -1,150 +1,7 @@
 {% load staticfiles %}
 
 {% include 'header.html' %}
-
-    <nav class="navbar navbar-danger navbar-transparent navbar-absolute">
-    	<div class="container">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-        	<div class="navbar-header">
-        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-            		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-        		</button>
-        		<a class="navbar-brand" href="/">
-                    <img src="{% static 'assets/img/na_icon.png' %}" alt="Noisy Atom Logo"/>
-                </a>
-        	</div>
-
-        	<div class="collapse navbar-collapse" id="navigation-example">
-        		<ul class="nav navbar-nav navbar-right">
-{#    				<li>#}
-{#						<a href="/components">#}
-{#							<i class="material-icons">apps</i> Components#}
-{#						</a>#}
-{#					</li>#}
-
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="material-icons">view_day</i> Sections
-							<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu dropdown-with-icons">
-{#							<li>#}
-{#								<a href="../sections.html#headers">#}
-{#									<i class="material-icons">dns</i> Headers#}
-{#								</a>#}
-{#							</li>#}
-{#							<li>#}
-{#								<a href="../sections.html#features">#}
-{#									<i class="material-icons">build</i> Features#}
-{#								</a>#}
-{#							</li>#}
-							<li>
-								<a href="/coming-soon">
-									<i class="material-icons">account_balance</i> About Us
-								</a>
-							</li>
-							<li>
-								<a href="{% url 'blogs:list' %}">
-									<i class="material-icons">list</i> Blogs
-								</a>
-							</li>
-							<li>
-								<a href="/teams">
-									<i class="material-icons">people</i> Teams
-								</a>
-							</li>
-{#							<li>#}
-{#								<a href="../sections.html#pricing">#}
-{#									<i class="material-icons">monetization_on</i> Pricing#}
-{#								</a>#}
-{#							</li>#}
-{#							<li>#}
-{#								<a href="../sections.html#testimonials">#}
-{#									<i class="material-icons">chat</i> Testimonials#}
-{#								</a>#}
-{#							</li>#}
-							<li>
-								<a href="/contactus">
-									<i class="material-icons">call</i> Contacts
-								</a>
-							</li>
-
-						</ul>
-					</li>
-
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="material-icons">view_carousel</i> Examples
-							<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu dropdown-with-icons">
-							<!-- <li>
-								<a href="/about-us">
-									<i class="material-icons">account_balance</i> About Us
-								</a>
-							</li>
-							<li>
-								<a href="/blog">
-									<i class="material-icons">art_track</i> Blog Post
-								</a>
-							</li>
-							<li>
-								<a href="../contactus">
-									<i class="material-icons">location_on</i> Contact Us
-								</a>
-							</li> -->
-{#							<li>#}
-{#								<a href="/sign-in.html">#}
-{#									<i class="material-icons">fingerprint</i> Login Page#}
-{#								</a>#}
-{#							</li>#}
-{#							<li>#}
-{#								<a href="/pricing.html">#}
-{#									<i class="material-icons">attach_money</i> Pricing Page#}
-{#								</a>#}
-{#							</li>#}
-							<li>
-								<a href="/coming-soon">
-									<i class="material-icons">beach_access</i> Office of National Statistics
-								</a>
-							</li>
-   							<li>
-								<a href="/coming-soon">
-									<i class="material-icons">beach_access</i> AlfaAesar
-								</a>
-							</li>
-   							<li>
-								<a href="/coming-soon">
-									<i class="material-icons">beach_access</i> Vodafone
-								</a>
-							</li>
-
-{#							<li>#}
-{#								<a href="/profile.html">#}
-{#									<i class="material-icons">account_circle</i> Profile Page#}
-{#								</a>#}
-{#							</li>#}
-{#							<li>#}
-{#								<a href="/signup.html">#}
-{#									<i class="material-icons">person_add</i> Signup Page#}
-{#								</a>#}
-{#							</li>#}
-						</ul>
-					</li>
-
-{#					<li>#}
-{#						<a href="http://www.noisyatom.com/buy/qrcode?ref=presentation" target="_blank" class="btn btn-white btn-simple">#}
-{#							<i class="material-icons">shopping_cart</i> Buy Now#}
-{#						</a>#}
-{#					</li>#}
-        		</ul>
-        	</div>
-    	</div>
-    </nav>
-
+{% include 'navbar.html' %}
 
     <div class="page-header header-filter" data-parallax="active" 
     style="background-image: url('{% static "assets/img/bg8.jpg" %}');">
@@ -154,9 +11,6 @@
 					<h1 class="title">Our Story Starts With Technology.</h1>
                     <h4>A tech company. We specialise in python web platforms and frameworks. We have a range of experiences working with tier one companies and small startups. Read below for some of our success and open source projects. </h4>
                     <br />
-{#                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">#}
-{#						<i class="fa fa-play"></i> Watch video#}
-{#					</a>#}
 				</div>
             </div>
         </div>
@@ -191,7 +45,6 @@
 						<div class="col-md-4">
 							<div class="info">
                                 <img class="logo__img" src="{% static 'assets/img/logo_ons.svg' %}" alt="Office for National Statistics"/>
-{#								<i class="material-icons">chat</i>#}
 								<h4 class="info-title">Office Of National Statistics</h4>
 								<p>Noisy Atom took the lead role in implementing and customization on a python OS OAuth2 server. We now maintain this OS project and actively developing it. You can find <a href="https://github.com/NoisyAtom/oauth2-python-server"> more info on this project here</a></p>
 							</div>
@@ -200,7 +53,6 @@
 						<div class="col-md-4">
 							<div class="info">
                                 <img class="logo_img alfa-body" src="{% static 'assets/img/logo_alfa.gif' %}" style="width:225px;" alt="Alfa Aesar"/>
-{#                                <i class="material-icons">verified_user</i>#}
 								<h4 class="info-title">Thermofisher Scientific</h4>
 								<p>AlfaAesar, a sub brand of Thermofisher used Noisy Atom expertise to help port a legacy Websmart system onto a Django ecommerce platform. The system used an asynchronous message bus, elastic search and interfaced to a legacy IBM DB2 database.</p>
 							</div>
@@ -209,7 +61,6 @@
 						<div class="col-md-4">
 							<div class="info">
                                 <img src="{% static 'assets/img/logo_vf.png' %}"  alt="Vodafone"/>
-{#									<i class="material-icons">fingerprint</i>#}
 								<h4 class="info-title">Vodafone</h4>
 								<p>Vodafone required a dynamic mapping system for their patent wall at the Vodafone R&D offices in Newbury. A django web portal dynamically mapped a QR code scanned from the patent wall with a phone to details about the patent and inventor.</p>
 							</div>
@@ -227,8 +78,8 @@
 							<div class="card card-profile card-plain">
 								<div class="col-md-5">
 									<div class="card-image">
-										<a href="#pablo">
-											<img class="img" src="{% static 'assets/img/faces/nicholas.jpg' %}" />
+										<a href="#nicholas">
+											<img class="img" src="{% static 'assets/img/faces/nicholas.jpg' %}"/>
 										</a>
 									</div>
 								</div>
@@ -246,7 +97,7 @@
 
 											<a href="https://twitter.com/nicholasherriot" class="btn btn-just-icon btn-simple btn-twitter" target="_blank"><i class="fa fa-twitter"></i></a>
 
-											<a href="#pablo" class="btn btn-just-icon btn-simple btn-facebook"  target="_blank"><i class="fa fa-facebook-square"></i></a>
+											<a href="#nicholas" class="btn btn-just-icon btn-simple btn-facebook"  target="_blank"><i class="fa fa-facebook-square"></i></a>
 
 											<a href="https://plus.google.com/u/0/+NicholasHerriot" class="btn btn-just-icon btn-simple btn-google" target="_blank"><i class="fa fa-google"></i></a>
 										</div>
@@ -259,7 +110,7 @@
 							<div class="card card-profile card-plain">
 								<div class="col-md-5">
 									<div class="card-image">
-										<a href="#pablo">
+										<a href="#dilshad">
 											<img class="img" src="{% static 'assets/img/faces/dilshad.jpg' %}" />
 										</a>
 									</div>

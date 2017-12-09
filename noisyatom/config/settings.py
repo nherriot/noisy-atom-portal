@@ -76,6 +76,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'account.apps.AccountConfig',
         'blogs.apps.BlogsConfig',
         'catalog.apps.CatalogConfig',
+        'bootstrap4',
         'cms.apps.CmsConfig',
         'qrcode',
         'ee_test',

@@ -20,14 +20,16 @@ def calc_interest(value):
 # Create your views here.
 
 def ee_index_view(request):
+    template_name = 'eetest-landing-page.html'
     context = {}
     MAX_DEPOSIT = getattr(settings, "EE_MAX_VALUE", 10000000)
     context['max_value']=MAX_DEPOSIT
 
-    return render(request, 'eetest-landing-page.html', context)
+    return render(request, template_name, context)
 
 
 def ee_calculated_interest(request):
+    template_name = 'eetest-interest-rate.html'
     context = {}
     if 'ee_calculate' in request.POST:
         deposit_string=request.POST['ee_calculate']
@@ -56,4 +58,4 @@ def ee_calculated_interest(request):
         context['total']= str(total)
 
 
-    return render(request, 'eetest-interest-rate.html', context)
+    return render(request, template_name, context)
