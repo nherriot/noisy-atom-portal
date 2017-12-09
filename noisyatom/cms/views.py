@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 
+
 def index_view(request):
     context = {}
 
@@ -15,6 +16,7 @@ def coming_soon(request):
                 'paragraph3': ''}
 
     return render(request, 'sub-header.html', context)
+
 
 
 def dashboard_view(request):

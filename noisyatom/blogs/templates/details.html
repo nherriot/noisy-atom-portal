@@ -1,0 +1,64 @@
+{% extends 'background-page.html' %}
+
+{% load bootstrap4 %}
+{% load urlify %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">	
+		{% if messages %}
+			<ul class="messages">
+			    {% for message in messages %}
+			    	<li{% if message.tags %} class="alert alert-success {{ message.tags }}" {% endif %} >	
+			    		<h4 class="text-center">{{ message }}</h4>
+			    	</li>
+			    {% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+</div>
+
+<div class="row ">
+	<!-- Only if you logged in -->
+	<div class="col-12">
+		{% if user.is_staff or user.is_authenticated %}
+		<a href="{% url 'blogs:create' %}" title="Add">
+			<button type="button" class="btn btn-success">Add</button>
+		</a>
+		<a href="{% url 'blogs:updated' slug=instance.slug %}" title="Update">
+			<button type="button" class="btn btn-primary">Update</button>
+		</a>
+		<a href="{% url 'blogs:delete' slug=instance.slug  %}" title="Delete">
+			<button type="button" class="btn btn-danger">Delete</button>
+		</a>	
+		{% endif %}
+		<hr>
+	</div>
+
+	<div class="col-12">
+
+		<div class="col-7 col-md-7 text-justify">
+
+			<h3 class="text-capitalize">{{instance.title}} </h3>
+
+			<div class="post-detail-item">{{instance.get_markdown}}</div>
+
+			<hr>
+			<a href="{% url 'blogs:list' %}" title="">
+				<button type="button" class="btn btn-primary pull-right">Return</button>
+			</a>
+
+		</div> <!-- end of col-7 col-md-7 text-justify -->
+
+		<div class="col-md-5">
+			<br><br><br><br>
+			{% if instance.image %}
+			<div class="img thumbnail">
+				<img src="{{instance.image.url}}" width="400" height="250" class="rounded img-responsive" id='id_img' />
+			</div>
+			{% endif %}
+		</div>
+
+	</div>
+</div>	
+{% endblock content %}
