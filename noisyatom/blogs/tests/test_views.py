@@ -12,11 +12,46 @@ class BlogUpdateTest(TestCase):
     This class will test all updates methods to a blog post for each of our users: normal, admin, staff and inactive.
     """
     fixtures = ['users', 'initial_data']
+    # TODO Make this dynamic so that main_title and descriptions are pulled from a table in the database.
+    main_title = 'Blogs At Noisy Atom'
+    description1 = 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!'
+    description2 = 'We hope you enjoy our thoughts...'
+    description3 = ' '
 
     def setUp(self):
         logged_in = self.client.session.has_key(SESSION_KEY)
         # We are making sure that the user is not logged in at the start of each test
         self.assertFalse(logged_in)
+
+
+
+    def test_get_update_blog_post_as_staff_user_check_main_title_and_descriptions(self):
+        """
+            Login our user, and try to view a blog post that can be updated from the edit page and make sure we get a http200.
+            Also check that we can render a title, description which is displayed in the background page.
+            Only staff and admin can update blogs. So this should work fine.
+            Note, this does not update a blog, just view the update page.
+        """
+
+        test_blog = Post.objects.get(title="test1")
+        login = self.client.login(username='testuser_staff', password='password12345')
+
+        if login:
+            url = reverse('blogs:updated', kwargs={'slug': test_blog.slug})
+            response = self.client.get(url)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'update.html')
+            self.assertIn('test1', str(response.content))
+            self.assertIn(self.main_title, str(response.content) )
+            self.assertIn(self.description1, str(response.content))
+            self.assertIn(self.description2, str(response.content))
+            self.assertIn('this is content 1', str(response.content))
+            self.client.logout()
+        else:
+            # TODO Make this dynamic rather than hard coded text string
+            self.fail('Login Failed for testuser_staff')
+
 
     def test_get_update_blog_post_as_staff_user(self):
         """
