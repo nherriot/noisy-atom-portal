@@ -42,7 +42,12 @@ def create_post(request):
 
     # This must be a http GET message. So pass an empty Post object into our FORM to be populated by the user.
     form = PostForm()
-    context = {'form': form}
+    context = {
+        'main_title': 'Blogs At Noisy Atom',
+        'description1': 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!',
+        'description2': 'We hope you enjoy our thoughts...',
+        'description3': '',
+        'form': form}
     return render(request, template_name, context)
 
 
@@ -66,6 +71,10 @@ def detail_post(request, slug=None):
     share_string = quote_plus(blog_post.content)
 
     context = {
+        'main_title': 'Blogs At Noisy Atom',
+        'description1': 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!',
+        'description2': 'We hope you enjoy our thoughts...',
+        'description3': '',
         'title': blog_post.title,
         'instance': blog_post,
         'share_string': share_string,
@@ -115,8 +124,12 @@ def list_post(request):
         queryset = paginator.page(paginator.num_pages)
 
     context = {
-            'object_list': queryset,
-            'today': today,
+        'main_title': 'Blogs At Noisy Atom',
+        'description1': 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!',
+        'description2': 'We hope you enjoy our thoughts...',
+        'description3': '',
+        'object_list': queryset,
+        'today': today
         }
 
     return render(request, template_name, context)
@@ -156,7 +169,12 @@ def update_post(request, slug=None):
     # This must be a http GET message. So populate the form with the blog post from the database and render it in the
     # template.
     form = PostForm(instance=blog_post)
-    context = {'form': form}
+    context = {
+        'main_title': 'Blogs At Noisy Atom',
+        'description1': 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!',
+        'description2': 'We hope you enjoy our thoughts...',
+        'description3': '',
+        'form': form}
     return render(request, template_name, context)
 
 
