@@ -1,7 +1,6 @@
 
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
-from django.contrib.auth.models import User
 from django.contrib.auth import SESSION_KEY
 from blogs.models import Post
 import datetime
@@ -19,11 +18,10 @@ class BlogUpdateTest(TestCase):
     description3 = ' '
 
     def setUp(self):
-        logged_in = self.client.session.has_key(SESSION_KEY)
+        self.client = Client()
+        logged_in = SESSION_KEY in self.client.session
         # We are making sure that the user is not logged in at the start of each test
         self.assertFalse(logged_in)
-
-
 
     def test_get_update_blog_post_as_staff_user_check_main_title_and_descriptions(self):
         """
@@ -43,7 +41,7 @@ class BlogUpdateTest(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertTemplateUsed(response, 'update.html')
             self.assertIn('test1', str(response.content))
-            self.assertIn(self.main_title, str(response.content) )
+            self.assertIn(self.main_title, str(response.content))
             self.assertIn(self.description1, str(response.content))
             self.assertIn(self.description2, str(response.content))
             self.assertIn('this is content 1', str(response.content))
@@ -51,7 +49,6 @@ class BlogUpdateTest(TestCase):
         else:
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
-
 
     def test_get_update_blog_post_as_staff_user(self):
         """
@@ -142,7 +139,7 @@ class BlogUpdateTest(TestCase):
             new_title = "this is a new title"
             new_content = "this is new content by nicholas herriot"
             new_published_date = "2017-01-01"
-            data = {'title': new_title, 'slug':test_blog.slug, 'content': new_content, 'publish': new_published_date}
+            data = {'title': new_title, 'slug': test_blog.slug, 'content': new_content, 'publish': new_published_date}
             response = self.client.post(url, data)
 
             # After our post has been sent our original slug should have a new title and new content
@@ -156,7 +153,6 @@ class BlogUpdateTest(TestCase):
         else:
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
-
 
     def test_post_update_blog_post_as_user_logged_in(self):
         """
@@ -172,7 +168,7 @@ class BlogUpdateTest(TestCase):
             new_title = "this is a new title"
             new_content = "this is new content by nicholas herriot"
             new_published_date = "2017-01-01"
-            data = {'title': new_title, 'slug':test_blog.slug, 'content': new_content, 'publish': new_published_date}
+            data = {'title': new_title, 'slug': test_blog.slug, 'content': new_content, 'publish': new_published_date}
             response = self.client.post(url, data)
 
             # After our post has been sent our original slug should still be the same
@@ -185,7 +181,6 @@ class BlogUpdateTest(TestCase):
         else:
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_normal')
-
 
     def test_post_update_blog_post_as_super_user(self):
         """
@@ -201,7 +196,7 @@ class BlogUpdateTest(TestCase):
             new_title = "this is a new title"
             new_content = "this is new content by nicholas herriot"
             new_published_date = "2017-01-01"
-            data = {'title': new_title, 'slug':test_blog.slug, 'content': new_content, 'publish': new_published_date}
+            data = {'title': new_title, 'slug': test_blog.slug, 'content': new_content, 'publish': new_published_date}
             response = self.client.post(url, data)
 
             # After our post has been sent our original slug should have a new title and new content
@@ -215,7 +210,6 @@ class BlogUpdateTest(TestCase):
         else:
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
-
 
     def test_post_update_blog_post_as_anonymous_user(self):
         """
@@ -242,15 +236,20 @@ class BlogUpdateTest(TestCase):
         self.assertEqual(response.status_code, 403)
 
 
-
 class BlogCreateTest(TestCase):
     """
     This class will test all creation methods to a blog post for each of our users: normal, admin, and staff.
     """
     fixtures = ['users', 'initial_data']
+    # TODO Make this dynamic so that main_title and descriptions are pulled from a table in the database.
+    main_title = 'Blogs At Noisy Atom'
+    description1 = 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!'
+    description2 = 'We hope you enjoy our thoughts...'
+    description3 = ' '
 
     def setUp(self):
-        logged_in = self.client.session.has_key(SESSION_KEY)
+        self.client = Client()
+        logged_in = SESSION_KEY in self.client.session
         # We are making sure that the user is not logged in at the start of each test
         self.assertFalse(logged_in)
 
@@ -265,7 +264,6 @@ class BlogCreateTest(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 403)
-
 
     def test_get_create_post_as_user_logged_in(self):
         """
@@ -287,6 +285,27 @@ class BlogCreateTest(TestCase):
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for the testuser_normal')
 
+    def test_get_create_post_as_staff_user_and_check_main_title_description(self):
+        """
+            Try to do a Http GET to the create blog post page when you are logged in as a staff user. You should get
+            a rendered create.html template for the user to populate with a new blog post.
+        """
+
+        login = self.client.login(username='testuser_staff', password='password12345')
+
+        if login:
+            url = reverse('blogs:create')
+            response = self.client.get(url)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'create.html')
+            self.assertIn(self.main_title, str(response.content))
+            self.assertIn(self.description1, str(response.content))
+            self.assertIn(self.description2, str(response.content))
+            self.client.logout()
+        else:
+            # TODO Make this dynamic rather than hard coded text string
+            self.fail('Login Failed for testuser_staff')
 
     def test_get_create_post_as_staff_user(self):
         """
@@ -307,7 +326,6 @@ class BlogCreateTest(TestCase):
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
 
-
     def test_get_create_post_as_admin_user(self):
         """
             Try to do a Http GET to the create blog post page when you are logged in as a admin user. You should get
@@ -327,7 +345,6 @@ class BlogCreateTest(TestCase):
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
 
-
     def test_post_create_post_as_anonymous_user(self):
         """
             Try to do a Http POST to the create blog post page when you are not logged in. You should get a Http 403
@@ -346,7 +363,6 @@ class BlogCreateTest(TestCase):
         with self.assertRaises(Post.DoesNotExist):
             new_blog = Post.objects.get(title=new_title)
         self.assertEqual(response.status_code, 403)
-
 
     def test_post_create_post_as_user_logged_in(self):
         """
@@ -375,7 +391,6 @@ class BlogCreateTest(TestCase):
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
 
-
     def test_post_create_post_as_staff_user(self):
         """
             Try to do a Http POST to the create blog post page when you are logged in as a staff user with write
@@ -397,22 +412,21 @@ class BlogCreateTest(TestCase):
 
             # There should now be a new blog create with this title and content, so check that it does exist
             new_blog = Post.objects.get(title='this is a new title for create')
-            #print("*** New blog created as a slug of: {}".format(new_blog.slug))
-            #print("*** New blog created as a titel of: {}".format(new_blog.title))
-            #print("*** New blog created as content of: {}".format(new_blog.content))
-            #print("*** New blog created as a published date of: {}".format(new_blog.publish))
+            # print("*** New blog created as a slug of: {}".format(new_blog.slug))
+            # print("*** New blog created as a titel of: {}".format(new_blog.title))
+            # print("*** New blog created as content of: {}".format(new_blog.content))
+            # print("*** New blog created as a published date of: {}".format(new_blog.publish))
 
             self.assertEqual(new_blog.title, new_title)
             self.assertEqual(new_blog.content, new_content)
             # TODO Get the publish date check working correctly
-            #self.assertEqual(new_blog.publish, new_published_date)
+            # self.assertEqual(new_blog.publish, new_published_date)
 
             self.assertEqual(response.status_code, 302)
             self.client.logout()
         else:
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
-
 
     def test_post_create_post_as_admin_user(self):
         """
@@ -439,7 +453,7 @@ class BlogCreateTest(TestCase):
             self.assertEqual(new_blog.title, new_title)
             self.assertEqual(new_blog.content, new_content)
             # TODO Get the publish date check working correclty
-            #self.assertEqual(new_blog.publish, new_published_date)
+            # self.assertEqual(new_blog.publish, new_published_date)
 
             self.assertEqual(response.status_code, 302)
             self.client.logout()
@@ -447,22 +461,20 @@ class BlogCreateTest(TestCase):
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
 
-
     # TODO Chcek the slug works correctly and write a test case for checking it.
     # TODO Check that you can create multiple blogs with the same title.
 
 
-
-
 class BlogDeleteTest(TestCase):
-    '''
+    """
     This class will test all delete methods for a blog post for each of our users: normal, admin, staff and inactive.
-    '''
+    """
 
     fixtures = ['users', 'initial_data']
 
     def setUp(self):
-        logged_in = self.client.session.has_key(SESSION_KEY)
+        self.client = Client()
+        logged_in = SESSION_KEY in self.client.session
         # We are making sure that the user is not logged in at the start of each test
         self.assertFalse(logged_in)
 
@@ -482,7 +494,6 @@ class BlogDeleteTest(TestCase):
         self.assertEqual(check_post.content, last_post.content)
         self.assertEqual(check_post.pk, last_post.pk)
         self.assertEqual(response.status_code, 403)
-
 
     def test_post_delete_post_as_logged_in_user(self):
         """
@@ -509,7 +520,6 @@ class BlogDeleteTest(TestCase):
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
 
-
     def test_post_delete_post_as_staff_user(self):
         """
             Try to do a Http GET to delete a blog post page when you are a staff user. You should get a Http 302
@@ -535,7 +545,6 @@ class BlogDeleteTest(TestCase):
         else:
             # TODO Make this dynamic rather than hard coded text string
             self.fail('Login Failed for testuser_staff')
-
 
     def test_post_delete_post_as_admin_user(self):
         """
@@ -564,38 +573,42 @@ class BlogDeleteTest(TestCase):
             self.fail('Login Failed for testuser_staff')
 
 
-
 class PostModelTest(TestCase):
     fixtures = ['users', 'initial_data']
+    # TODO Make this dynamic so that main_title and descriptions are pulled from a table in the database.
+    main_title = 'Blogs At Noisy Atom'
+    description1 = 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!'
+    description2 = 'We hope you enjoy our thoughts...'
+    description3 = ' '
 
     def setUp(self):
         self.client = Client()
-        logged_in = self.client.session.has_key(SESSION_KEY)
+        logged_in = SESSION_KEY in self.client.session
         # We are making sure that the user is not logged in at the start of each test
         self.assertFalse(logged_in)
 
     def create_post(self, title='Post new blog'):
         return Post.objects.create(title=title)
 
-    def test_list_views(self):
-        '''
+    def test_list_views_check_main_title_descriptin(self):
+        """
             This will request a list of all the blog titles to be rendered on the page. We need to check that all the
             blog titles created in SETUP get displayed on the page.
-        '''
+        """
         url = reverse('blogs:list')
         response = self.client.get(url)
-        #TODO you need to check that the tiles are present in the list Dilshad. You are only looking for the http200
+        # TODO you need to check that the tiles are present in the list Dilshad. You are only looking for the http200
         self.assertEqual(response.status_code, 200)
-
+        self.assertIn(self.main_title, str(response.content))
+        self.assertIn(self.description1, str(response.content))
+        self.assertIn(self.description2, str(response.content))
 
     def test_detail_views(self):
-        '''
+        """
             This will display a blog post and it's contents. We need to check that a blog post can be displayed on
             a page. Blog title and description saved in setup should be present in the HTML rendered on the page.
-        '''
+        """
         obj = self.create_post(title='Some new title for new test')
         response = self.client.get(obj.get_absolute_url())
-        #TODO You need to check that the description and title are present in the html returned from the server Dilshad
+        # TODO You need to check that the description and title are present in the html returned from the server Dilshad
         self.assertEqual(response.status_code, 200)
-
-
