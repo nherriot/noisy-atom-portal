@@ -19,20 +19,18 @@ def coming_soon(request):
     return render(request, 'sub-header.html', context)
 
 
-
 def dashboard_view(request):
     context = {}
     return render(request, 'dashboard.html', context)
-
 
 def alfa_view(request):
     template_name = 'alfa.html'
     # TODO Make this dynamic data from a table in our database
     context = {
         'main_title': 'Ecommerce Platform for Alfa Aesar Ltd',
-        'description1':'This project encompassed the migration of a legacy "Websmart" system into a modern python Django web platform. The platform was deployed onto a hosted server running with Redhat SE Linux 6.2 on an IBM PowerPC platform.',
-        'description2':'Read on to find out more about the specifics...',
-        'description3':''
+        'description1': 'This project encompassed the migration of a legacy Websmart system into a modern python Django web platform. The platform was deployed onto a hosted server running with Redhat SE Linux 6.2 on an IBM PowerPC platform.',
+        'description2': 'Read on to find out more about the specifics...',
+        'description3': ''
     }
     return render(request, template_name, context)
 
