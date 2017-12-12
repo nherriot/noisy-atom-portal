@@ -47,10 +47,10 @@ def ons_view(request):
     template_name = 'ons.html'
     # TODO Make this dynamic data from a table in our database
     context = {
-        'title': 'Office of National Statistics',
-        'description1':'This project encompassed the migration of a legacy "Websmart" system into a modern python Django web platform. The platform was deployed onto a hosted server running with Redhat SE Linux 6.2 on an IBM PowerPC platform.',
-        'description2':'Read on to find out more about the specifics...',
-        'description3':''
+        'main_title': 'Office of National Statistics',
+        'description1':'The aim of this project was to convert a legacy Java webserver into a microservices framework. To do this python Django and Flask micro services were written and deployed.',
+        'description2':'The cloud tech stack was Cloud Foundary and Docker.',
+        'description3':'Highlights on this system were on the authentication framework. Read on for more details...'
     }
     return render(request, template_name, context)
 
