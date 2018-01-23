@@ -1,0 +1,134 @@
+{% extends 'background-page.html' %}
+
+{% load staticfiles %}
+
+{% load bootstrap4 %}
+
+{% block imagequery %}
+<!--[if IE]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+{% endblock imagequery %}
+
+{% block content %}
+
+<div class="panel-body">
+    <div class="panel-heading"><h2 class="info-title text-center">ONS Migration of Monolith to Microservices</h2></div>
+	<div class="col-md-4  text-left">
+		<br><br>
+		<h5 class="description">Some of the highlights from this project that were built by Noisy Atom</h5>
+		<ol class="text-justify">
+			<li>Deployed initial python Flask components on the first sprints for ONS Show and Tell</li>
+			<li>Instigated BDD testing component for the first beta microservice using python Bamboo</li>
+			<li>Forked and enhanced the ONS OAuth2 server taken from <a href="https://github.com/RichardKnop/django-oauth2-server"> Richard Knopps OS Django OAuth2 server </a></li>
+		</ol>
+	</div>
+
+	<div class="col-md-8">
+		<img src="{% static 'images/ons_main.png' %}" width="800" height="300" class="img-responsive">
+	</div>
+
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+
+        <div class="panel-heading"></div>
+
+        <div class="panel-body">            
+            <div class="col-md-5 text-justify">
+                <h4 class="info-title text-left">OAuth2 Using Django Webserver</h4>
+                <p>
+                    The system had a front end UI written in Flask. Noisy Atom and one other contractor provided the first beta version of this application.
+                    The microservice had a requirement to use OAuth2 as it's token based authentication framework.
+                </p>
+                <p>
+                    Noisy Atom took an outstanding <a href="https://github.com/ONSdigital/django-oauth2-test/graphs/contributors"> Django implementation</a> of this and adapted for ONS. It predominantly used a legacy flow for one microservice
+                    gaining access to another on behalf of a user. In our case the Django servers was a headless service exposing a REST interface.
+                </p>
+            </div>
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-5">
+                <div class="card card-profile card-plain">
+                    <div class="card-image">
+                    <a class="fancybox" rel="group" href="{% static 'images/ons_github_oauth_800px.png' %}">
+                        <img src="{% static 'images/ons_github_oauth_400px.png' %}" class="img-responsive">
+                        <span class="badge">Dynamic page</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- This section only includes notes for the snippet. Nothing more. You may ignore it if you please. -->
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <div class="col-md-5 text-justify">
+                <h4 class="info-title">Administration Of OAuth2</h4>
+                <p>
+                    ONS required that users could be added and removed to the OAuh2 server. This was not part of OAuth2 specifications and is
+                    something typically provided by 3rd party plugins or software. Noisy Atom provided a REST endpoint allowing a microservice
+                    to control the adding and removing of users.
+                </p>
+                <p>
+                    This takes 'eating your own dog food' to a new level. As the administration system itself had to be a granted and added to
+                    the OAuth2 server - thus using 'client credentials' grant to get a token.
+                </p>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5">
+                <div class="card card-profile card-plain">
+                    <div class="card-image">
+                        <a class="fancybox" rel="group" href="{% static 'images/ons_oauth_administer_800px.png' %}">
+                            <img src="{% static 'images/ons_oauth_administer_400px.png' %}" class="img-responsive">
+                            <span class="badge">Translation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <div class="col-md-5 text-justify">
+                <h4 class="info-title">OAuth2 And Scopes</h4>
+                <p>
+                    The server allowed 'scopes' to be defined and added to the system. Hence the administrator could pre-provision a scope
+                    which could allow a particular microservice access to features or data on the private network.
+                </p>
+                <p> This allowed flexibility on how microservices communicated with each other. Further work is being done by Noisy Atom to take the
+                Open Source project further by providing features such as:
+                </p>
+                <ol class="text-justify">
+                    <li>per user defined scopes</li>
+                    <li>encryption selection of tokens from opaque or JWT</li>
+                    <li>python 3 compatible</li>
+                </ol>
+
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5">
+                <div class="card card-profile card-plain">
+                    <div class="card-image">
+                        <a class="fancybox" rel="group" href="{% static 'images/ons_oauth_scopes_800px.png' %}">
+                            <img src="{% static 'images/ons_oauth_scopes_400px.png' %}" class="img-responsive">
+                            <span class="badge">Deployment</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+    
+{% endblock %}

@@ -45,6 +45,18 @@ def about_us(request):
     return render(request, 'about-us.html', context)
 
 
+def ons_view(request):
+    template_name = 'ons.html'
+    # TODO Make this dynamic data from a table in our database
+    context = {
+        'main_title': 'Office of National Statistics',
+        'description1':'The aim of this project was to convert a legacy Java webserver into a microservices framework. To do this python Django and Flask micro services were written and deployed.',
+        'description2':'The cloud tech stack was Cloud Foundary and Docker.',
+        'description3':'Highlights on this system were on the authentication framework. Read on for more details...'
+    }
+    return render(request, template_name, context)
+
+
 def vodafone_view(request):
     template_name = 'vodafone.html'
     # TODO Make this dynamic content from a data base.
