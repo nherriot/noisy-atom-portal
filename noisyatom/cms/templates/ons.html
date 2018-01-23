@@ -18,7 +18,7 @@
 		<br><br>
 		<h5 class="description">Some of the highlights from this project that were built by Noisy Atom</h5>
 		<ol class="text-justify">
-			<li>Deployed initial python Flask components on the initial sprints for ONS Show and Tell</li>
+			<li>Deployed initial python Flask components on the first sprints for ONS Show and Tell</li>
 			<li>Instigated BDD testing component for the first beta microservice using python Bamboo</li>
 			<li>Forked and enhanced the ONS OAuth2 server taken from Richard Knopps OS Django OAuth2 server</li>
 		</ol>
@@ -39,11 +39,12 @@
             <div class="col-md-5 text-justify">
                 <h4 class="info-title text-left">OAuth2 Using Django Webserver</h4>
                 <p>
-                    The system had a front end UI written in Flask. Noisy Atom and one other contractor provided the first beta version.
+                    The system had a front end UI written in Flask. Noisy Atom and one other contractor provided the first beta version of this application.
                     The microservice had a requirement to use OAuth2 as it's token based authentication framework.
+                </p>
                 <p>
-                <p>
-                    The Flask microservice used GEVENT and GREQUESTS for asynchronous communications between other microservices.
+                    Noisy Atom took an outstanding Django implementation of this and adapted for ONS. It predominantly used a legacy flow for one microservice
+                    gaining access to another on behalf of a user. In our case the Django servers was a headless service exposing a REST interface.
                 </p>
             </div>
             <div class="col-md-2">
@@ -52,8 +53,8 @@
             <div class="col-md-5">
                 <div class="card card-profile card-plain">
                     <div class="card-image">
-                    <a class="fancybox" rel="group" href="{% static 'images/cms_800px.png' %}">
-                        <img src="{% static 'images/cms_trimed_2.png' %}" class="img-responsive">
+                    <a class="fancybox" rel="group" href="{% static 'images/ons_github_oauth_800px.png' %}">
+                        <img src="{% static 'images/ons_github_oauth_400px.png' %}" class="img-responsive">
                         <span class="badge">Dynamic page</span>
                     </a>
                     </div>
@@ -67,9 +68,15 @@
         <div class="panel-heading"></div>
         <div class="panel-body">
             <div class="col-md-5 text-justify">
-                <h4 class="info-title">Authentication And OAuth2</h4>
+                <h4 class="info-title">Administration Of OAuth2</h4>
                 <p>
-
+                    ONS required that users could be added and removed to the OAuh2 server. This was not part of OAuth2 specifications and is
+                    something typically provided by 3rd party plugins or software. Noisy Atom provided a REST endpoint allowing a microservice
+                    to control the adding and removing of users.
+                </p>
+                <p>
+                    This takes 'eating your own dog food' to a new level. As the administration system itself had to be a granted and added to
+                    the OAuth2 server - thus using 'client credentials' grant to get a token.
                 </p>
             </div>
             <div class="col-md-2">
@@ -77,8 +84,8 @@
             <div class="col-md-5">
                 <div class="card card-profile card-plain">
                     <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/translations_800px.png' %}">
-                            <img src="{% static 'images/cms_trimed_3.png' %}" class="img-responsive">
+                        <a class="fancybox" rel="group" href="{% static 'images/ons_oauth_administer_800px.png' %}">
+                            <img src="{% static 'images/ons_oauth_administer_400px.png' %}" class="img-responsive">
                             <span class="badge">Translation</span>
                         </a>
                     </div>
@@ -91,21 +98,28 @@
         <div class="panel-heading"></div>
         <div class="panel-body">
             <div class="col-md-5 text-justify">
-                <h4 class="info-title">Deployment</h4>
+                <h4 class="info-title">OAuth2 And Scopes</h4>
                 <p>
-                    The platform is pacakged using python setup libraries. But more importantly, during the end of the
-                    project the team moved to building the system with Ansible a deployment orchestration and automation
-                    tool. This took the grundge work out of deployments onto cloud based systems. The system uses yaml
-                    files to automate the deployment process. This tool now has major backing and support from Redhat.
+                    The server allowed 'scopes' to be defined and added to the system. Hence the administrator could pre-provision a scope
+                    which could allow a particular microservice access to features or data on the private network.
                 </p>
+                <p> This allowed flexibility on how microservices communicated with each other. Further work is being done by Noisy Atom to take the
+                Open Source project further by providing features such as:
+                </p>
+                <ol class="text-justify">
+                    <li>per user defined scopes</li>
+                    <li>encryption selection of tokens from opaque or JWT</li>
+                    <li>python 3 compatible</li>
+                </ol>
+
             </div>
             <div class="col-md-2">
             </div>
             <div class="col-md-5">
                 <div class="card card-profile card-plain">
                     <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/deployment_800px.png' %}">
-                            <img src="{% static 'images/edit_navigation_400px.png' %}" class="img-responsive">
+                        <a class="fancybox" rel="group" href="{% static 'images/ons_oauth_scopes_800px.png' %}">
+                            <img src="{% static 'images/ons_oauth_scopes_400px.png' %}" class="img-responsive">
                             <span class="badge">Deployment</span>
                         </a>
                     </div>
@@ -114,98 +128,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading"></div>
-        <div class="panel-body">
-            <div class="col-md-5  text-justify">
-                <h4 class="info-title">Credit Card Payment</h4>
-                <p>
-                    Credit Card payments are difficult when the host server holds Credit Card numbers. The project
-                    required PCI compliance before going live. One of the issues with this is the ability to rotate
-                    encryption keys.
-                </p>
-                <p>
-                The platform used an admin tool which allowed dynamic rotatting of these keys and even used celery
-                    to automate the process allowing the updating and changing of encrypted fields to be fully automated.
-                    For this the pycrypto and django-encrypted-fields library were used extensively</p>
-            </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/shopping_cart_800px.png' %}">
-                            <img src="{% static 'images/shopping_cart_400px.png' %}" class="img-responsive">
-                            <span class="badge">Chart And Payment</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading"></div>
-        <div class="panel-body">
-            <div class="col-md-5  text-justify">
-                <h4 class="info-title">ElasticSearch and Text Based Searching</h4>
-                <p class="text-justify">
-                    The legacy search interface allowed SQL searches on catalog numbers, categories and so on. Our client
-                    wished a more natural and dynamic search interface to allow Chemists to search on words which may be
-                    part of a chemical compound. For that, the system required natural text based searching. i.e. a no
-                    SQL type interface.
-                </p>
-                <p>
-                    The system delivered allowed full text based searching on the data entries. It used a celery scirpt
-                    to synchronize with changes in the IBM DB2 interface. Data from the SQL world was pushed onto
-                    Elastic search allowing users to have a richer search experience when searching for compounds and
-                    chemicals on the site.
-                </p>
-            </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/elastic_search_800px.png' %}">
-                            <img src="{% static 'images/search_400px.png' %}" class="img-responsive">
-                            <span class="badge">Elastic Search</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading"></div>
-        <div class="panel-body">
-            <div class="col-md-5  text-justify">
-                <h4 class="info-title">Eeedback Apps</h4>
-                <p>
-                    Typically modern web platforms allow an easy feedback mechanism for users to quickly and easily provide
-                    one click feedback. For that a scrolling fully responsive UI component allowed a user to tab input
-                    and submit feedback directly.
-                </p>
-                <p>
-                    The administration interface allowed AlfaAesar staff to view that interface in a meaningfull way. This
-                    allowed the team to iterate and build enhancements to the system which were scheduled in each sprint.
-                </p>
-            </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
-                <div class="card card-profile card-plain">
-                    <div class="card-image">
-                        <a class="fancybox" rel="group" href="{% static 'images/feedback_800px.png' %}">
-                            <img src="{% static 'images/feedback_400.png' %}" class="img-responsive">
-                            <span class="badge">Received Feedback</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
     
 {% endblock %}
