@@ -1,0 +1,54 @@
+
+[
+{
+  "model": "blogs.post",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "title": "test1",
+    "slug": "test1",
+    "content": "this is content 1",
+    "image": "",
+    "height_field": 0,
+    "width_field": 0,
+    "draft": false,
+    "publish": "2017-01-01",
+    "updated": "2017-11-23T16:16:55.769Z",
+    "created": "2017-11-23T16:16:55.770Z"
+  }
+},
+{
+  "model": "blogs.post",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "title": "test2",
+    "slug": "test2",
+    "content": "this is content 2",
+    "image": "",
+    "height_field": 0,
+    "width_field": 0,
+    "draft": false,
+    "publish": "2017-01-01",
+    "updated": "2017-11-23T16:17:16.635Z",
+    "created": "2017-11-23T16:17:16.635Z"
+  }
+},
+{
+  "model": "blogs.post",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "title": "test3",
+    "slug": "test3",
+    "content": "this is content 3",
+    "image": "",
+    "height_field": 0,
+    "width_field": 0,
+    "draft": false,
+    "publish": "2017-01-01",
+    "updated": "2017-11-23T16:17:34.027Z",
+    "created": "2017-11-23T16:17:34.027Z"
+  }
+}
+]

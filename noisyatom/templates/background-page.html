@@ -3,7 +3,6 @@
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 
-
     <div class="page-header header-filter" data-parallax="active" 
     style="background-image: url('{% static "assets/img/bg8.jpg" %}');">
         <div class="container">
@@ -20,6 +19,19 @@
             </div>
         </div>
     </div>
+    <div class="container">
+
+		{% if messages %}
+			<ul class="messages">
+			    {% for message in messages %}
+			    	<li{% if message.tags %}class="alert-success {{ message.tags }}" {% endif %} >	
+			    		{{ message }}
+			    	</li>
+			    {% endfor %}
+			</ul>
+		{% endif %}
+		
+	</div>
 
     <!-- Index page landing here -->
     <div class="main main-raised">

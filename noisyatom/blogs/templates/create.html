@@ -1,0 +1,39 @@
+{% extends 'background-page.html' %}
+
+{% load bootstrap4 %}
+
+{% block head_extra %}
+
+	{{form.media}}
+
+{% endblock head_extra %}
+
+{% block content %}
+
+<div class="row">
+
+	<div class="col-sm-6">
+		
+	<form action="" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{{form.media}}
+		
+		{% bootstrap_form form %}
+
+		<input type="submit" class="btn btn-primary pull-right" name='Create Post'>
+	</form>
+		
+	</div>
+
+	<div class="col-sm-6">
+		<h3>Preview Check</h3>
+		<div class="content-preview">
+			<h3 id='preview-title'></h3>
+			<p id='preview-content'></p>
+		</div>
+	</div>	
+</div>
+
+
+{% endblock content %}

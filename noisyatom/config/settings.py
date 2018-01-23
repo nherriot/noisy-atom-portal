@@ -72,12 +72,17 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
-        'account',
-        'bootstrap4',
-        'catalog',
+        # Project application
+        'account.apps.AccountConfig',
+        'blogs.apps.BlogsConfig',
+        'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
         'qrcode',
         'ee_test',
+        # Third part library
+        'bootstrap4',
+        'markdown_deux',
+        'pagedown',
     ]
 
 # **************************************************************************************************************************
@@ -138,11 +143,17 @@ else:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
-        'account',
-        'catalog',
+        # Project application
+        'account.apps.AccountConfig',
+        'blogs.apps.BlogsConfig',
+        'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
         'qrcode',
-
+        'ee_test',
+        # Third part library
+        'bootstrap4',
+        'markdown_deux',
+        'pagedown',
     ]
 
 DEFAULT_FROM_EMAIL = "Noisy Atom <info@noisyatom.com>"
