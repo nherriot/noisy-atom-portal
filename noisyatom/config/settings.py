@@ -114,9 +114,9 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': NOISYATOM_DB,            					# This is our database name
-        'USER': NOISYATOM_DB_USER,    						# This is the user of our database
-        'PASSWORD': NOISYATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
+        'NAME': NOISY_ATOM_DB,            					# This is our database name
+        'USER': NOISY_ATOM_DB_USER,    						# This is the user of our database
+        'PASSWORD': NOISY_ATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
         'HOST': 'localhost',
         'PORT': '5432',
          }
