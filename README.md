@@ -5,3 +5,5 @@ The platofm is based on python django. It uses all the common django libs to dev
 Added to this it also uses QR-Codes for generating QR code enabled sku's. 
 The message bus (AMQP) is Celery. This is used for queuing messages to and from the client/server interfaces so that a QR code 
 can dynamically route to a URI.
+
+Currently only sqlite and postgres are integrated.
