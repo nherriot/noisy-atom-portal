@@ -1,14 +1,13 @@
-# This text document explains the setup of the Noisy-Atom
-#
-# Author: Nicholas Herriot
-# Date: 03/03/2017
-# Version: 1
-#
-#
-Install virtualenv & virtualenvwrapper
+This text document explains the setup of the Noisy-Atom
+
+*Author:* Nicholas Herriot
+*Date:* 03/03/2017
+*Version:* 2
+
+# Install virtualenv & virtualenvwrapper
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
-# Detailed instructions are here: http://virtualenvwrapper.readthedocs.org/en/latest/install.html
+Detailed instructions are [here](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
 
 /> sudo pip install virtualenvwrapper
 
