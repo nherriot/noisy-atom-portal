@@ -6,38 +6,37 @@ This text document explains the setup of the Noisy-Atom
 
 # Install virtualenv & virtualenvwrapper
 ----------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------
+
 Detailed instructions are [here](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
 
+```bash
 /> sudo pip install virtualenvwrapper
+```
 
+# Setup a Virtual Environment
+---
+In this case we are using the project name 'noisy-atom'
+Hence from your home directory do:
 
-Setup a Virtual Environment
-----------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------
-# In this case we are using the project name 'noisy-atom'
-# Hence from your home directory do:
-
+```bash
 /> mkvirtualenv noisy-atom
 /> workon noisy-atom
 (noisy-atom)nherriot@kieran ~/virtualenv/noisy-atom
+```
 
-
-Clone your Repository
-----------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------
-# Using git clone the repo
-
+# Clone your Repository
+---
+Using git clone the repo
+```bash
 /> git clone https://github.com/nherriot/noisy-atom-portal.git
+```
 
-
-Check Python Path and Install Required Django packages
-----------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------
-# If you have several virtual environments you may have your python path setup in the postactivate
-# script within your virtualenvironment. Check within ~/virtualenv/postactivate. If you see a line
-# like:  export DJANGO_SETTINGS_MODULE=alfacms.settings_nherriot
-# then you need to move this into the specific postacitvate script for that project e.g.
+# Check Python Path and Install Required Django packages
+---
+If you have several virtual environments you may have your python path setup in the postactivate
+script within your virtualenvironment. Check within ~/virtualenv/postactivate. If you see a line
+like:  export DJANGO_SETTINGS_MODULE=alfacms.settings_nherriot
+then you need to move this into the specific postacitvate script for that project e.g.
 
 /> cd ~/virtualenv/alfaAesar/bin
 /> nano postactivate
