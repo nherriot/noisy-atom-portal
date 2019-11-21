@@ -5,8 +5,6 @@ This text document explains the setup of the Noisy-Atom
 *Version:* 2
 
 # Install virtualenv & virtualenvwrapper
-----------------------------------------------------------------------------------------------------
-
 Detailed instructions are [here](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
 
 ```bash
@@ -14,7 +12,6 @@ Detailed instructions are [here](http://virtualenvwrapper.readthedocs.org/en/lat
 ```
 
 # Setup a Virtual Environment
----
 In this case we are using the project name 'noisy-atom'
 Hence from your home directory do:
 
@@ -25,34 +22,35 @@ Hence from your home directory do:
 ```
 
 # Clone your Repository
----
 Using git clone the repo
 ```bash
 /> git clone https://github.com/nherriot/noisy-atom-portal.git
 ```
 
 # Check Python Path and Install Required Django packages
----
-If you have several virtual environments you may have your python path setup in the postactivate
-script within your virtualenvironment. Check within ~/virtualenv/postactivate. If you see a line
-like:  export DJANGO_SETTINGS_MODULE=alfacms.settings_nherriot
-then you need to move this into the specific postacitvate script for that project e.g.
+If you have virtual environments you may have your python path setup in the postactivate
+script within your virtualenvironment. Check within ~/virtualenv/postactivate. 
+e.g.
 
-/> cd ~/virtualenv/alfaAesar/bin
+```bash
+/> cd ~/virtualenv/<project name>/bin
 /> nano postactivate
-
-# Add the line:
-
+```
+Add the line:
+```bash
 export DJANGO_SETTINGS_MODULE=noisy-atom.settings_nherriot
-
+```
+Install requirements for the python django project
+```bash
 /> cd ~/virtalenv/noisy-atom/noisy-atom-portal/noisyatom
 /> pip install -r requirements.txt
+```
 
-Check The Django Application Works
-----------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------
-# Within the python directory use the runserver to check it works
+# Check The Django Application Works
 
+## Use The Runserver To Check It Works
+Within the python directory use the **runserver** development tool to check it works:
+```bash
 /> cd ~/home/nherriot/virtalenv/noisy-atom/noisy-atom-portal/noisyatom
 /> python manage.py runserver
 System check identified no issues (0 silenced).
@@ -62,11 +60,13 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 Not Found: /favicon.ico
 [22/Mar/2016 22:27:21] "GET /favicon.ico HTTP/1.1" 404 6893
+```
 
-# Check this work on your local browser by going to the URL:
-
+## Check On Local Browser
+Check this work on your local browser by going to the URL:
+```bash
 localhost:8000
-
+```
 
 Change Database To Postgres
 ----------------------------------------------------------------------------------------------------
