@@ -3,17 +3,17 @@
 """
 
 from django.conf import settings
-from django.conf.urls import include, url
+from django.urls import include, re_path
 from django.contrib import admin
 from django.conf.urls.static import static
 
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'blogs/', include('blogs.urls', namespace='blogs')),
-    url(r'ee/', include('ee_test.urls', namespace='ee_test')),
-    url(r'', include('cms.urls', namespace='cms')),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'blogs/', include('blogs.urls', namespace='blogs')),
+    re_path(r'ee/', include('ee_test.urls', namespace='ee_test')),
+    re_path(r'', include('cms.urls', namespace='cms')),
 ]
 
 

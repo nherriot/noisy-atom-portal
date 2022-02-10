@@ -31,130 +31,130 @@ SECRET_KEY = 'needs-to-change'
 # SECURITY WARNING: don't run with debug turned on in production!
 # Add your own computer name to this list of 'gethostname()' functions to get
 # debug to true. Otherwise this will build a 'production' settings file.
-if socket.gethostname() in DEVELOPER_MACHINES:
-    print ("\n***** WARNING! This is a non-production build *****")
-    DEBUG = True
+# if socket.gethostname() in DEVELOPER_MACHINES:
+#     print ("\n***** WARNING! This is a non-production build *****")
+DEBUG = True
 
-    # Database
-    # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-    # Setup the database as a developer machine
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'na_db',
-    #         'USER': 'na_db_user',
-    #         'PASSWORD': 'na_user',
-    #         'HOST': '127.0.0.1',
-    #         'PORT': '5432',
-    #     }
-    # }
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+# Setup the database as a developer machine
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'na_db',
+#         'USER': 'na_db_user',
+#         'PASSWORD': 'na_user',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
-    # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
-    # purposes. 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'na_db',
-        }
+# Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
+# purposes.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'na_db',
     }
+}
 
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/1.9/howto/static-files/
-    STATIC_URL = '/static/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_URL = '/static/'
 
-    # Application definition
+# Application definition
 
-    INSTALLED_APPS = [
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'django.contrib.sites',
-        # Project application
-        'account.apps.AccountConfig',
-        'blogs.apps.BlogsConfig',
-        'catalog.apps.CatalogConfig',
-        'cms.apps.CmsConfig',
-        'qrcode',
-        'ee_test',
-        # Third part library
-        'bootstrap4',
-        'markdown_deux',
-        'pagedown',
-    ]
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
+    # Project application
+    'account.apps.AccountConfig',
+    'blogs.apps.BlogsConfig',
+    'catalog.apps.CatalogConfig',
+    'cms.apps.CmsConfig',
+    'qrcode',
+    'ee_test',
+    # Third part library
+    'bootstrap4',
+    'markdown_deux',
+    'pagedown',
+]
 
 # **************************************************************************************************************************
 # ************************************ This section will be what the Live server runs **************************************
 # **************************************************************************************************************************
-else:
+# else:
 
-    print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
+#     print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
 
-    NOISY_ATOM_DB_PASSWORD = os.getenv('NOISY_ATOM_DB_PASSWORD')
-    NOISY_ATOM_DB_USER = os.getenv('NOISY_ATOM_DB_USER')
-    NOISY_ATOM_DB = os.getenv('NOISY_ATOM_DB')
+#     NOISY_ATOM_DB_PASSWORD = os.getenv('NOISY_ATOM_DB_PASSWORD')
+#     NOISY_ATOM_DB_USER = os.getenv('NOISY_ATOM_DB_USER')
+#     NOISY_ATOM_DB = os.getenv('NOISY_ATOM_DB')
 
-    # Set allowed hosts so that we can verify where requests are coming from.
-    ALLOWED_HOSTS = [
-        'localhost',
-        '127.0.0.1',
-        'noisyatom.com',
-        'noisyatom.co.uk',
-        '104.236.14.123',
-        '46.101.19.29',
-        ]
+#     # Set allowed hosts so that we can verify where requests are coming from.
+#     ALLOWED_HOSTS = [
+#         'localhost',
+#         '127.0.0.1',
+#         'noisyatom.com',
+#         'noisyatom.co.uk',
+#         '104.236.14.123',
+#         '46.101.19.29',
+#         ]
 
-    DEBUG = False
+#     DEBUG = False
 
-    # Database
-    # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-    # Setup the database as the production machine.
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': NOISY_ATOM_DB,            					# This is our database name
-        'USER': NOISY_ATOM_DB_USER,    						# This is the user of our database
-        'PASSWORD': NOISY_ATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
-        'HOST': 'localhost',
-        'PORT': '5432',
-         }
-    }
+#     # Database
+#     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+#     # Setup the database as the production machine.
+#     DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': NOISY_ATOM_DB,            					# This is our database name
+#         'USER': NOISY_ATOM_DB_USER,    						# This is the user of our database
+#         'PASSWORD': NOISY_ATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#          }
+#     }
 
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/1.9/howto/static-files/
-    #STATIC_URL = os.path.join(BASE_DIR, "static/")
-    # STATIC_URL is what is placed onto the end of your URL when you use the 'static' tag in your template files. e.g.
-    # if you have:
-    # <img class='img' src="{% static '.....' %}"/>
-    # it would get converted to in the rendered page:
-    # <img class='img' src="/static/...."/>
-    STATIC_URL = '/static-cdn/'
+#     # Static files (CSS, JavaScript, Images)
+#     # https://docs.djangoproject.com/en/1.9/howto/static-files/
+#     #STATIC_URL = os.path.join(BASE_DIR, "static/")
+#     # STATIC_URL is what is placed onto the end of your URL when you use the 'static' tag in your template files. e.g.
+#     # if you have:
+#     # <img class='img' src="{% static '.....' %}"/>
+#     # it would get converted to in the rendered page:
+#     # <img class='img' src="/static/...."/>
+#     STATIC_URL = '/static-cdn/'
 
 
-    # Application definition
+#     # Application definition
 
-    INSTALLED_APPS = [
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'django.contrib.sites',
-        # Project application
-        'account.apps.AccountConfig',
-        'blogs.apps.BlogsConfig',
-        'catalog.apps.CatalogConfig',
-        'cms.apps.CmsConfig',
-        'qrcode',
-        'ee_test',
-        # Third part library
-        'bootstrap4',
-        'markdown_deux',
-        'pagedown',
-    ]
+#     INSTALLED_APPS = [
+#         'django.contrib.admin',
+#         'django.contrib.auth',
+#         'django.contrib.contenttypes',
+#         'django.contrib.sessions',
+#         'django.contrib.messages',
+#         'django.contrib.staticfiles',
+#         'django.contrib.sites',
+#         # Project application
+#         'account.apps.AccountConfig',
+#         'blogs.apps.BlogsConfig',
+#         'catalog.apps.CatalogConfig',
+#         'cms.apps.CmsConfig',
+#         'qrcode',
+#         'ee_test',
+#         # Third part library
+#         'bootstrap4',
+#         'markdown_deux',
+#         'pagedown',
+#     ]
 
 DEFAULT_FROM_EMAIL = "Noisy Atom <info@noisyatom.com>"
 
@@ -167,16 +167,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_URL = "http://noisyatom.com"
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'config.urls'
 
