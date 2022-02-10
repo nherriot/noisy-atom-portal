@@ -25,7 +25,7 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
-    @models.permalink
+    # @models.permalink
     def get_absolute_url(self):
         return 'catalog_category', (), {'category_slug': self.slug}
 
@@ -48,7 +48,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     is_bestseller = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
-    company_name = models.ForeignKey(Company, null=True)
+    company_name = models.ForeignKey(Company, null=True, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     description = models.TextField()
     meta_keywords = models.CharField("Meta Keywords", max_length=255, help_text='Comma-delimited set of SEO keywords for meta tag')
@@ -65,7 +65,7 @@ class Product(models.Model):
     def __unicode__(self):
         return self.name
 
-    @models.permalink
+    # @models.permalink
     def get_absolute_url(self):
         return 'catalog_product', (), {'product_slug': self.slug}
 
@@ -95,7 +95,7 @@ class ProductItem(models.Model):
     #TODO A one-to-one relationship with an order or customer
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    product = models.ForeignKey(Product)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'product_item'
@@ -105,7 +105,7 @@ class ProductItem(models.Model):
     def __unicode__(self):
         return self.name
 
-    @models.permalink
+    # @models.permalink
     def get_absolute_url(self):
         return 'catalog_productitem', (), {'productitem_slug': self.slug}
 

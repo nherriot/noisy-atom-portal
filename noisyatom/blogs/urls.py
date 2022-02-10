@@ -1,6 +1,7 @@
-from django.conf.urls import url
+from django.urls import re_path
 from django.contrib import admin
 
+app_name = 'blogs'
 
 from .views import (
 		list_post, 
@@ -12,9 +13,9 @@ from .views import (
    
 
 urlpatterns = [
-    url(r'^$', list_post, name='list'),
-    url(r'^create/$', create_post, name='create'),
-    url(r'^(?P<slug>[\w-]+)/$', detail_post, name='detail'),
-    url(r'(?P<slug>[\w-]+)/edit/$', update_post, name='updated'),
-    url(r'^(?P<slug>[\w-]+)/delete/$', delete_post, name='delete'),
+    re_path(r'^$', list_post, name='list'),
+    re_path(r'^create/$', create_post, name='create'),
+    re_path(r'^(?P<slug>[\w-]+)/$', detail_post, name='detail'),
+    re_path(r'(?P<slug>[\w-]+)/edit/$', update_post, name='updated'),
+    re_path(r'^(?P<slug>[\w-]+)/delete/$', delete_post, name='delete'),
 ]
