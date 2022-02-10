@@ -1,29 +1,46 @@
-This text document explains the setup of the Noisy-Atom
+# Noisy Atom Portal
 
-# Install virtualenv & virtualenvwrapper
+This text document explains the setup of the Noisy-Atom portal. The Noisy Atom portal is a Django based web server serving up the NoisyAtom home page, blog and example project work.
+
+The portal is based on Python version 3.8. This may not be supported on your current version of Linux. To get access to all the features we need 3.8 on your local machine. For this I used the [Deadsnake PPA](https://github.com/deadsnakes) which holds a number of pre-compiled python versions for Ubuntu.
+
+You can follow this link and instructions, however to reduce context switching you can follow commands here:
+/> sudo apt update
+/> sudo add-apt-repository ppa:deadsnakes/ppa
+/> sudo apt update
+/> sudo apt install python3.8
+
+## Install virtualenv & virtualenvwrapper
 Detailed instructions are [here](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
 
 ```bash
 /> sudo pip install virtualenvwrapper
 ```
 
-# Setup a Virtual Environment
+## Setup a Virtual Environment
 In this case we are using the project name 'noisy-atom'
 Hence from your home directory do:
 
 ```bash
-/> mkvirtualenv noisy-atom
+/> mkvirtualenv --python=/usr/bin/python3.8 noisy-atom
 /> workon noisy-atom
 (noisy-atom)nherriot@kieran ~/virtualenv/noisy-atom
 ```
+To verify the correct version is installed you can type:
 
-# Clone your Repository
+```
+/>
+/> python --version
+   Python 3.8.12
+```
+
+## Clone your Repository
 Using git clone the repo
 ```bash
 /> git clone https://github.com/nherriot/noisy-atom-portal.git
 ```
 
-# Check Python Path and Install Required Django packages
+## Check Python Path and Install Required Django packages
 If you have virtual environments you may have your python path setup in the postactivate
 script within your virtualenvironment. Check within ~/virtualenv/postactivate. 
 e.g.
@@ -42,9 +59,9 @@ Install requirements for the python django project
 /> pip install -r requirements.txt
 ```
 
-# Check The Django Application Works
+## Check The Django Application Works
 
-## Use The Runserver To Check It Works
+### Use The Runserver To Check It Works
 Within the python directory use the **runserver** development tool to check it works:
 ```bash
 /> cd ~/home/nherriot/virtalenv/noisy-atom/noisy-atom-portal/noisyatom
@@ -58,13 +75,13 @@ Not Found: /favicon.ico
 [22/Mar/2016 22:27:21] "GET /favicon.ico HTTP/1.1" 404 6893
 ```
 
-## Check On Local Browser
+### Check On Local Browser
 Check this work on your local browser by going to the URL:
 ```bash
 localhost:8000
 ```
 
-# Change Database To Postgres
+## Change Database To Postgres
 If you don't have 'postgres' installed on your machine you can install with the following packages:
 ```bash
 /> sudo apt-get install postgresql-contrib
@@ -214,7 +231,7 @@ sites
  [X] 0002_alter_domain_unique
 ```
 
-# Check Your Server Works
+## Check Your Server Works
 Update your virtual env python file to contain the postgres adapter
 ```bash
 (noisy-atom)/> python manage.py createsuperuser
