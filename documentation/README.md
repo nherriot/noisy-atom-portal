@@ -27,11 +27,58 @@ binaries dependent on header files being available. To do this:
     /> sudo apt-get install libpq-dev python-dev python3.8-dev
 ```
 
+The **Pillow** python graphics package also requires the following **zlib** and **jpeg** libraries which also may not
+be part of your vanilla setup. Install the Linux zlib packages. To do this:
+
+```bash
+
+  /> sudo apt install libjpeg8-dev zlib1g-dev
+
+```
+
 ## Install virtualenv & virtualenvwrapper
 Detailed instructions are [here](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
 
 ```bash
 /> sudo pip install virtualenvwrapper
+    Collecting appdirs==1.4.0
+      Using cached appdirs-1.4.0-py2.py3-none-any.whl (11 kB)
+    Collecting Django==1.10.5
+      Using cached Django-1.10.5-py2.py3-none-any.whl (6.8 MB)
+    Collecting django-bootstrap4==0.0.4
+      Using cached django_bootstrap4-0.0.4-py3-none-any.whl
+    Collecting django-markdown-deux==1.0.5
+      Using cached django_markdown_deux-1.0.5-py3-none-any.whl
+    Collecting django-pagedown==0.1.3
+      Using cached django_pagedown-0.1.3-py3-none-any.whl
+    Collecting django-crispy-forms==1.6.1
+      Using cached django_crispy_forms-1.6.1-py2.py3-none-any.whl (103 kB)
+    Collecting gunicorn==19.6.0
+      Using cached gunicorn-19.6.0-py2.py3-none-any.whl (114 kB)
+    Collecting Markdown==2.6.9
+      Using cached Markdown-2.6.9-py3-none-any.whl
+    Collecting markdown2==2.3.4
+      Using cached markdown2-2.3.4-py3-none-any.whl
+    Collecting olefile==0.44
+      Using cached olefile-0.44-py3-none-any.whl
+    Collecting packaging==16.8
+      Using cached packaging-16.8-py2.py3-none-any.whl (23 kB)
+    Collecting Pillow==4.0.0
+      Using cached Pillow-4.0.0-cp38-cp38-linux_x86_64.whl
+    Collecting psycopg2==2.8
+      Using cached psycopg2-2.8-cp38-cp38-linux_x86_64.whl
+    Collecting pyparsing==2.2.0
+      Using cached pyparsing-2.2.0-py2.py3-none-any.whl (56 kB)
+    Collecting six==1.11.0
+      Using cached six-1.11.0-py2.py3-none-any.whl (10 kB)
+    Installing collected packages: six, pyparsing, olefile, markdown2, Django, psycopg2, Pillow, packaging, Markdown, gunicorn, django-pagedown, django-markdown-deux, django-crispy-forms, django-bootstrap4, appdirs
+    Successfully installed Django-1.10.5 Markdown-2.6.9 Pillow-4.0.0 appdirs-1.4.0 django-bootstrap4-0.0.4 django-crispy-forms-1.6.1 django-markdown-deux-1.0.5 django-pagedown-0.1.3 gunicorn-19.6.0 markdown2-2.3.4 olefile-0.44 packaging-16.8 psycopg2-2.8 pyparsing-2.2.0 six-1.11.0
+    WARNING: You are using pip version 21.1.2; however, version 22.0.3 is available.
+    You should consider upgrading via the '/home/<your-dir>/virtualenv/noisy-atom/bin/python -m pip install --upgrade pip' command.
+    />
+
+
+
 ```
 
 ## Setup a Virtual Environment
