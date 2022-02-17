@@ -5,10 +5,13 @@ This text document explains the setup of the Noisy-Atom portal. The Noisy Atom p
 The portal is based on Python version 3.8. This may not be supported on your current version of Linux. To get access to all the features we need 3.8 on your local machine. For this I used the [Deadsnake PPA](https://github.com/deadsnakes) which holds a number of pre-compiled python versions for Ubuntu.
 
 You can follow this link and instructions, however to reduce context switching you can follow commands here:
+
+```
 /> sudo apt update
 /> sudo add-apt-repository ppa:deadsnakes/ppa
 /> sudo apt update
 /> sudo apt install python3.8
+```
 
 ## Install virtualenv & virtualenvwrapper
 Detailed instructions are [here](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
