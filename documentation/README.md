@@ -2,7 +2,11 @@
 
 This text document explains the setup of the Noisy-Atom portal. The Noisy Atom portal is a Django based web server serving up the NoisyAtom home page, blog and example project work.
 
-The portal is based on Python version 3.8. This may not be supported on your current version of Linux. To get access to all the features we need 3.8 on your local machine. For this I used the [Deadsnake PPA](https://github.com/deadsnakes) which holds a number of pre-compiled python versions for Ubuntu.
+Ubuntu 18.04 is the targeted platform. This should run on Ubuntu 20.xx as is but not tested thoroughly.
+
+## Setup Python 3.8
+The portal is based on Python version 3.8. This may not be supported on your current version of Linux. 
+To get access to all the features we need 3.8 on your local machine. For this I used the [Deadsnake PPA](https://github.com/deadsnakes) which holds a number of pre-compiled python versions for Ubuntu.
 
 You can follow this link and instructions, however to reduce context switching you can follow commands here:
 
@@ -11,6 +15,16 @@ You can follow this link and instructions, however to reduce context switching y
 /> sudo add-apt-repository ppa:deadsnakes/ppa
 /> sudo apt update
 /> sudo apt install python3.8
+```
+
+## Installing Non-default Linux Packages
+The portal uses **postgres** as it's backend database. For this the python package psycopg2 will be installed.
+However, this requires the installation of several Linux packages which may not be on your default system. You
+need to have libpq-dev, python-dev, and python3.8-dev python development libraries since there will be compiled python
+binaries dependent on header files being available. To do this:
+
+```bash
+    /> sudo apt-get install libpq-dev python-dev python3.8-dev
 ```
 
 ## Install virtualenv & virtualenvwrapper
