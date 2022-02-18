@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # QR Code
 # -----------------
@@ -18,7 +19,7 @@ class QRcode(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
     description = models.TextField()
-    #TODO A one-to-one relationship to a QR code object that is used to describe a generic product.
+    # TODO A one-to-one relationship to a QR code object that is used to describe a generic product.
     image = models.ImageField(
         max_length=50,
         height_field=250,
@@ -33,7 +34,6 @@ class QRcode(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
     class Meta:
         db_table = 'QRCodes'
         ordering = ['-created_at']
@@ -42,6 +42,5 @@ class QRcode(models.Model):
     def __unicode__(self):
         return self.name
 
-    @models.permalink
     def get_absolute_url(self):
-        return 'QRCode', (), {'qrcode_slug': self.slug}
+        return reverse('QRCode', (), {'qrcode_slug': self.slug})

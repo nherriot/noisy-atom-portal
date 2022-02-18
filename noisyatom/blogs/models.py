@@ -29,7 +29,7 @@ def upload_image_location(instcance, filename):
 
 
 class Post(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     content = models.TextField()
