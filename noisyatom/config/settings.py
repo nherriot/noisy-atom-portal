@@ -9,14 +9,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
+from decouple import config
 import os
 import socket
 
-# A list of development machines that will make sure we use a 'non production' settings file. Add your machine name to
-# the list to make this settings file a 'dev' build only.
-
-DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'dilmac-VB', 'dilmac', 'my-mac-machine', 'my-linux-machine']
-
+# This should be set to 'prod' or 'dev' otherwise it will fail to run any type of django server
+ENVIRONMENT: str = config("ENVIRONMENT", default="dev")
+print(f"***** Environment is set as: {ENVIRONMENT} *****")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,9 +29,9 @@ SECRET_KEY = 'needs-to-change'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Add your own computer name to this list of 'gethostname()' functions to get
-# debug to true. Otherwise this will build a 'production' settings file.
-if socket.gethostname() in DEVELOPER_MACHINES:
-    print ("\n***** WARNING! This is a non-production build *****")
+# debug to true. Otherwise, this will build a 'production' settings file.
+if ENVIRONMENT == "dev":
+    print("\n***** WARNING! This is a non-production build *****")
     DEBUG = True
 
     # Database
@@ -85,10 +84,11 @@ if socket.gethostname() in DEVELOPER_MACHINES:
         'pagedown',
     ]
 
-# **************************************************************************************************************************
-# ************************************ This section will be what the Live server runs **************************************
-# **************************************************************************************************************************
-else:
+# **********************************************************************************************************************
+# ************************************ This section will be what the Live server runs **********************************
+# **********************************************************************************************************************
+
+if ENVIRONMENT == "prod":
 
     print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
 
