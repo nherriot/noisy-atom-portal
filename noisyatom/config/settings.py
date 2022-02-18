@@ -15,7 +15,7 @@ import socket
 # A list of development machines that will make sure we use a 'non production' settings file. Add your machine name to
 # the list to make this settings file a 'dev' build only.
 
-DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'dilmac-VB', 'dilmac', 'my-mac-machine', 'my-linux-machine']
+DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'MINIPC-E1', 'my-mac-machine', 'my-linux-machine']
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -32,7 +32,7 @@ SECRET_KEY = 'needs-to-change'
 # Add your own computer name to this list of 'gethostname()' functions to get
 # debug to true. Otherwise this will build a 'production' settings file.
 if socket.gethostname() in DEVELOPER_MACHINES:
-    print ("\n***** WARNING! This is a non-production build *****")
+    print("\n***** WARNING! This is a non-production build *****")
     DEBUG = True
 
     # Database
@@ -50,7 +50,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
     # }
 
     # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
-    # purposes. 
+    # purposes.
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -90,7 +90,7 @@ if socket.gethostname() in DEVELOPER_MACHINES:
 # **************************************************************************************************************************
 else:
 
-    print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
+    print("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
 
     NOISY_ATOM_DB_PASSWORD = os.getenv('NOISY_ATOM_DB_PASSWORD')
     NOISY_ATOM_DB_USER = os.getenv('NOISY_ATOM_DB_USER')
@@ -104,7 +104,7 @@ else:
         'noisyatom.co.uk',
         '104.236.14.123',
         '46.101.19.29',
-        ]
+    ]
 
     DEBUG = False
 
@@ -112,14 +112,14 @@ else:
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
     # Setup the database as the production machine.
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': NOISY_ATOM_DB,            					# This is our database name
-        'USER': NOISY_ATOM_DB_USER,    						# This is the user of our database
-        'PASSWORD': NOISY_ATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
-        'HOST': 'localhost',
-        'PORT': '5432',
-         }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': NOISY_ATOM_DB,                              # This is our database name
+            'USER': NOISY_ATOM_DB_USER,                         # This is the user of our database
+            'PASSWORD': NOISY_ATOM_DB_PASSWORD,                 # This is the password of the database which is pulled from an environment variable when deployed
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
 
     # Static files (CSS, JavaScript, Images)
@@ -131,7 +131,6 @@ else:
     # it would get converted to in the rendered page:
     # <img class='img' src="/static/...."/>
     STATIC_URL = '/static-cdn/'
-
 
     # Application definition
 
@@ -167,13 +166,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_URL = "http://noisyatom.com"
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
