@@ -13,6 +13,7 @@ from decouple import config
 import os
 import socket
 
+
 # This should be set to 'prod' or 'dev' otherwise it will fail to run any type of django server
 ENVIRONMENT: str = config("ENVIRONMENT", default="dev")
 print(f"***** Environment is set as: {ENVIRONMENT} *****")
@@ -49,7 +50,7 @@ if ENVIRONMENT == "dev":
     # }
 
     # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
-    # purposes. 
+    # purposes.
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -90,7 +91,7 @@ if ENVIRONMENT == "dev":
 
 if ENVIRONMENT == "prod":
 
-    print ("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
+    print("\n***** INFORMATION: PRODUCTION BUILD DEPLOYMENT *****")
 
     NOISY_ATOM_DB_PASSWORD = os.getenv('NOISY_ATOM_DB_PASSWORD')
     NOISY_ATOM_DB_USER = os.getenv('NOISY_ATOM_DB_USER')
@@ -104,7 +105,7 @@ if ENVIRONMENT == "prod":
         'noisyatom.co.uk',
         '104.236.14.123',
         '46.101.19.29',
-        ]
+    ]
 
     DEBUG = False
 
@@ -112,14 +113,14 @@ if ENVIRONMENT == "prod":
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
     # Setup the database as the production machine.
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': NOISY_ATOM_DB,            					# This is our database name
-        'USER': NOISY_ATOM_DB_USER,    						# This is the user of our database
-        'PASSWORD': NOISY_ATOM_DB_PASSWORD,					# This is the password of the database which is pulled from an environment variable when deployed
-        'HOST': 'localhost',
-        'PORT': '5432',
-         }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': NOISY_ATOM_DB,                              # This is our database name
+            'USER': NOISY_ATOM_DB_USER,                         # This is the user of our database
+            'PASSWORD': NOISY_ATOM_DB_PASSWORD,                 # This is the password of the database which is pulled from an environment variable when deployed
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
 
     # Static files (CSS, JavaScript, Images)
@@ -131,7 +132,6 @@ if ENVIRONMENT == "prod":
     # it would get converted to in the rendered page:
     # <img class='img' src="/static/...."/>
     STATIC_URL = '/static-cdn/'
-
 
     # Application definition
 
