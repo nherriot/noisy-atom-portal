@@ -303,6 +303,52 @@ Update your virtual env python file to contain the postgres adapter
 ```
 
 
+# Upgrade ISU0033 Django==2.2
+1. Update requirements.txt to use version 2.2
+    Update django==1.10.5 to django==2.2 
+    pip install django==2.2
+
+  When you update the django version automaticall add another two packages install
+    pytz=2021.3
+    sqlparse==0.4.2 
+
+2. Run requirements.txt and identify all errors that cause it to fail.
+  Errors and Code changed include new things:
+  In each models.py change 
+  from django.core.urlresolve import reverse  django.urls import reverse
+  In new django version urlresolve has been removed.
+
+  Remove @primry_link docarator on deg get_absloute_url() this is new in django==2.2
+  Add reverse to the function
+
+  In fields where models inharite with another models using Foreignkey need to add:
+  on_delete=models.CASCADE
+
+  Add name of the apps to the urls.py 
+  app_name = "appname"
+
+  In the settings.py file change:
+  MIDDLEWARE_CLASS to MIDDLEWARE 
+
+  And in MIDDLEWARE remove 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+
+  Very IMPORTANT when change made in the models fields need to delete all migrations files
+  Except __init__.py and delete database.
+
+  Run python manage.py makemigrations
+      python manage.py migrate
+      python manage.py createsuperuser
+
+3. Testing:
+  python manage.py runserver
+  Login and create some page like blog to test!
+
+
+
+
+
+
+
 
 
 
