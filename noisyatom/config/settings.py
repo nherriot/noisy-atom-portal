@@ -15,7 +15,7 @@ import socket
 # A list of development machines that will make sure we use a 'non production' settings file. Add your machine name to
 # the list to make this settings file a 'dev' build only.
 
-DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'MINIPC-E1', 'my-linux-machine']
+DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'dilux', 'my-linux-machine', '*']
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -31,7 +31,7 @@ SECRET_KEY = 'needs-to-change'
 # SECURITY WARNING: don't run with debug turned on in production!
 # Add your own computer name to this list of 'gethostname()' functions to get
 # debug to true. Otherwise this will build a 'production' settings file.
-if socket.gethostname() in DEVELOPER_MACHINES:
+if socket.gethostname() not in DEVELOPER_MACHINES:
     print("\n***** WARNING! This is a non-production build *****")
     DEBUG = True
 
