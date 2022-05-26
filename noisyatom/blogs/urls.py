@@ -9,6 +9,7 @@ from .views import (
 		delete_post,
 	)
    
+app_name = "blogs"
 
 urlpatterns = [
     url(r'^$', list_post, name='list'),

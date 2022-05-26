@@ -15,7 +15,7 @@ import socket
 # A list of development machines that will make sure we use a 'non production' settings file. Add your machine name to
 # the list to make this settings file a 'dev' build only.
 
-DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'MINIPC-E1', 'my-mac-machine', 'my-linux-machine']
+DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'MINIPC-E1', 'my-mac-machine', 'my-linux-machine', 'corinna']
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
