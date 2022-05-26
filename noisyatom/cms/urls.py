@@ -9,13 +9,15 @@ from cms.views import (
         vodafone_view,
     )
 
+app_name = "cms"
+
 urlpatterns = [
-    url('^$', index_view, name='index'),
-    url('^alfa/$', alfa_view, name='alfa'),
-    url('^vodafone/$', vodafone_view, name='vodafone'),
-    url('^coming-soon/$', coming_soon, name='coming_soon'),
-    url('^about-us/$', about_us, name='about_us'),
-    url('^ons/$', ons_view, name='ons'),
+    url(r'^$', index_view, name='index'),
+    url(r'^alfa/$', alfa_view, name='alfa'),
+    url(r'^vodafone/$', vodafone_view, name='vodafone'),
+    url(r'^coming-soon/$', coming_soon, name='coming_soon'),
+    url(r'^about-us/$', about_us, name='about_us'),
+    url(r'^ons/$', ons_view, name='ons'),
     #url(r'^articles/$', index_view, name='foo_bar_url'),
     # url('^dashboard/$', dashboard_view, name='admin_page'),
 ]
