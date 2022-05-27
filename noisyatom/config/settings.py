@@ -41,9 +41,9 @@ if socket.gethostname() in DEVELOPER_MACHINES:
     # DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'na_db',
-    #         'USER': 'na_db_user',
-    #         'PASSWORD': 'na_user',
+    #         'NAME': 'ffw',
+    #         'USER': 'ffw_user',
+    #         'PASSWORD': '1234',
     #         'HOST': '127.0.0.1',
     #         'PORT': '5432',
     #     }
