@@ -50,19 +50,14 @@ if socket.gethostname() in DEVELOPER_MACHINES:
 
     # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
     # purposes.
-<<<<<<< HEAD
-=======
 
->>>>>>> 04b5daf2f3c1dd048bbc75dd1b1c5bcc408dd876
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': 'na_db',
-<<<<<<< HEAD
+
             }
-=======
-        }
->>>>>>> 04b5daf2f3c1dd048bbc75dd1b1c5bcc408dd876
+
     }
 
     # Static files (CSS, JavaScript, Images)
