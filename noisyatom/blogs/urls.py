@@ -1,14 +1,14 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-
 from .views import (
-    list_post,
-    detail_post,
-    create_post,
+  
+		list_post, 
+		detail_post,
+		create_post,
     update_post,
-    delete_post,
-)
+		delete_post,
+	)
 
 app_name = "blogs"
 

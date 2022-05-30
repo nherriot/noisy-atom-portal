@@ -15,8 +15,7 @@ import socket
 # A list of development machines that will make sure we use a 'non production' settings file. Add your machine name to
 # the list to make this settings file a 'dev' build only.
 
-DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'MINIPC-E1', 'my-linux-machine']
-
+DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'MINIPC-E1', 'my-mac-machine', 'my-linux-machine', 'corinna', 'christine-NUC8i5BEH']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,11 +50,14 @@ if socket.gethostname() in DEVELOPER_MACHINES:
 
     # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
     # purposes.
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': 'na_db',
-        }
+
+            }
+
     }
 
     # Static files (CSS, JavaScript, Images)
@@ -166,7 +168,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_URL = "http://noisyatom.com"
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

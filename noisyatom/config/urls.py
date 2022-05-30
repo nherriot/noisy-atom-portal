@@ -15,8 +15,6 @@ urlpatterns = [
     url(r'^ee/', include('ee_test.urls', namespace='ee_test')),
     url(r'^', include('cms.urls', namespace='cms')),
 ]
-
-
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)

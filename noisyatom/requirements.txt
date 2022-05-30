@@ -1,5 +1,5 @@
 appdirs==1.4.0
-Django==2.2.27
+Django==2.2
 django-bootstrap4==0.0.4
 django-crispy-forms==1.6.1
 django-markdown-deux==1.0.5
