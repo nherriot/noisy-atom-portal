@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'^about-us/$', about_us, name='about_us'),
     url(r'^ons/$', ons_view, name='ons'),
     #url(r'^articles/$', index_view, name='foo_bar_url'),
-    # url('^dashboard/$', dashboard_view, name='admin_page'),
+    # url(r'^dashboard/$', dashboard_view, name='admin_page'),
 ]

@@ -17,7 +17,6 @@ import socket
 
 DEVELOPER_MACHINES = ['Zenbook-UX32A', 'kieran', 'MINIPC-E1', 'my-mac-machine', 'my-linux-machine', 'corinna', 'christine-NUC8i5BEH']
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.join(BASE_DIR, 'noisyatom')
@@ -51,11 +50,19 @@ if socket.gethostname() in DEVELOPER_MACHINES:
 
     # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
     # purposes.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04b5daf2f3c1dd048bbc75dd1b1c5bcc408dd876
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': 'na_db',
+<<<<<<< HEAD
             }
+=======
+        }
+>>>>>>> 04b5daf2f3c1dd048bbc75dd1b1c5bcc408dd876
     }
 
     # Static files (CSS, JavaScript, Images)
@@ -166,14 +173,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_URL = "http://noisyatom.com"
 
-#MIDDLEWARE_CLASSES = [
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

@@ -41,10 +41,6 @@ class QRcode(models.Model):
 
     def __unicode__(self):
         return self.name
-'''
-    @models.permalink
+
     def get_absolute_url(self):
-        return 'QRCode', (), {'qrcode_slug': self.slug}
-'''
-def get_absolute_url(self):
-    return reverse('QRCode' (), args=(self.slug,))
+        return reverse('QRCode', (), {'qrcode_slug': self.slug})
