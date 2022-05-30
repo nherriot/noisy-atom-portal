@@ -25,11 +25,7 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
-'''
-    @models.permalink
-    def get_absolute_url(self):
-        return 'catalog_category', (), {'category_slug': self.slug}
-'''
+
 def get_absolute_url(self):
     return reverse('catalog_category', (), {'category_slug': self.slug})
 
@@ -68,11 +64,7 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
-'''
-    @models.permalink
-    def get_absolute_url(self):
-        return 'catalog_product', (), {'product_slug': self.slug}
-'''
+
 def get_absolute_url(self):
     return reverse('catalog_product', (), {'product_slug': self.slug})
 
@@ -112,11 +104,7 @@ class ProductItem(models.Model):
 
     def __unicode__(self):
         return self.name
-'''
-    @models.permalink
-    def get_absolute_url(self):
-        return 'catalog_productitem', (), {'productitem_slug': self.slug}
-'''
+
 def get_absolute_url(self):
     return reverse('catalog_productitem', (), {'productitem_slug': self.slug})
 

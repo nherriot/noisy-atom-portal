@@ -1,7 +1,5 @@
 from django import forms
-#from django.forms import extras
-#from pagedown.widgets import PagedownWidget
-from pagedown.widgets import AdminPagedownWidget
+from pagedown.widgets import PagedownWidget
 from .models import Post
 
 
