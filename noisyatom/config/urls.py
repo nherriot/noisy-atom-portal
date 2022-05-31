@@ -11,12 +11,10 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'blogs/', include('blogs.urls', namespace='blogs')),
-    url(r'ee/', include('ee_test.urls', namespace='ee_test')),
-    url(r'', include('cms.urls', namespace='cms')),
+    url(r'^blogs/', include('blogs.urls', namespace='blogs')),
+    url(r'^ee/', include('ee_test.urls', namespace='ee_test')),
+    url(r'^', include('cms.urls', namespace='cms')),
 ]
-
-
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)

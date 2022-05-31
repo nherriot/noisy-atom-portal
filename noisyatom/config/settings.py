@@ -14,6 +14,7 @@ import os
 import socket
 
 
+
 # This should be set to 'prod' or 'dev' otherwise it will fail to run any type of django server
 ENVIRONMENT: str = config("ENVIRONMENT", default="dev")
 print(f"***** Environment is set as: {ENVIRONMENT} *****")
@@ -51,11 +52,14 @@ if ENVIRONMENT == "dev":
 
     # Making our dev machines use sqlite for now. It makes running up a dev instance from scratch quicker for demo
     # purposes.
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': 'na_db',
-        }
+
+            }
+
     }
 
     # Static files (CSS, JavaScript, Images)
@@ -173,7 +177,6 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

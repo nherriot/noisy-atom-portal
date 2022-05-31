@@ -165,7 +165,7 @@ localhost:8000
 If you don't have 'postgres' installed on your machine you can install with the following packages:
 ```bash
 /> sudo apt-get install postgresql-contrib
-/> sudo apt-get install postgresql-server-dev-9.3
+/> sudo apt-get install postgresql-server-dev-10
 /> sudo apt-get install postgresql-client
 /> sudo apt-get install pgadmin3
 ```
@@ -265,7 +265,6 @@ Python 2.7.6 (default, Jun 22 2015, 17:58:13)
 [GCC 4.8.2] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 (InteractiveConsole)
->>>from django.db import connection
 >>> from django.db import connection
 >>> cursor = connection.cursor()
 >>> quit()
