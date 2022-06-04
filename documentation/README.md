@@ -348,6 +348,54 @@ Update your virtual env python file to contain the postgres adapter
 (noisy-atom)/> python manage.py runserver
 ```
 
+## Installing Docker version 5.0.3
+Get docker installed by
+```bash
+(noisy-atom)/> pip install docker==5.0.3
+```
+
+Make sure there you add your user to the docker group.
+
+# Create the docker group
+```bash
+(noisy-atom)/> sudo groupadd docker
+```
+# Add your user to the docker group
+```
+(noisy-atom)/> sudo usermod -aG docker ${USER}
+```
+Make sure to log out and log back in so that your group membership is re-evaluated or type the following command:
+```
+(noisy-atom)/> sudo -s ${USER}
+```
+# Verify that you can run docker commands without sudo
+```
+(noisy-atom)/> docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+
+
+
 
 
 
