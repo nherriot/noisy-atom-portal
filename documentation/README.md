@@ -356,11 +356,11 @@ Get docker installed by
 
 Make sure there you add your user to the docker group.
 
-# Create the docker group
+### Create the docker group
 ```bash
 (noisy-atom)/> sudo groupadd docker
 ```
-# Add your user to the docker group
+### Add your user to the docker group
 ```
 (noisy-atom)/> sudo usermod -aG docker ${USER}
 ```
@@ -368,7 +368,7 @@ Make sure to log out and log back in so that your group membership is re-evaluat
 ```
 (noisy-atom)/> sudo -s ${USER}
 ```
-# Verify that you can run docker commands without sudo
+### Verify that you can run docker commands without sudo
 ```
 (noisy-atom)/> docker run hello-world
 
