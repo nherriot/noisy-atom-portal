@@ -9,8 +9,8 @@ Markdown==2.6.9
 markdown2==2.3.4
 olefile==0.44
 packaging==16.8
-Pillow==4.0.0
-psycopg2==2.8
+Pillow==6.2.1
+psycopg2-binary==2.9.3
 pyparsing==2.2.0
 python-decouple==3.6
 pytz==2021.3
