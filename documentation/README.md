@@ -349,6 +349,8 @@ Update your virtual env python file to contain the postgres adapter
 ```
 
 ## Installing Docker version 5.0.3
+For a better understanding and getting used to using Docker, please have a look at the [tutorials](https://github.com/docker/labs/tree/master/beginner).
+
 Get docker installed by
 ```bash
 (noisy-atom)/> pip install docker==5.0.3
