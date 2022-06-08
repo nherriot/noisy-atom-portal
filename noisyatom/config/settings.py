@@ -16,7 +16,7 @@ import socket
 
 
 # This should be set to 'prod' or 'dev' otherwise it will fail to run any type of django server
-ENVIRONMENT: str = config("ENVIRONMENT", default="dev")
+ENVIRONMENT: str = config("ENVIRONMENT", default="prod")
 print(f"***** Environment is set as: {ENVIRONMENT} *****")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -30,8 +30,6 @@ PROJECT_ROOT = os.path.join(BASE_DIR, 'noisyatom')
 SECRET_KEY = 'needs-to-change'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Add your own computer name to this list of 'gethostname()' functions to get
-# debug to true. Otherwise, this will build a 'production' settings file.
 if ENVIRONMENT == "dev":
     print("\n***** WARNING! This is a non-production build *****")
     DEBUG = True
