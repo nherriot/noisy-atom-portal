@@ -1,6 +1,12 @@
 #Pull official base image for Python 3.8
 FROM python:3.8-slim-buster
 
+# This prevents Python from writing out pyc files
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# This keeps Python from buffering stdin/stdout
+ENV PYTHONUNBUFFERED 1
+
 #Create a working directory
 WORKDIR /app
 
@@ -17,4 +23,4 @@ COPY . /app/
 EXPOSE 8000
 
 #Run the command to runserver
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
