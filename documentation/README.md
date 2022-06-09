@@ -353,26 +353,26 @@ For a better understanding and getting used to using Docker, please have a look 
 
 Get docker installed by
 ```bash
-(noisy-atom)/> pip install docker==5.0.3
+/> pip install docker==5.0.3
 ```
 
 Make sure there you add your user to the docker group.
 
 ### Create the docker group
 ```bash
-(noisy-atom)/> sudo groupadd docker
+/> sudo groupadd docker
 ```
 ### Add your user to the docker group
 ```
-(noisy-atom)/> sudo usermod -aG docker <username>
+/> sudo usermod -aG docker <username>
 ```
 Make sure to log out and log back in so that your group membership is re-evaluated or type the following command:
 ```
-(noisy-atom)/> newgrp docker
+/> newgrp docker
 ```
 ### Verify that you can run docker commands without sudo
 ```
-(noisy-atom)/> docker run hello-world
+/> docker run hello-world
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -395,7 +395,7 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
-### Create a Dockerfile for Python
+### Create a Dockerfile for Python 3.8 and runserver
 A Dockerfile is a text document that contains the instructions to assemble a Docker image. When we tell Docker to build our image by executing the ```docker build``` command, Docker reads these instructions, executes them, and creates a Docker image as a result.
 
 Let’s walk through the process of creating a Dockerfile for our application. In the root of your project, create a file named ```Dockerfile``` and open this file in your text editor.
@@ -419,31 +419,36 @@ COPY requirements.txt requirements.txt
 ```
 Once we have our requirements.txt file inside the image, we can use the RUN command to execute the command pip3 install. This works exactly the same as if we were running ```pip3 install``` locally on our machine, but this time the modules are installed into the image.
 ```
-RUN pip3 install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 ```
 At this point, we have an image that is based on Python version 3.8 and we have installed our dependencies. The next step is to add our source code into the image. We’ll use the ```COPY``` command just like we did with our ```requirements.txt``` file above.
 
 ```
-COPY . .
+COPY . /app/
 ```
-This ```COPY``` command takes all the files located in the current directory and copies them into the image. Now, all we have to do is to tell Docker what command we want to run when our image is executed inside a container. We do this using the ```CMD``` command. Note that we need to make the application externally visible (i.e. from outside the container) by specifying ```--host=0.0.0.0```.
+This ```COPY``` command takes all the files located in the current directory and copies them into the image. Now, all we have to do is to tell Docker what command we want to run when our image is executed inside a container. We do this using the ```CMD``` command. Note that we need to make the application externally visible (i.e. from outside the container) by specifying ```EXPOSE 8000```.
 
 ```
-CMD [ "python3", "-m" , "django", "runserver", "--host=0.0.0.0"]
-```
-
-The Dockerfile should now look like this
-```
+#Pull official base image for Python 3.8
 FROM python:3.8-slim-buster
 
+#Create a working directory
 WORKDIR /app
 
+#First parameter tells docker which files to copy to the docker file, second parameter location to copy to
 COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
 
-COPY . .
+#Execute the command and install all required packages
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-CMD [ "python3", "-m" , "django", "runserver", "--host=0.0.0.0"]
+#Add source code to the image                           
+COPY . /app/
+
+#Expose the port the server is running on
+EXPOSE 8000
+
+#Run the command to runserver
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 ```
 ### Build a docker image
@@ -453,3 +458,11 @@ The build command optionally takes a ```--tag``` flag. The tag is used to set th
 
 Let’s build our first Docker image.
 
+A docker image is an instanz of a docker container. To build the docker image run the following comand. The ```--tag``` will specify the repository and the name of the image.
+```
+docker image build --tag local:noisyatomrunserver .
+```
+Make sure your docker built was successful by using the ```docker images``` command and see if there is a new docker image in your repository called noisyatomrunserver.
+```
+docker run -d -it -p 8000:8000 --name=NoisyAtomWeb <IMAGE ID>
+```
