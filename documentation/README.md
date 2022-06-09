@@ -466,3 +466,66 @@ Make sure your docker built was successful by using the ```docker images``` comm
 ```
 docker run -d -it -p 8000:8000 --name=NoisyAtomWeb <IMAGE ID>
 ```
+### Build a Docker Compose file
+We don't want to run single docker images. That's why we are creating the ```docker-compose.yml``` file.
+Add a ```docker-compose.yml``` in your working directory. It should look like this.
+```
+version: "2.2"
+
+services:
+#  db:
+#    image: postgres
+#    volumes:
+#      - ./data/db:/var/lib/postgresql/data
+#    environment:
+#      - POSTGRES_DB=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+#    environment:
+#      - POSTGRES_NAME=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#    depends_on:
+#      - db
+```
+Additionally you have to change the Dockerfile you used before and it should now look like this:
+```
+#Pull official base image for Python 3.8
+FROM python:3.8-slim-buster
+
+# This prevents Python from writing out pyc files
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# This keeps Python from buffering stdin/stdout
+ENV PYTHONUNBUFFERED 1
+
+#Create a working directory
+WORKDIR /app
+
+#First parameter tells docker which files to copy to the docker file, second parameter location to copy to
+COPY requirements.txt requirements.txt
+
+#Execute the command and install all required packages
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+#Add source code to the image
+COPY . /app/
+
+#Expose the port the server is running on
+EXPOSE 8000
+
+#Run the command to runserver
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+```
+To test out that that the Docker Compose file is working run this command
+```
+/> docker-compose up -d
+```
+
