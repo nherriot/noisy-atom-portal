@@ -1,16 +1,16 @@
-##Creating SSL Certificates
+## Creating SSL Certificates
 
 To enable HTTPS on your website, you need to get a certificate (a type of file) from a Certificate Authority (CA). [Let’s Encrypt](https://letsencrypt.org/getting-started/)is a CA.
 In order to get a certificate for your website’s domain from Let’s Encrypt, you have to demonstrate control over the domain.
 
-###Use Certbot to generate your Certificate
+### Use Certbot to generate your Certificate
 
 People with shell access use the [Certbot ACME client](https://certbot.eff.org/instructions?ws=webproduct&os=ubuntubionic). 
 It can automate certificate issuance and installation with no downtime. It also has expert modes for people who don’t want autoconfiguration.
 
 The first step is to choose the correct System and Software your HTTP website is running on. In our case this is Ngnix and Ubuntu 18.
 
-[] Picture
+![Choosing correct settings for SSL certificate](/documentation/images/Certbot_chooseSystem.png)
 
 You have to follow 9 steps to make your HTTP website into an HTTPS website.
 
