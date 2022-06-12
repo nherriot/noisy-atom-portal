@@ -103,9 +103,11 @@ if ENVIRONMENT == "prod":
     ALLOWED_HOSTS = [
         'localhost',
         '127.0.0.1',
-        'noisyatom.com',
-        'noisyatom.co.uk',
-        '104.236.14.123',
+        '.noisyatom.com',
+        '.noisyatom.tech',
+        '.noisyatom.co.uk',
+        '.104.236.14.123',
+        '134.209.21.58',
         '46.101.19.29',
     ]
 
