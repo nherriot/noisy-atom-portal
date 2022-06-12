@@ -107,7 +107,7 @@ if ENVIRONMENT == "prod":
         '.noisyatom.tech',
         '.noisyatom.co.uk',
         '.104.236.14.123',
-        '134.209.21.58',
+        '167.99.92.82',
         '46.101.19.29',
     ]
 
