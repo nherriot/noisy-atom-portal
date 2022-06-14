@@ -157,7 +157,6 @@ def update_post(request, slug=None):
 
     # First check if it's a post. If it is we need to pull values from our form and save them.
     if request.method == "POST":
-        # form = PostForm(request.POST or None, request.FILES or None, instance=blog_post)
 
         if form.is_valid():
             submitted_post = form.save(commit=False)
