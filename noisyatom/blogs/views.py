@@ -13,7 +13,6 @@ from .models import Post
 
 def create_post(request):
     """
-
     :param request:
     :return: HttpResponseForbidden, HttpResponse, HttpResponseRedirect
 
