@@ -348,9 +348,184 @@ Update your virtual env python file to contain the postgres adapter
 (noisy-atom)/> python manage.py runserver
 ```
 
+## Installing Docker version 5.0.3
+For a better understanding and getting used to using Docker, please have a look at the [tutorials](https://github.com/docker/labs/tree/master/beginner).
 
+Get docker installed by
+```bash
+/> pip install docker==5.0.3
+```
 
+Make sure there you add your user to the docker group.
 
+### Create the docker group
+```bash
+/> sudo groupadd docker
+```
+### Add your user to the docker group
+```
+/> sudo usermod -aG docker <username>
+```
+Make sure to log out and log back in so that your group membership is re-evaluated or type the following command:
+```
+/> newgrp docker
+```
+### Verify that you can run docker commands without sudo
+```
+/> docker run hello-world
 
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
 
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+### Create a Dockerfile for Python 3.8 and runserver
+A Dockerfile is a text document that contains the instructions to assemble a Docker image. When we tell Docker to build our image by executing the ```docker build``` command, Docker reads these instructions, executes them, and creates a Docker image as a result.
+
+Let’s walk through the process of creating a Dockerfile for our application. In the root of your project, create a file named ```Dockerfile``` and open this file in your text editor.
+
+The first line to add to a Dockerfile is a ```# syntax``` [parser directive](https://docs.docker.com/engine/reference/builder/#syntax).
+This is optional and only in the docker file to make sure it will work with older versions.
+Docker images can be inherited from other images. Therefore, instead of creating our own base image, we’ll use the official Python image that already has all the tools and packages that we need to run a Python application.
+```
+# syntax=docker/dockerfile:1
+
+FROM python:3.8-slim-buster
+```
+To make things easier when running the rest of our commands, let’s create a working directory. This instructs Docker to use this path as the default location for all subsequent commands.
+```
+WORKDIR /app
+```
+The first parameter tells Docker what file(s) you would like to copy into the image. The second parameter tells Docker where you want that file(s) to be copied to. We’ll copy the requirements.txt file into our working directory /app.
+
+```
+COPY requirements.txt requirements.txt
+```
+Once we have our requirements.txt file inside the image, we can use the RUN command to execute the command pip3 install. This works exactly the same as if we were running ```pip3 install``` locally on our machine, but this time the modules are installed into the image.
+```
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+```
+At this point, we have an image that is based on Python version 3.8 and we have installed our dependencies. The next step is to add our source code into the image. We’ll use the ```COPY``` command just like we did with our ```requirements.txt``` file above.
+
+```
+COPY . /app/
+```
+This ```COPY``` command takes all the files located in the current directory and copies them into the image. Now, all we have to do is to tell Docker what command we want to run when our image is executed inside a container. We do this using the ```CMD``` command. Note that we need to make the application externally visible (i.e. from outside the container) by specifying ```EXPOSE 8000```.
+
+```
+#Pull official base image for Python 3.8
+FROM python:3.8-slim-buster
+
+#Create a working directory
+WORKDIR /app
+
+#First parameter tells docker which files to copy to the docker file, second parameter location to copy to
+COPY requirements.txt requirements.txt
+
+#Execute the command and install all required packages
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+#Add source code to the image                           
+COPY . /app/
+
+#Expose the port the server is running on
+EXPOSE 8000
+
+#Run the command to runserver
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+```
+### Build a docker image
+The ```docker build``` command builds Docker images from a Dockerfile and a “context”. A build’s context is the set of files located in the specified PATH or URL. The Docker build process can access any of the files located in this context.
+
+The build command optionally takes a ```--tag``` flag. The tag is used to set the name of the image and an optional tag in the format ```name:tag```. We’ll leave off the optional ```tag``` for now to help simplify things. If you do not pass a tag, Docker uses “latest” as its default tag.
+
+Let’s build our first Docker image.
+
+A docker image is an instanz of a docker container. To build the docker image run the following comand. The ```--tag``` will specify the repository and the name of the image.
+```
+docker image build --tag local:noisyatomrunserver .
+```
+Make sure your docker built was successful by using the ```docker images``` command and see if there is a new docker image in your repository called noisyatomrunserver.
+```
+docker run -d -it -p 8000:8000 --name=NoisyAtomWeb <IMAGE ID>
+```
+### Build a Docker Compose file
+We don't want to run single docker images. That's why we are creating the ```docker-compose.yml``` file.
+Add a ```docker-compose.yml``` in your working directory. It should look like this.
+```
+version: "2.2"
+
+services:
+#  db:
+#    image: postgres
+#    volumes:
+#      - ./data/db:/var/lib/postgresql/data
+#    environment:
+#      - POSTGRES_DB=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+#    environment:
+#      - POSTGRES_NAME=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#    depends_on:
+#      - db
+```
+Additionally you have to change the Dockerfile you used before and it should now look like this:
+```
+#Pull official base image for Python 3.8
+FROM python:3.8-slim-buster
+
+# This prevents Python from writing out pyc files
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# This keeps Python from buffering stdin/stdout
+ENV PYTHONUNBUFFERED 1
+
+#Create a working directory
+WORKDIR /app
+
+#First parameter tells docker which files to copy to the docker file, second parameter location to copy to
+COPY requirements.txt requirements.txt
+
+#Execute the command and install all required packages
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+#Add source code to the image
+COPY . /app/
+
+#Expose the port the server is running on
+EXPOSE 8000
+
+#Run the command to runserver
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+```
+To test out that that the Docker Compose file is working run this command
+```
+/> docker-compose up -d
+```
 
