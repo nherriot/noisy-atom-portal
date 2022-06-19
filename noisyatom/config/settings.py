@@ -77,12 +77,9 @@ if ENVIRONMENT == "dev":
         'django.contrib.staticfiles',
         'django.contrib.sites',
         # Project application
-        'account.apps.AccountConfig',
         'blogs.apps.BlogsConfig',
-        'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
-        'qrcode',
-        'ee_test',
+
         # Third part library
         'bootstrap4',
         'markdown_deux',
@@ -148,12 +145,9 @@ if ENVIRONMENT == "prod":
         'django.contrib.staticfiles',
         'django.contrib.sites',
         # Project application
-        'account.apps.AccountConfig',
         'blogs.apps.BlogsConfig',
-        'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
-        'qrcode',
-        'ee_test',
+
         # Third part library
         'bootstrap4',
         'markdown_deux',
