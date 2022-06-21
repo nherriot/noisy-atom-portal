@@ -13,7 +13,6 @@ from .models import Post
 
 def create_post(request):
     """
-
     :param request:
     :return: HttpResponseForbidden, HttpResponse, HttpResponseRedirect
 
@@ -147,34 +146,34 @@ def update_post(request, slug=None):
 
     template_name = 'update.html'
 
+    blog_post = get_object_or_404(Post, slug=slug)
+
     if not request.user.is_staff and not request.user.is_superuser:
         return HttpResponseForbidden()
-    blog_post = get_object_or_404(Post, slug=slug)
+    
+    # This must be a http GET message. So populate the form with the blog post from the database and render it in the
+    # template.
+    form = PostForm(request.POST or None, request.FILES or None, instance=blog_post)
 
     # First check if it's a post. If it is we need to pull values from our form and save them.
     if request.method == "POST":
-        form = PostForm(request.POST, request.FILES, instance=blog_post)
 
         if form.is_valid():
-            submitted_post = form.save()                    # This returns a post object that is persisted to the database.
+            submitted_post = form.save(commit=False)
+            submitted_post.save()             # This returns a post object that is persisted to the database.
             messages.success(request, 'The page successfully updated')
 
             return HttpResponseRedirect(submitted_post.get_absolute_url())
 
         else:
             messages.success(request, form.errors)
-            context = {'form': form}
-            return render(request, template_name, context)
 
-    # This must be a http GET message. So populate the form with the blog post from the database and render it in the
-    # template.
-    form = PostForm(instance=blog_post)
+  
     context = {
-        'main_title': 'Blogs At Noisy Atom',
-        'description1': 'Read all about the latest thought, what we are working on and how we are progressing! A brain dump of where we are at!',
-        'description2': 'We hope you enjoy our thoughts...',
-        'description3': '',
-        'form': form}
+        'main_title': blog_post.title,
+        'blog_post': blog_post,
+        'form': form
+    }
     return render(request, template_name, context)
 
 

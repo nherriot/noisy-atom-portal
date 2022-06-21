@@ -75,12 +75,9 @@ if ENVIRONMENT == "dev":
         'django.contrib.staticfiles',
         'django.contrib.sites',
         # Project application
-        'account.apps.AccountConfig',
         'blogs.apps.BlogsConfig',
-        'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
-        'qrcode',
-        'ee_test',
+
         # Third part library
         'bootstrap4',
         'markdown_deux',
@@ -148,12 +145,9 @@ if ENVIRONMENT == "prod":
         'django.contrib.staticfiles',
         'django.contrib.sites',
         # Project application
-        'account.apps.AccountConfig',
         'blogs.apps.BlogsConfig',
-        'catalog.apps.CatalogConfig',
         'cms.apps.CmsConfig',
-        'qrcode',
-        'ee_test',
+
         # Third part library
         'bootstrap4',
         'markdown_deux',
@@ -171,7 +165,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_URL = "http://noisyatom.com"
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
