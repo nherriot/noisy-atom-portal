@@ -1,0 +1,47 @@
+{% extends 'background-page.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="section text-center">
+                <h2 class="title">Here is our team</h2>
+
+				<div class="team">
+					<div class="row">
+						<div class="col-md-6">
+							{% for Team in team%}
+							<div class="card card-profile card-plain">
+								<div class="col-md-5">
+									<div class="card-image">
+										<a href="/aboutus/{{ Team.card_title }}/">
+											<img class="img" src="{{ Team.picture.url }}">
+										</a>
+									</div>
+								</div>
+								<div class="col-md-7">
+									<div class="content">
+										<h4 class="card-title">{{ Team.card_title }}</h4>
+										<h6 class="category text-muted">{{ Team.position }}</h6>
+
+										<p class="card-description">
+											{{ Team.card_description }}
+										</p>
+
+										<div class="footer">
+											<a href="/aboutus/{{ Team.linkedIn }}" class="btn btn-just-icon btn-simple btn-linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+											<a href="/aboutus/{{ Team.twitter }}" class="btn btn-just-icon btn-simple btn-twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+
+											<a href="/aboutus/{{ Team.google }}" class="btn btn-just-icon btn-simple btn-google"  target="_blank"><i class="fa fa-google"></i></a>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+</div>
+
+{% endblock content %}
