@@ -77,7 +77,7 @@ if ENVIRONMENT == "dev":
         # Project application
         'blogs.apps.BlogsConfig',
         'cms.apps.CmsConfig',
-        'products.apps.ProductsConfig',
+        # 'products.apps.ProductsConfig',
         'aboutus',
 
         # Third part library
